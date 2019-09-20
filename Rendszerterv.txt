@@ -1,12 +1,23 @@
 Rendszerterv
 Időjárás előrejelző program
 
-A rendszer: Egy magyar nyelvű időjárás előrejelző program.
+I. A rendszer: Egy magyar nyelvű időjárás előrejelző program.
 
-A rendszer célja: Egy nagyon egyszerűen használható, a lehető legátlátóbb időjárás előrejelzés biztosítása a jelenlegi helyszín, illetve akár egy a felhasználó által megadott helyszín alapján idős emberek számára.
+II. A rendszer célja: Egy nagyon egyszerűen használható, a lehető legátlátóbb időjárás előrejelzés biztosítása a jelenlegi helyszín, illetve akár egy a felhasználó által megadott helyszín alapján idős emberek számára.
 
-Terv: Az első lépés magának a JSON fájlnak a beolvasása kell hogy legyen.
+III. Terv: Az első lépés magának a JSON fájlnak a beolvasása kell hogy legyen.
 
-Időpont: A programnak várhatóan szeptember 30. -ra (hétfő) kell készen lennie.
+IV. Időpont: A programnak várhatóan szeptember 30. -ra (hétfő) kell készen lennie.
 
-Erőforrások: A programozási nyelv a Java 11 lesz, a felhasználó felület megvalósításához JavaFX 12-t használunk. Az OpenWeather API (https://openweathermap.org/) ingyenes licencét használva hozzáférhetünk a megadott helyszín (név, ID, koordináta, irányítószám formájában megadható) jelenlegi időjárására, illetve 5 napos előlejelzésére. Az API válaszul egy JSON fájlt küld vissza, melyet a Google Gson (nyílt forráskodú Java könyvtár mely Java objektumot képes JSON-é, illetve JSON fájlt képes Java objektummá alakítani) használatával fogunk beolvasni. A jelenleg időjáráshoz szükséges request formája: https://samples.openweathermap.org/data/2.5/weather?q=HELYSZÍN&appid=API_KEY, az 5 napos előrejelzéshez szükséges request formája: https://samples.openweathermap.org/data/2.5/forecast?q=HELYSZÍN&appid=API_KEY, az API_KEY-t az OpenWeather API biztosítja. A JSON fájl tartalmazza a megadott helyszín koordinátáit, a jelenlegi időjárást szövegesen megfogalmazva (pl. enyhe eső), a hőmérsékletet, páratartalmat, maximum illetve minimum hőmérsékletet, a szél sebességét, illetve irányát, a felhősséget százalékban megadva, illetve a napfelkeltét illetve napnyugtát. A JSON fájlra a mellékletben található egy példa (example.json). 
+V. Erőforrások: A programozási nyelv a Java 11 lesz, a felhasználó felület megvalósításához JavaFX 12-t használunk.
+Az OpenWeather API (https://openweathermap.org/) ingyenes licencét használva hozzáférhetünk a megadott helyszín (név, ID, koordináta, irányítószám formájában megadható) jelenlegi időjárására, illetve 5 napos előlejelzésére. Az API válaszul egy JSON fájlt küld vissza, melyet a Google Gson (nyílt forráskodú Java könyvtár mely Java objektumot képes JSON-é, illetve JSON fájlt képes Java objektummá alakítani), segítségével olvasunk be.
+A jelenlegi időjáráshoz szükséges request formája: https://samples.openweathermap.org/data/2.5/weather?q=HELYSZÍN&appid=API_KEY, az 5 napos előrejelzéshez szükséges request formája: https://samples.openweathermap.org/data/2.5/forecast?q=HELYSZÍN&appid=API_KEY, az API_KEY-t az OpenWeather API biztosítja. A JSON fájlra a mellékletben található egy példa (example.json).
+Mivel Google Gsont használunk, így szükséges, hogy a JSON fájlba az olyan elemek amelyek több paraméterrel rendelkeznek Java osztályként jelenjenek meg a kódunkban, így a feldolgozásuk sokkal egyszerűbb és gyorsabb. (melléklet AdatUML)
+Az API által küldött JSON fájl rengeteg hasznos információt szolgál számunkra, melyek közül az alábbiakat használjuk: 
+- Maximum hőmérséklet, minimum hőmérséklet, jelenlegi hőmérséklet
+- Nyomás
+- Páratartalom
+- Szélsebesség, szélirány
+- Felhősség (százalékban megadva)
+- Naplemente, napnyugta
+- 5 napos előrejelzés
