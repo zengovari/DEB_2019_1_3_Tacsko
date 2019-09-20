@@ -3,7 +3,7 @@ Időjárás előrejelző program
 
 I. Bevezetés
 
-Egy öregotthon számára egy idős emberek által is egyszerűen használjató időjárás előrejelző programot szeretnénk beszerezni.
+Egy öregotthon számára az idős emberek által is egyszerűen használjató időjárás előrejelző programot szeretnénk. 
 
 
 II. Jelenlegi helyzet
@@ -17,9 +17,7 @@ de a lakó testi épségét is veszélyeztetheti hiszen akármikor áteshet az a
 
 III. Vágyálomrendszer leírása
 
-Szükségünk lenne egy olyan magyar nyelvű programra amelynek a használata egyszerű, a jelenlegi helyszín alapján a átlátható módon kiírja a jelenlegi időjárást, illetve több napos előrejelzést.
-Örülnénk annak is, ha értesítést küldene abban az esetben ha eső, zivatar vagy más fontosabb természeti jelenség várható, illetve, ha más, a felhasználó által beírt helyszínek is megtekinthetőek lennének.
-Ami nagyon fontos az lenne hogy nagyon egyszerűen kezelhető legyen a program hiszen olyan emberek számára készül akik nem járatosak a számítógépes világ használatában.
+Szükségünk lenne egy olyan programra amelynek a használata egyszerű, a jelenlegi helyszín alapján a átlátható módon kiírja a jelenlegi időjárást, illetve több napos előrejelzést. Örülnénk annak is, ha értesítést küldene abban az esetben ha eső, zivatar vagy más fontosabb természeti jelenség várható, illetve ha más, a felhasználó által beírt helyszínek is megtekinthetőek lennének. 
 
 IV. Jelenlegi üzleti folyamatok modellje
 
