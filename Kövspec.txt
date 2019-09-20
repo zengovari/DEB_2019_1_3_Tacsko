@@ -1,0 +1,24 @@
+Követelményspecifikáció
+Időjárás előrejelző program
+
+I. Bevezetés
+
+Egy öregotthon számára egy idős emberek számára is egyszerűen használjató időjárás előrejelző programot szeretnénk. 
+
+
+II. Jelenlegi helyzet
+
+Jelenleg nincs olyan időjáráselőrejelző programunk amely kényelmesen használható lenne, ugyanis a lakóink közül nem mindenki rendelkezik okostelefonnal, a TV-ben illetve rádióban hallható időjárásjelentésekre várni kell, az interneten elérhető eszközök pedig számunkra nem megfelelőek ugyanis a kezelésük a lakók számára bonyolult. 
+
+III. Vágyálomrendszer leírása
+
+Szükségünk lenne egy olyan programra, amely a jelenlegi helyszín alapján átlátható módon kiírja a jelenlegi időjárást, illetve több napos előrejelzést. Örülnénk annak is, ha esetleg értesítést küldene abban az esetben ha eső várható.
+
+IV. Jelenlegi üzleti folyamatok modellje
+
+Megérkeznek a lakók -> Várnak estig az időjárás jelentésig -> Megtudják az időjárást 
+
+
+V. Igényelt üzleti folyamatok modellje
+
+Megérkeznek a lakók -> A könyvárban elérhető számítógépen bármikor megtekinthetik az időjárás előrejelzést anélkül hogy várni kellene estig -> Megtudják az időjárást
