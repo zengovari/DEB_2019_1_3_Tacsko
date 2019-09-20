@@ -3,21 +3,31 @@ Időjárás előrejelző program
 
 I. Bevezetés
 
-Egy öregotthon számára egy idős emberek számára is egyszerűen használjató időjárás előrejelző programot szeretnénk. 
+Egy öregotthon számára egy idős emberek által is egyszerűen használjató időjárás előrejelző programot szeretnénk beszerezni.
 
 
 II. Jelenlegi helyzet
 
-Jelenleg nincs olyan időjáráselőrejelző programunk amely kényelmesen használható lenne, ugyanis a lakóink közül nem mindenki rendelkezik okostelefonnal, a TV-ben illetve rádióban hallható időjárásjelentésekre várni kell, az interneten elérhető eszközök pedig számunkra nem megfelelőek ugyanis a kezelésük a lakók számára bonyolult. 
+Jelenleg nincs olyan időjáráselőrejelző programunk amely kényelmesen használható lenne, ugyanis a lakóink közül nem mindenki rendelkezik okostelefonnal,
+a TV-ben illetve rádióban hallható időjárásjelentésekre várni kell, az interneten elérhető eszközök pedig számunkra nem megfelelőek ugyanis a kezelésük a lakók számára bonyolult.
+Sokszor az alkallmazottakat keresik fel a lakók az időjárásal kapcsolatban, hiszen nekik van okostelefonjuk. Ez viszont rengeteg enerdiát és időt vehet el az alkalmazotaktól,
+így más dolgokra nem jut idelyük vagy leginkább elfelejtik mit is akartak csinálni és a munka elvégezetlenül maradhat ami komoly anyagi és szellemi károkkal járhat.
+A lrgrosszabb változat az amikor a lakók az ablakon át szólítják le az utcán sétáló embereket hogy megtudakolják az időjárást. Ez nem csak hogy zaklató lehet a járókelők számára,
+de a lakó testi épségét is veszélyeztetheti hiszen akármikor áteshet az ablakon.
 
 III. Vágyálomrendszer leírása
 
-Szükségünk lenne egy olyan programra, amely a jelenlegi helyszín alapján átlátható módon kiírja a jelenlegi időjárást, illetve több napos előrejelzést. Örülnénk annak is, ha esetleg értesítést küldene abban az esetben ha eső várható.
+Szükségünk lenne egy olyan magyar nyelvű programra amelynek a használata egyszerű, a jelenlegi helyszín alapján a átlátható módon kiírja a jelenlegi időjárást, illetve több napos előrejelzést.
+Örülnénk annak is, ha értesítést küldene abban az esetben ha eső, zivatar vagy más fontosabb természeti jelenség várható, illetve, ha más, a felhasználó által beírt helyszínek is megtekinthetőek lennének.
+Ami nagyon fontos az lenne hogy nagyon egyszerűen kezelhető legyen a program hiszen olyan emberek számára készül akik nem járatosak a számítógépes világ használatában.
 
 IV. Jelenlegi üzleti folyamatok modellje
 
-Megérkeznek a lakók -> Várnak estig az időjárás jelentésig -> Megtudják az időjárást 
-
+Megérkeznek a lakók -> Várnak estig az időjárás jelentésig -> Megtudják az időjárást
+  vagy
+Megérkeznek a lakók -> Keresnek egy olyan alkallmazottat akinek okostelefonja van -> megkérdezik tőle az időjárást -> az alkalmazott válaszol
+  vagy
+Megérkeznek a lakók -> Az ablakon át kérdezgetik a járókelőket az időjárásról -> az 5-10 ember közül az egyik lehet hogy válaszol
 
 V. Igényelt üzleti folyamatok modellje
 
