@@ -3,17 +3,34 @@ Időjárás előrejelző program
 
 I. Bevezetés
 
-Egy öregotthon számára kell egy minél egyszerűbben használható időjáráselőrejelző programot készíteni.
+Egy öregotthon számára kell egy minél egyszerűbben használható időjáráselőrejelző programot készíteni a könyvtári számítógépen való használatra.
 
 II. Jelenlegi helyzet
 
-Jelenleg az öregotthon lakóinak nincs kényelmes módjuk a jelenlegi időjárás, illetve az 5 napos előrejelzés megtekintésére, hiszen nem mindenki rendelkezik okostelefonnal, a televízióban, illetve rádióban hallható időjárás jelentések csak bizonyos időpontokban érhető el, az internet használata és az azon elérhető weboldalak használata pedig bonyolult számukra. Így szükség van egy olyan magyar szoftverre amelynek kezelése rendkívül egyszerű és minél átláthatóbb módon írja ki a kívánt helyszín (jelenlegi vagy a felhasználó által megadott) jelenlegi időjárását vagy az 5 napos előrejelzését. 
+Jelenleg az öregotthon lakóinak nincs kényelmes módjuk a jelenlegi időjárás, illetve az 5 napos előrejelzés megtekintésére, hiszen nem mindenki rendelkezik okostelefonnal,
+a televízióban, illetve rádióban hallható időjárás jelentések csak bizonyos időpontokban érhető el, az internet használata és az azon elérhető weboldalak használata pedig bonyolult számukra.
+Ezenkívül ha az alkalmazottakat keresik fel minden alkalommal az időjárásra való kérdéseikkel akkor, azok lehtséges hogy hibákat fognak véteni a napi feladataik elvégzésében,
+komoly anyagi és szellemi károkat okozva.
+A legrosszabb esetben akár az is megtörténhet hogy az ablakon keresztül próbálják az időjárását megtudakolni az utszán járó emberektől és így áteshetnek az ablakon,
+ami komoly fizikai sérülésekkel járhat.
+Így szükség van egy olyan magyar nyelvü szoftverre amelynek kezelése rendkívül egyszerű és minél átláthatóbb módon írja ki a kívánt helyszín (jelenlegi vagy a felhasználó által megadott) jelenlegi
+időjárását vagy az 5 napos előrejelzését.
 
 III. Vágyálomrendszer leírása
 
+Egy olyan programot szeretnénk alkotni amely magyar nyelvű, hiszen a felhasználók nem valószínű hogy tudnak idegennyelven írni, olvasni,
+illetve használata anyira egyszerü hogy a számítógépek világaban nem járasak is képesek legyenek használni.
+Fontos szempont lenne hogy a program képes legyen több napos időjáráselőrejelzésre, illetve az aktuális időjárás megállapítására.
+Opcionális módon lehetséges lenne hogy a szélsőséges időjárásra figyelmeztessen: vihar, jégeső, stb.
+
+
 IV. Jelenlegi üzleti folyamatok modellje
 
-Jelenleg a lakóknak egészen estig várniuk kell az időjárás jelentés megtekintéséhez, azonban ebben az időpontban nem biztos, hogy mindenki ráér.
+Megérkeznek a lakók -> Várnak estig az időjárás jelentésig -> Megtudják az időjárást
+  vagy
+Megérkeznek a lakók -> Keresnek egy olyan alkallmazottat akinek okostelefonja van -> megkérdezik tőle az időjárást -> az alkalmazott válaszol
+  vagy
+Megérkeznek a lakók -> Az ablakon át kérdezgetik a járókelőket az időjárásról -> az 5-10 ember közül az egyik lehet hogy válaszol
 
 
 V. Igényelt üzleti folyamatok modellje
