@@ -45,4 +45,4 @@ Megérkeznek a lakók -> Elinditják a rádiót és megvárják amíg a csatorna
 
 V. Igényelt üzleti folyamatok modellje
 
-A lakók igénye az, hogy a könyvtárban elérhető számítógépen bárki és bármikor megtudja tekinteni az időjárást, a gondózók segítsége nélkül, saját képességeiket felhasználva.
+A lakók igénye az, hogy a könyvtárban elérhető számítógépen legyen egy olyan rendkívül egyszerűen használható és áttekinthető szoftver, amely használatával bárki és bármikor megtudja tekinteni a gondózók segítsége nélkül, saját képességeiket felhasználva, a jelenlegi időjárás viszonyokat, illetve az 5 napos előrejelzést annak érdekében, hogy előretudják tervezni a napjaikat, családi programjaikat, utazásaikat.
