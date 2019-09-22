@@ -2,16 +2,19 @@ Rendszerterv
 Időjárás előrejelző program
 
 I. A rendszer:
-Egy magyar nyelvű időjárás előrejelző program.
-Könyen használható kell legyen azok számára is akik nem jártasak a számítógépek használatában.
+Egy magyar nyelvű időjárást előrejelző program.
+Könyen használható kell legyen azok számára is akik nem jártasak a számítógépek használatában, így egyszerű és átlátható grafikus felülettel kell rendelkezzen.
 Több napos időjáráselőrejelzésre és az aktuális időjárás meghatározására alkalmas kell hogy legyen.
-A helyi időjárásra vonatkozó adatokat kell hogy kimutassa illetve tetszőlegesen választott helyszín időjárását is képes kell legyen kimutatni.
+Alkalmas kell hogy legyen tetszőleges helyszín kiválasztására.
+Illetve ki kell hogy tudja mutatni a helyi aktuális időjárást és ahoz kapcsolódó adatokat.
 
 II. A rendszer célja:
 Egy nagyon egyszerűen használható, a lehető legátláthatóbb időjárás előrejelzés biztosítása a jelenlegi helyszín, illetve akár egy a felhasználó által megadott helyszín alapján.
 Alkalmas legyen idős emberek számára, hogy ők saját ejükből képesek legyenek tájékozódni az általuk kiválasztott helyiség aktuális és várható időjárásával kapcsolatban.
-Fontos hogy az öregotthon lakói rendelkezzenek egy olyan időjáráselőrejelzési forrással, melyet kényelmesen megtudnak nézni,
-anélkül, hogy az alkalmazottakat kérdezgesésk, az ablakon át a járókelőket zaklassák a kérdéseikkel, vagy várniuk kéne egy adott időpontra amikor a TV-ből illetve Rádióból tájákozódhatnának.
+Fontos hogy az öregotthon lakói rendelkezzenek egy olyan időjáráselőrejelzési forrással, melyet kényelmesen megtudnak nézni.
+Ami nagyon fontos hogy teljesen önállóan képesek legyenek a program használatára anélkül hogy az alkalmazottakat kérdezgesésk mivel az elvonhatja a figyelmüket a munkájukról
+és így az elvégezetlenül vagy félbehagyva maradhat ami akár súlyos fizikai és szellemi károkhaz is vezethet.
+Ne kelljen az ablakon át a járókelőket zaklassák az időjárással kapcsolatos kérdéseikkel, vagy várniuk egy adott időpontra amikor a TV-ből illetve Rádióból tájákozódhatnának.
 
 III. Terv:
 A megbizóink kéréseiből a programot könnyedén magyar nyelvre tudjuk szabni, viszont a települések neveit csak a hivatalos elnevézeseik szerint tudjuk csak ábrázolni.
@@ -48,6 +51,10 @@ Ezek az információk többsége valószínűleg csak az aktuális napra szóló
 ha négis meg lehet őket jeleníteni akkor nem valószínű hogy pontos adatok lessznek (pl. szélsebesség, páratartalom).
 A program az 5 napos előrejelzés esetén, a napi időjárásra vonatkozóan ikonok segítségével a várható időjárást szemléltetni fogja.
 (ha felhős lesz az ég akkor azt egy felhőket ábrázoló ikon fogja jelképezni, ha napos lessz az idő akkor azt egy naopt ábrázoló ikon fogja jelképezni)
+
+A kiválasztott helyiséget több féle módon is meg lehet adni.
+Első sorban településnévvel lehet megadni a helységet, viszont itt a külföldi településneveket nem lehet magyarul megadni.
+Irányítószám alapján is meg lehet adni a helyiséget, valamit szélességi és hosszúsági koordinátákkal is. 
 
 Ahogy a minta képen is látható, a bal felső sarokban helyezkedik el magának a jelenlegi vagy a felhasználó által választott helyszínnek a neve, az alatt pedig a jelenlegi időjárás részletesen taglalva.
 (jelenlegi időjárás az OpenWeather API által szolgáltatott ikonnal szemléltetve, hőmérséklet, szélsebesség, szélirány, borultság százalékban megadva, nyomás, páratartalom)
