@@ -17,13 +17,19 @@ Egy olyan programot szeretnénk alkotni amely magyar nyelvű, hiszen a felhaszn�
 
 #### IV. Jelenlegi üzleti folyamatok modellje
 
-Megérkeznek a lakók -> Várnak estig az időjárás jelentésig -> Megtudják az időjárást
+- Megérkeznek a lakók -> Várnak estig az időjárás jelentésig -> Megtudják az időjárást
+  
   vagy
-Megérkeznek a lakók -> Keresnek egy olyan alkallmazottat akinek okostelefonja van -> megkérdezik tőle az időjárást -> az alkalmazott válaszol
+  
+- Megérkeznek a lakók -> Keresnek egy olyan alkallmazottat akinek okostelefonja van -> megkérdezik tőle az időjárást -> az alkalmazott válaszol
+  
   vagy
-Megérkeznek a lakók -> Az ablakon át kérdezgetik a járókelőket az időjárásról -> az 5-10 ember közül az egyik lehet hogy válaszol
+  
+- Megérkeznek a lakók -> Az ablakon át kérdezgetik a járókelőket az időjárásról -> az 5-10 ember közül az egyik lehet hogy válaszol
+  
   vagy
-Megérkeznek a lakók -> Elinditják a rádiót és megvárják amíg a csatorna tart egy ídőjáráselőrejelzést -> Megtudják az ídőjárást.
+  
+- Megérkeznek a lakók -> Elinditják a rádiót és megvárják amíg a csatorna tart egy ídőjáráselőrejelzést -> Megtudják az ídőjárást.
 
 #### V. Igényelt üzleti folyamatok modellje
 
