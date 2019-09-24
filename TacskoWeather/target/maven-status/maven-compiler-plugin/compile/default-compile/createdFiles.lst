@@ -1,0 +1,9 @@
+Model/Coord.class
+Model/Main.class
+View/App.class
+Model/Weather.class
+Model/Sys.class
+Model/WeatherData.class
+Model/Wind.class
+Model/Clouds.class
+Controller/Handler.class
