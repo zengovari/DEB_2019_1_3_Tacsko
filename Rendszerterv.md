@@ -15,7 +15,7 @@ A rendszer célja egy nagyon egyszerűen használható, a lehető legátlátóbb
 
 #### V. A funkcionális terv
 
-A rendszerhez bárki, bármikor, bárhol hozzáférhet, nincsenek jogosultságok. 
+A rendszerhez bárki, bármikor, bárhol hozzáférhet, nincsenek jogosultságok.
 
 ![alt text](https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/terv.png "Terv")
 
@@ -29,15 +29,15 @@ Ahogy a minta képen is látható, a bal felső sarokban helyezkedik el magának
 - nyomásp
 - páratartalom
 
-A felhasználónak a grafikus felület jobb felső oldalán van lehetősége más helyszín választására, melyet többféleképpen is megtehet: 
+A felhasználónak a grafikus felület jobb felső oldalán van lehetősége más helyszín választására, melyet többféleképpen is megtehet:
 - a helyszín földrajzi neve
 - irányítószám
 - földrajzi koordináták
 
 A rendszer segítséget kínál majd fel a helyszín kitörlésére az esetleges hibák, elgépelések elkerülése érdekében. Abban az esetben ha hibás értéket kapna bemenetnek a rendszer az oldal egy egyszerű 404-es hibát dob vissza, ezesetben, a rendszernek tájékoztatni kell a felhasználót, hogy nem megfelelő értéket adott meg.
 A jelenlegi időjárás alatt, 5 egymástól elkülönített kis ablakaban jelenik meg az 5 napos előrejelzés rövidített változata, annak érdekében hogy kiférjen a szűk térre:
-- időjárás ikonnal szemléltetve 
-- hőmérséklet 
+- időjárás ikonnal szemléltetve
+- hőmérséklet
 - csapadék
 
 Ezen kis ablakokkal az egérrel interakcióba lehet lépni, kattintás után pedig a megfelelő nap részletes előrejelzését láthatja a felhasználó, ahol ugyanazon adatok lesznek láthatók mint a jelenlegi időjárásnál.
@@ -47,7 +47,7 @@ Ezen kis ablakokkal az egérrel interakcióba lehet lépni, kattintás után ped
 A programozási nyelv a Java 11 lesz. A választás azért esett a Java programozási nyelvre, mivel a felhasználó felület megvalósításához JavaFX 12-t használunk, amivel rendkívül gyorsan és egyszerűen tudunk grafikus felülettel rendlező alkalmazásokat készíteni köszönhetően a sceen buildernek, illetve számos olyan opció van benne mely megkönnyiti a fejlesztési folyamatokat.  
 Az OpenWeather API (https://openweathermap.org/), aminek fő választási oka az volt, hogy képes nem csak a jelenlegi időjárási körülményeket megadni hanem képes több napos előrejelzést is nyújtani,
  ingyenes licencét használva hozzáférhetünk a megadott helyszín (név, ID, koordináta, irányítószám formájában megadható) jelenlegi időjárására, illetve 5 napos előlejelzésére. Az API válaszul egy JSON fájlt küld vissza, melyet a Google Gson (nyílt forráskódú Java könyvtár mely Java objektumot képes JSON filá, illetve JSON fájlt képes Java objektummá alakítani), segítségével olvasunk be,
- így a feldolgozásuk sokkal egyszerűbb és gyorsabb. 
+ így a feldolgozásuk sokkal egyszerűbb és gyorsabb.
  A jelenlegi időjáráshoz szükséges request formája: https://samples.openweathermap.org/data/2.5/weather?q=HELYSZÍN&appid=API_KEY,
 az 5 napos előrejelzéshez szükséges request formája: https://samples.openweathermap.org/data/2.5/forecast?q=HELYSZÍN&appid=API_KEY,
 az API_KEY-t az OpenWeather API biztosítja. A JSON fájlra a mellékletben található egy példa (example.json).
@@ -68,7 +68,7 @@ Az API által küldött JSON fájl rengeteg hasznos információt szolgáltat sz
 A fejlesztés során az MVC (Model-View-Control) szoftverfejlesztési módsztertant alkalmazzuk.
 
 
-Az OpenWeather Abstract Programming Interface, azesetben, ha helyes értéket kap (földrajzi név, irányítószám, koordináták) a következő JSON fájlt küldi válaszul. (ezesetben a helyszínünk a Japánban található Shuenzji) 
+Az OpenWeather Abstract Programming Interface, azesetben, ha helyes értéket kap (földrajzi név, irányítószám, koordináták) a következő JSON fájlt küldi válaszul. (ezesetben a helyszínünk a Japánban található Shuenzji)
 
 ```json
 {"coord": { "lon": 139,"lat": 35},
@@ -116,10 +116,12 @@ Mivel Google Gsont használunk, így szükséges, hogy a JSON fájlba az olyan e
 
 <img src="https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/WeatherData.png" width="600" height="400" />
 
-Annak érdekében, hogy minél egyszerűbb legyen dolgozni vele, a JSON-ben található neveket használjuk tovább, így sokkal átláthatóbb lesz a rendszer. 
+Annak érdekében, hogy minél egyszerűbb legyen dolgozni vele, a JSON-ben található neveket használjuk tovább, így sokkal átláthatóbb lesz a rendszer.
 
-A WeatherData osztály lesz a rendszerünk "Model"-je, azaz ez lesz az az osztály ami a "Controller" osztályunkról megkapja az információt, amelyet továbbít majd a "View"-nak. 
-A Controller osztályunk, egy olyan osztály lesz melynek funckiói között megtaláható lesz: 
+<img src="https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/MVC-Process.png" width="600" height="400" />
+
+A WeatherData osztály lesz a rendszerünk "Model"-je, azaz ez lesz az az osztály ami a "Controller" osztályunkról megkapja az információt, amelyet továbbít majd a "View"-nak.
+A Controller osztályunk, egy olyan osztály lesz melynek funckiói között megtaláható lesz:
 - API request küldése, a megkapott JSON fájl feldolgozása
 - Az adatbázisban való keeresés
 
@@ -136,8 +138,8 @@ A rendszer adatbázisában a városok neveit tároljuk annak érdekében, hogy m
 
 #### XI. Tesztterv
 
-| Leírás        									|  Várt eset    | 
-| :-------------:									|:-------------:| 
+| Leírás        									|  Várt eset    |
+| :-------------:									|:-------------:|
 | A felhasználó hibás értéket ad meg bemenetnek (minden esetre)     | Az oldal 404-es hibát dob vissza, a felhasználó tudomást szerez a hibásan beírt értékről |
 | új    									| új   |   
 
