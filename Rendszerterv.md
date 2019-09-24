@@ -11,7 +11,7 @@ Egy nagyon egyszerűen használható, a lehető legátláthatóbb időjárás el
 
 #### III. Az üzleti folyamatok modellje
 
-<img src="https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/folyamatdiagram.svg" width="300" />
+<img src="https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/folyamatdiagram.png"/>
 
 #### IV. A követelmények
 
