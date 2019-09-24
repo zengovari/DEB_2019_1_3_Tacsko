@@ -64,9 +64,9 @@ Az API által küldött JSON fájl rengeteg hasznos információt szolgáltat sz
 - 5 napos előrejelzés
 - Ikon ami a jelenlegi időjárást szemlélteti
 
-#### VII. Absztrakt domain modell
+A program rendszerű működéséhez állandó internethozzáférés szükséges.
 
-#### VIII. Architekturális terv
+#### VII. Architekturális terv
 
 A fejlesztés során az MVC (Model-View-Control) szoftverfejlesztési módsztertant alkalmazzuk.
 
@@ -128,7 +128,7 @@ A Controller osztályunk, egy olyan osztály lesz melynek funckiói között meg
 - API request küldése, a megkapott JSON fájl feldolgozása
 - Az adatbázisban való keeresés
 
-#### IX. Adatbázis terv
+#### VIII. Adatbázis terv
 
 ![alt text](https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/cities.png "Cities")
 
@@ -137,15 +137,16 @@ A rendszer adatbázisában a városok neveit tároljuk annak érdekében, hogy m
 - city_name: a város neve
 - counry_name: az ország neve
 
-#### X. Implementációs terv
+#### IX. Implementációs terv
 
-#### XI. Tesztterv
+#### X. Tesztterv
 
 | Leírás        									|  Várt eset    |
 | :-------------:									|:-------------:|
 | A felhasználó hibás értéket ad meg bemenetnek (minden esetre)     | Az oldal 404-es hibát dob vissza, a felhasználó tudomást szerez a hibásan beírt értékről |
+| A felhasználó meg akarja nyitni az egyik nap részletes adatait | a kiválasztott nap adatait várjuk és nem egy másik napét |
 | új    									| új   |   
 
-#### XII. Telepítési terv
+#### XI. Telepítési terv
 
-#### XIII. Karbantartási terv
+A program platform független. A program futtatásához sükséges hogy telepítve legyen a számítógépre a Java 11.
