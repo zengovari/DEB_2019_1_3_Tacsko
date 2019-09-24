@@ -9,6 +9,7 @@ import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,6 +86,25 @@ public class Handler {
 
         return citiesMap;
 
+    }
+
+    public static ArrayList<String> StringLike(Map<String, ArrayList<String>> cities ,String country, String string) {
+        ArrayList<String> possibilities = cities.get(country);
+        ArrayList<String> suggestions = new ArrayList<>();
+        int stringLength = string.length();
+
+
+        String substring;
+        for (String city: possibilities) {
+            if (city.length() > string.length() && city != null) {
+                substring = city.substring(0, stringLength);
+                if (string.toLowerCase().equals(substring.toLowerCase())) {
+                    suggestions.add(city);
+                }
+            }
+        }
+
+        return suggestions;
     }
 
     public static WeatherData ConvertToData (String jsonString){

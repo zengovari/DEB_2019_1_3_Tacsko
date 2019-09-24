@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Controller.Weather">
+    <content>
+        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+            <children>
+                <VBox layoutX="14.0" layoutY="14.0">
+                    <children>
+                        <TabPane tabClosingPolicy="UNAVAILABLE">
+                            <tabs>
+                                <Tab text="Untitled Tab 1">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                    <children>
+                                                        <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                                                            <children>
+                                                                <Label text="Ország" />
+                                                                <TextField fx:id="orszagTextField" />
+                                                                <Button fx:id="orszagButton" mnemonicParsing="false" onAction="#orszagAction" text="Button" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox prefHeight="200.0" prefWidth="100.0">
+                                                            <children>
+                                                                <Label text="Település" />
+                                                                <TextField fx:id="telepulesTextField" onKeyTyped="#telepulesKeyTyped"/>
+                                                                <Button fx:id="telepulesButton" mnemonicParsing="false" onAction="#telepulesAction" text="Button" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                                <Tab text="Untitled Tab 2">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                    <children>
+                                                        <VBox prefHeight="200.0" prefWidth="100.0">
+                                                            <children>
+                                                                <Label text="Irányítószám" />
+                                                                <TextField />
+                                                                <Button mnemonicParsing="false" text="Button" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                                <Tab text="Untitled Tab">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                    <children>
+                                                        <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                                                            <children>
+                                                                <Label text="Koordináta Y" />
+                                                                <TextField />
+                                                                <Button mnemonicParsing="false" text="Button" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox prefHeight="200.0" prefWidth="100.0">
+                                                            <children>
+                                                                <Label text="Koordináta X" />
+                                                                <TextField />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                    </children>
+                </VBox>
+            </children></AnchorPane>
+    </content>
+</ScrollPane>
