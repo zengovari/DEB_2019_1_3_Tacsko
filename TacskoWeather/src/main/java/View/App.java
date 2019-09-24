@@ -3,26 +3,27 @@ package View;
 import Controller.Handler;
 import Model.City;
 import Model.WeatherData;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.util.Map;
 
-public class App {
+public class App extends Application {
 
     public static void main(String[] args) {
-        String apiAnswer = Handler.readFromAPI("Debrecen");
-        System.out.println(apiAnswer);
+        launch(args);
+    }
 
-        WeatherData weatherData = Handler.ConvertToData(apiAnswer);
-
-        System.out.println(weatherData.getSys().getSunrise());
-
-        City[] cities = Handler.readCities("city.list.json");
-        System.out.println(cities[0]);
-
-        System.out.println(cities[0].getCountry());
-
-        Map citiesMap = Handler.createMapOfCities();
-
-        citiesMap.forEach((k, v) -> System.out.println(k + " " + v));
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/weather.fxml"));
+        Scene scene = new Scene(root);
+        stage.setTitle("TacskóWeather");
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
     }
 }
