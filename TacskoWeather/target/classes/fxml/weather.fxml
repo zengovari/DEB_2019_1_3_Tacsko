@@ -8,74 +8,74 @@
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Weather">
     <top>
         <TabPane prefHeight="100.0" prefWidth="2000.0" tabClosingPolicy="UNAVAILABLE">
-            <tabs>
-                <Tab text="Település">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <HBox prefHeight="100.0" prefWidth="200.0">
-                                    <children>
-                                        <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0">
-                                            <children>
-                                                <Label text="Ország" />
-                                                <TextField fx:id="orszagTextField" onKeyTyped="#orszagKeyTyped" />
-                                                <Button fx:id="orszagButton" mnemonicParsing="false" onAction="#orszagAction" text="Kész" />
-                                            </children>
-                                        </VBox>
-                                        <VBox prefHeight="200.0" prefWidth="100.0">
-                                            <children>
-                                                <Label text="Település" />
-                                                <TextField fx:id="telepulesTextField" />
-                                                <Button fx:id="telepulesButton" mnemonicParsing="false" onAction="#telepulesAction" text="Kész" />
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </HBox>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-                <Tab text="Irányítószám">
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                        <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0">
-                                <Label text="Ország"/>
-                                <TextField fx:id="iranyitoszamOrszagTextField"
-                                           onKeyTyped="#orszagKeyTyped"/>
-                                <Button fx:id="iranyitoszamOrszagButton" mnemonicParsing="false"
-                                        onAction="#orszagAction" text="Kész"/>
-                            </VBox>
-                            <VBox prefHeight="200.0" prefWidth="100.0">
-                                <Label text="Irányítószám"/>
-                                <TextField fx:id="iranyitoszamLabel"/>
-                                <Button fx:id="iranyitoszamButton" mnemonicParsing="false"
-                                        onAction="#iranyitoszamAction" text="Kész"/>
-                            </VBox>
-                            <VBox prefHeight="200.0">
-                                <Label fx:id="hibauzenetLabel" prefHeight="25.0" prefWidth="300.0"
-                                       style="-fx-text-fill: red;" text="Hiba üzenet"/>
-                            </VBox>
-                        </HBox>
-                    </AnchorPane>
-                </Tab>
-                <Tab text="Koordináták">
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                            <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0">
-                                <Label text="Koordináta X"/>
-                                <TextField fx:id="koordinataXLabel"/>
-                            </VBox>
-                            <VBox prefHeight="200.0" prefWidth="100.0">
-                                <Label text="Koordináta Y"/>
-                                <TextField fx:id="koordinataYLabel"/>
-                                <Button fx:id="koordinataButton" mnemonicParsing="false"
-                                        onAction="#koordinataAction" text="Kész"/>
-                            </VBox>
-                        </HBox>
-                    </AnchorPane>
-                </Tab>
-            </tabs>
+            <Tab text="Település">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                            <Label text="Ország"/>
+                            <TextField fx:id="orszagTextField" onKeyTyped="#orszagKeyTyped"/>
+                            <Button fx:id="orszagButton" mnemonicParsing="false"
+                                    onAction="#orszagAction" text="Kész"/>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <Label text="Település"/>
+                            <TextField fx:id="telepulesTextField"/>
+                            <Button fx:id="telepulesButton" mnemonicParsing="false"
+                                    onAction="#telepulesAction" text="Kész"/>
+                        </VBox>
+                        <VBox prefHeight="200.0">
+                            <Label fx:id="telepulesHibauzenetLabel" prefHeight="25.0" prefWidth="300.0"
+                                   style="-fx-text-fill: red;" text="Hiba üzenet"/>
+                        </VBox>
+                    </HBox>
+                </AnchorPane>
+            </Tab>
+            <Tab text="Irányítószám">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                            <Label text="Ország"/>
+                            <TextField fx:id="iranyitoszamOrszagTextField"
+                                       onKeyTyped="#orszagKeyTyped"/>
+                            <Button fx:id="iranyitoszamOrszagButton" mnemonicParsing="false"
+                                    onAction="#orszagAction" text="Kész"/>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <Label text="Irányítószám"/>
+                            <TextField fx:id="iranyitoszamLabel"/>
+                            <Button fx:id="iranyitoszamButton" mnemonicParsing="false"
+                                    onAction="#iranyitoszamAction" text="Kész"/>
+                        </VBox>
+                        <VBox prefHeight="200.0">
+                            <Label fx:id="iranyitoszamHibauzenetLabel" prefHeight="25.0" prefWidth="300.0"
+                                   style="-fx-text-fill: red;" text="Hiba üzenet"/>
+                        </VBox>
+                    </HBox>
+                </AnchorPane>
+            </Tab>
+            <Tab text="Koordináták">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                            <Label text="Koordináta X"/>
+                            <TextField fx:id="koordinataXLabel"/>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <Label text="Koordináta Y"/>
+                            <TextField fx:id="koordinataYLabel"/>
+                            <Button fx:id="koordinataButton" mnemonicParsing="false"
+                                    onAction="#koordinataAction" text="Kész"/>
+                        </VBox>
+                        <VBox prefHeight="200.0">
+                            <Label fx:id="koordinataHibauzenetLabel" prefHeight="25.0" prefWidth="300.0"
+                                   style="-fx-text-fill: red;" text="Hiba üzenet"/>
+                        </VBox>
+                    </HBox>
+                </AnchorPane>
+            </Tab>
         </TabPane>
     </top>
     <center>
