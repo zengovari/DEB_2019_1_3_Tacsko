@@ -26,21 +26,31 @@ public class Weather  implements Initializable {
     @FXML
     private Button telepulesButton;
 
-    private Map<String, ArrayList<String>> cities = Handler.createMapOfCities();
-    private ArrayList<String> orszagok = Handler.getCountries(cities);
-    private ArrayList<String> telepulesek;
+    private Map<String, ArrayList<String>> citiesByCountry = Handler.createMapOfCities();
+    private ArrayList<String> countries = Handler.getCountries(citiesByCountry);
+    private ArrayList<String> cities;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        telepulesButton.setDisable(true);
+        telepulesTextField.setDisable(true);
+
+        orszagTextField.textProperty().addListener((observable) -> {});
+        TextFields.bindAutoCompletion(orszagTextField, countries);
+
+        telepulesTextField.textProperty().addListener((observable -> {}));
+    }
 
 
     public void orszagAction(){
 
-        if (orszagok.contains(orszagTextField.getText()) && orszagTextField.getLength() > 0) {
+        if (countries.contains(orszagTextField.getText()) && orszagTextField.getLength() > 0) {
 
             telepulesButton.setDisable(false);
             telepulesTextField.setDisable(false);
 
-            telepulesek = Handler.StringLike(cities, orszagTextField.getText(), telepulesTextField.getText());
-            TextFields.bindAutoCompletion(telepulesTextField, telepulesek);
+            cities = Handler.StringLike(citiesByCountry, orszagTextField.getText(), telepulesTextField.getText());
+            TextFields.bindAutoCompletion(telepulesTextField, cities);
         } else {
             log.error("Hibás ország");
         }
@@ -57,7 +67,7 @@ public class Weather  implements Initializable {
 
     public void telepulesAction(){
 
-        if (telepulesek.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
+        if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
             CurrentWeatherData currentWeatherData = Handler.getCurrentWeatherData(telepulesTextField.getText()); //JELENLEGI IDŐJÁRÁS
             ForecastWeatherData forecastWeather= Handler.getForecastWeatherData(telepulesTextField.getText()); //IDŐJÁRÁS ELŐREJELZÉS
 
@@ -67,15 +77,35 @@ public class Weather  implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        telepulesButton.setDisable(true);
-        telepulesTextField.setDisable(true);
 
-        orszagTextField.textProperty().addListener((observable) -> {});
-        TextFields.bindAutoCompletion(orszagTextField, orszagok);
+    public void orszagKeyTyped(){}
 
-        telepulesTextField.textProperty().addListener((observable -> {}));
-    }}
+    public void  koordinataAction(){}
+
+    public void  day1click(){}
+    public void  day2click(){}
+    public void  day3click(){}
+    public void  day4click(){}
+    public void  day5click(){}
+    public void  hour0click(){}
+    public void  hour3click(){}
+    public void  hour6click(){}
+    public void  hour9click(){}
+    public void  hour12click(){}
+    public void  hour15click(){}
+    public void  hour18click(){}
+    public void  hour21click(){}
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
