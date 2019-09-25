@@ -2,6 +2,7 @@ package Controller;
 
 import Model.CurrentWeather.CurrentWeatherData;
 import Model.ForecastWeather.ForecastWeatherData;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -97,15 +98,8 @@ public class Weather  implements Initializable {
     public void  hour21click(){}
 
 
-
-
-
-
-
-
-
-
-
+    public void iranyitoszamAction(ActionEvent actionEvent) {
+    }
 }
 
 
