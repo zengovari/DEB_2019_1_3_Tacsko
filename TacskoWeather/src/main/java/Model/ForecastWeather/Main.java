@@ -1,6 +1,6 @@
 package Model.ForecastWeather;
 
-public class Main {
+public class Main{
 
     private double temp;
     private double temp_min;
@@ -42,6 +42,4 @@ public class Main {
     public double getTemp_kf() {
         return temp_kf;
     }
-
-
 }
