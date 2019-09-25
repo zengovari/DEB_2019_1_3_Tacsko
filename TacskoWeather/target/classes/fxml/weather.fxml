@@ -14,7 +14,7 @@
                           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0">
                             <Label text="Ország"/>
-                            <TextField fx:id="orszagTextField" onKeyTyped="#orszagKeyTyped"/>
+                            <TextField fx:id="orszagTextField" />
                             <Button fx:id="orszagButton" mnemonicParsing="false"
                                     onAction="#orszagAction" text="Kész"/>
                         </VBox>
@@ -37,14 +37,13 @@
                           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0">
                             <Label text="Ország"/>
-                            <TextField fx:id="iranyitoszamOrszagTextField"
-                                       onKeyTyped="#orszagKeyTyped"/>
+                            <TextField fx:id="iranyitoszamOrszagTextField" />
                             <Button fx:id="iranyitoszamOrszagButton" mnemonicParsing="false"
-                                    onAction="#orszagAction" text="Kész"/>
+                                    onAction="#iranyitoszamOrszagAction" text="Kész"/>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                             <Label text="Irányítószám"/>
-                            <TextField fx:id="iranyitoszamLabel"/>
+                            <TextField fx:id="iranyitoszamTextField"/>
                             <Button fx:id="iranyitoszamButton" mnemonicParsing="false"
                                     onAction="#iranyitoszamAction" text="Kész"/>
                         </VBox>
