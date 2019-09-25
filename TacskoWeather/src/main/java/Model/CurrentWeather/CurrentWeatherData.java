@@ -1,8 +1,8 @@
-package Model;
+package Model.CurrentWeather;
 
 import com.google.gson.annotations.SerializedName;
 
-public class WeatherData {
+public class CurrentWeatherData {
 
     private Coord coordinate;
     private Weather[] weather;

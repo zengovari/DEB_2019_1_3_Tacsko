@@ -1,15 +1,14 @@
 package Controller;
 
-import Model.City;
-import Model.Weather;
-import Model.WeatherData;
+import Model.CurrentWeather.City;
+import Model.CurrentWeather.CurrentWeatherData;
+import Model.ForecastWeather.ForecastWeatherData;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,12 +20,16 @@ public class Handler {
     private static final String API_KEY = "5d304de85fb52e5b0e2ab6c556196364";
     private static Gson gson = new Gson();
 
-    public static String readFromAPI(String location) {
+    public static String readFromAPI(String location, boolean forecast) {
         StringBuilder apiAnswer = new StringBuilder();
         URL request;
 
         try {
-            request = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + API_KEY);
+            if (!forecast) {
+                request = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + API_KEY);
+            } else {
+                request = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" + location + "&appid=" + API_KEY);
+            }
             BufferedReader in = new BufferedReader(new InputStreamReader(request.openStream()));
             String inputLine;
 
@@ -88,6 +91,12 @@ public class Handler {
 
     }
 
+    public static ArrayList<String> getCountries(Map<String, ArrayList<String>> cities) {
+
+        return new ArrayList<>(cities.keySet());
+
+    }
+
     public static ArrayList<String> StringLike(Map<String, ArrayList<String>> cities ,String country, String string) {
         ArrayList<String> possibilities = cities.get(country);
         ArrayList<String> suggestions = new ArrayList<>();
@@ -107,12 +116,16 @@ public class Handler {
         return suggestions;
     }
 
-    public static WeatherData ConvertToData (String jsonString){
-
-
-        return gson.fromJson(jsonString, WeatherData.class);
-
+    public static CurrentWeatherData getCurrentWeatherData (String location){
+        return gson.fromJson(readFromAPI(location, false), CurrentWeatherData.class);
     }
 
+    public static ForecastWeatherData getForecastWeatherData (String location) {
+
+        System.out.println(readFromAPI(location, true));
+
+        return gson.fromJson(readFromAPI(location, true), ForecastWeatherData.class);
+
+    }
 
 }
