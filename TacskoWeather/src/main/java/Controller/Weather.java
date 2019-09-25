@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.CurrentWeather.CurrentWeatherData;
+import Model.ForecastWeather.ForecastWeather;
 import Model.ForecastWeather.ForecastWeatherData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,6 +28,15 @@ public class Weather  implements Initializable {
     @FXML
     private Button telepulesButton;
 
+    @FXML
+    private Button iranyitoszamButton;
+
+    @FXML
+    private TextField iranyitoszamOrszagTextField;
+
+    @FXML
+    private TextField iranyitoszamLabel;
+
     private Map<String, ArrayList<String>> citiesByCountry = Handler.createMapOfCities();
     private ArrayList<String> countries = Handler.getCountries(citiesByCountry);
     private ArrayList<String> cities;
@@ -35,9 +45,14 @@ public class Weather  implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         telepulesButton.setDisable(true);
         telepulesTextField.setDisable(true);
+        iranyitoszamButton.setDisable(true);
+        iranyitoszamLabel.setDisable(true);
 
         orszagTextField.textProperty().addListener((observable) -> {});
+        iranyitoszamOrszagTextField.textProperty().addListener((observable) -> {});
+
         TextFields.bindAutoCompletion(orszagTextField, countries);
+        TextFields.bindAutoCompletion(iranyitoszamOrszagTextField, countries);
 
         telepulesTextField.textProperty().addListener((observable -> {}));
     }
@@ -57,6 +72,15 @@ public class Weather  implements Initializable {
         }
     }
 
+    public void iranyitoszamOrszagAction() {
+
+        if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
+            iranyitoszamButton.setDisable(false);
+            iranyitoszamLabel.setDisable(false);
+        } else {
+            log.error("Hibás ország");
+        }
+    }
 
     public void telepulesKeyTyped() {
 /*
@@ -77,7 +101,15 @@ public class Weather  implements Initializable {
             log.error("Hibás település");
         }
     }
+    public void iranyitoszamAction(){
+        if (iranyitoszamLabel.getLength() > 0) {
+            CurrentWeatherData currentWeatherData = Handler.getCurrentWeatherData(iranyitoszamLabel.getText(), iranyitoszamOrszagTextField.getText());
+            ForecastWeatherData forecastWeatherData = Handler.getForecastWeatherData(iranyitoszamLabel.getText(), iranyitoszamOrszagTextField.getText());
+            System.out.println(currentWeatherData.getBase());
+            System.out.println(forecastWeatherData.getList()[0].getMain().getTemp());
+        }
 
+    }
 
     public void orszagKeyTyped(){}
 
@@ -98,8 +130,7 @@ public class Weather  implements Initializable {
     public void  hour21click(){}
 
 
-    public void iranyitoszamAction(ActionEvent actionEvent) {
-    }
+
 }
 
 

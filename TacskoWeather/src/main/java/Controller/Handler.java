@@ -46,6 +46,33 @@ public class Handler {
         return apiAnswer.toString();
     }
 
+    public static String readFromAPI(String zip, String country, boolean forecast) {
+        StringBuilder apiAnswer = new StringBuilder();
+        URL request;
+
+        try {
+            if (!forecast) {
+                request = new URL("http://api.openweathermap.org/data/2.5/weather?zip=" + zip + "," + country + "&appid=" + API_KEY);
+            } else {
+                request = new URL("http://api.openweathermap.org/data/2.5/forecast?zip=" + zip + "," + country +  "&appid=" + API_KEY);
+            }
+            BufferedReader in = new BufferedReader(new InputStreamReader(request.openStream()));
+            String inputLine;
+
+            while ((inputLine = in.readLine()) != null) {
+                apiAnswer.append(inputLine);
+            }
+
+            in.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return apiAnswer.toString();
+    }
+
+
     public static City[] readCities(String fileName) {
 
         InputStream inputStream = Handler.class.getClassLoader().getResourceAsStream(fileName);
@@ -125,6 +152,16 @@ public class Handler {
         System.out.println(readFromAPI(location, true));
 
         return gson.fromJson(readFromAPI(location, true), ForecastWeatherData.class);
+
+    }
+
+    public static CurrentWeatherData getCurrentWeatherData (String zip, String country){
+        return gson.fromJson(readFromAPI(zip, country, false), CurrentWeatherData.class);
+    }
+
+    public static ForecastWeatherData getForecastWeatherData (String zip, String country) {
+
+        return gson.fromJson(readFromAPI(zip, country, true), ForecastWeatherData.class);
 
     }
 
