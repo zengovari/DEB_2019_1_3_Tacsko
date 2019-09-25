@@ -24,11 +24,11 @@ szakaszába.
 
 #### Ütemterv
 
-|  Sorszám   |  Feladat neve | Kezdés időpontja | Befejezés időpontja | 
+|  Sorszám   |  Feladat neve | Kezdés időpontja | Befejezés időpontja |
 | :-------------: | :-------------: | :-------------: | :-------------: |
 |1|Követelményspecifikáció megírása | 2019.09.17 | 2019. 09.26 |
 |2|Funkcionálisspecifikáció megírása| 2019.09.17 | 2019. 09.26 |
-|3|Rendszertev megírása             | 2019.09.17 | 2019. 09.30 | 
+|3|Rendszertev megírása             | 2019.09.17 | 2019. 09.30 |
 |3|Grafikus felület elkészitése     | 2019.09.24 | 2019. 09.29 |
 |4|A szoftver logikájának elkészitése |2019.09.24| 2019. 09.29 |
 |5|A program tesztjeinek megírása   | 2019.09.24 | 2019. 09.29 |
@@ -52,7 +52,7 @@ A program képes kell legyen a kiválasztott helyiség időjárási adatainak me
 
 A rendszerhez bárki, bármikor, bárhol hozzáférhet, nincsenek jogosultságok.
 
-![alt text](https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/terv.png "Terv")
+![alt text](https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/kepernyoTerv.png "Terv")
 
 Ahogy a minta képen is látható, a bal felső sarokban helyezkedik el magának a jelenlegi vagy a felhasználó által választott helyszínnek a neve, az alatt pedig a jelenlegi időjárás részletesen taglalva:
 
@@ -177,4 +177,3 @@ A rendszer adatbázisában a városok neveit tároljuk annak érdekében, hogy m
 ### XI. Telepítési terv
 
 A program platform független. A program futtatásához sükséges hogy telepítve legyen a számítógépre a Java 11.
-
