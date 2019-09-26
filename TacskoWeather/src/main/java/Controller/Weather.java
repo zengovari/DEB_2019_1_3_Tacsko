@@ -226,42 +226,50 @@ public class Weather  implements Initializable {
                 {
                     hour0.setText(preciseDate[1]);
                     hour0temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    Handler.setImageViewByDate(forecastWeatherData,hour0img,currentTime);
                 }
                 if(mennyiazido(preciseDate[1]).equals("03:00:00"))
                 {
                     hour3.setText(preciseDate[1]);
                     hour3temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    Handler.setImageViewByDate(forecastWeatherData,hour3img,currentTime);
                 }
                 if(mennyiazido(preciseDate[1]).equals("06:00:00"))
                 {
                     hour6.setText(preciseDate[1]);
                     hour6temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    Handler.setImageViewByDate(forecastWeatherData,hour6img,currentTime);
                 }
                 if(mennyiazido(preciseDate[1]).equals("09:00:00"))
                 {
                     hour9.setText(preciseDate[1]);
                     hour9temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    Handler.setImageViewByDate(forecastWeatherData,hour9img,currentTime);
                 }
                 if(mennyiazido(preciseDate[1]).equals("12:00:00"))
                 {
                     hour12.setText(preciseDate[1]);
                     hour12temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    Handler.setImageViewByDate(forecastWeatherData,hour12img,currentTime);
                 }
                 if(mennyiazido(preciseDate[1]).equals("15:00:00"))
                 {
                     hour15.setText(preciseDate[1]);
                     hour15temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    Handler.setImageViewByDate(forecastWeatherData,hour15img,currentTime);
                 }
                 if(mennyiazido(preciseDate[1]).equals("18:00:00"))
                 {
                     hour18.setText(preciseDate[1]);
                     hour18temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    Handler.setImageViewByDate(forecastWeatherData,hour18img,currentTime);
                 }
                 if(mennyiazido(preciseDate[1]).equals("21:00:00"))
                 {
                     log.info("van 21 ora is");
                     hour21.setText(preciseDate[1]);
                     hour21temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    Handler.setImageViewByDate(forecastWeatherData,hour21img,currentTime);
                 }
             }
         }
@@ -270,21 +278,28 @@ public class Weather  implements Initializable {
     public void clearHourlyWeather(){
         hour0.setText("");
         hour0temp.setText("");
-        //hour0img.setImage(null);
+        hour0img.setImage(null);
         hour3.setText("");
         hour3temp.setText("");
+        hour3img.setImage(null);
         hour6.setText("");
         hour6temp.setText("");
+        hour6img.setImage(null);
         hour9.setText("");
         hour9temp.setText("");
+        hour9img.setImage(null);
         hour12.setText("");
         hour12temp.setText("");
+        hour12img.setImage(null);
         hour15.setText("");
         hour15temp.setText("");
+        hour15img.setImage(null);
         hour18.setText("");
         hour18temp.setText("");
+        hour18img.setImage(null);
         hour21.setText("");
         hour21temp.setText("");
+        hour21img.setImage(null);
     }
 
     public void weatherLoader(ForecastWeatherData forecastWeather) {
@@ -372,6 +387,9 @@ public class Weather  implements Initializable {
         }
 
 }
+    public void setHourlyImage() {
+
+    }
 
     public void  day1click(){
         clearHourlyWeather();
