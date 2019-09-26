@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.io.FileNotFoundException;
@@ -156,89 +157,10 @@ public class Weather  implements Initializable {
             CurrentWeatherData currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(telepulesTextField.getText()); //JELENLEGI IDŐJÁRÁS
             ForecastWeatherData forecastWeather= ForecastWeatherHandler.getForecastWeatherData(telepulesTextField.getText()); //IDŐJÁRÁS ELŐREJELZÉS
 
-            LocalDate date = LocalDate.now();
-            day1date.setText(date.toString());
-            day2date.setText(date.plusDays(1).toString());
-            day3date.setText(date.plusDays(2).toString());
-            day4date.setText(date.plusDays(3).toString());
-            day5date.setText(date.plusDays(4).toString());
-
-            Handler.setImageViewByDate(forecastWeather, day1img, "2019-09-26 15:00:00");
-
-            String currentTime = forecastWeather.getList()[0].getDt_txt();
-
-            log.info("most a currentime ennyi" + currentTime);
-            String[] previoustime = currentTime.split(" ");
-            double maxTemperature = -273;
-            double minTemperature = 1000;
-
-            log.info("belepunk a for ciklusba");
-            for(int i = 0; i < 39; i++)
-            {
-                currentTime = forecastWeather.getList()[i].getDt_txt();
-                String[] temporaryTime = currentTime.split(" ");
-                if(! temporaryTime[0].equals(previoustime[0])) {
-                    log.info("A temporaryTime nem ugyanazz mint a previousTime");
-
-                    if(previoustime[0].equals(LocalDate.now().toString()))
-                    {
-                        log.info("ez az elso nap homerseklete");
-                        System.out.println("a max ertek jelenleg" + String.valueOf(maxTemperature));
-                        day1max.setText(Double.toString(maxTemperature));
-                        day1min.setText(Double.toString(minTemperature));
-                    }
-
-                    if(temporaryTime[0].equals(LocalDate.now().plusDays(1).toString()))
-                    {
-                        log.info("ez az masodik nap homerseklete");
-                        day2max.setText(Double.toString(maxTemperature));
-                        day2min.setText(Double.toString(minTemperature));
-                    }
-
-                    if(temporaryTime[0].equals(LocalDate.now().plusDays(2).toString()))
-                    {
-                        log.info("ez az harmadik nap homerseklete");
-                        day3max.setText(Double.toString(maxTemperature));
-                        day3min.setText(Double.toString(minTemperature));
-                    }
-
-                    if(temporaryTime[0].equals(LocalDate.now().plusDays(3).toString()))
-                    {
-                        log.info("ez az neNumberFormatException:gyedik nap homerseklete");
-                        day4max.setText(Double.toString(maxTemperature));
-                        day4min.setText(Double.toString(minTemperature));
-                    }
-
-                    if(temporaryTime[0].equals(LocalDate.now().plusDays(4).toString()))
-                    {
-                        log.info("ez az otodik nap homerseklete");
-                        day5max.setText(Double.toString(maxTemperature));
-                        day5min.setText(Double.toString(minTemperature));
-                    }
-
-                    maxTemperature = -273;
-                    minTemperature = 1000;
-                    log.info("a previous time mielott elore vinnenk" + previoustime[0]);
-                    previoustime[0] = temporaryTime[0];
-                    log.info("a previous timeot elore visszuk 1 nappal "+ previoustime[0]);
-                }
-                else {
-                    log.info("a ket nap egyforma");
-                    if(minTemperature > forecastWeather.getList()[i].getMain().getTemp_min())
-                    {
-                        log.info("talaltunk kisebb homersekletet");
-                       minTemperature =  forecastWeather.getList()[i].getMain().getTemp_min();
-                    }
-
-                    if(maxTemperature < forecastWeather.getList()[i].getMain().getTemp_max())
-                    {
-                        log.info("talaltunk nagyobb homersekletet");
-                        maxTemperature =  forecastWeather.getList()[i].getMain().getTemp_max();
-                    }
-                }
+            WeatherLoader(forecastWeather);
 
             }
-        } else {
+        else {
             log.error("Hibás település");
         }
     }
@@ -258,6 +180,7 @@ public class Weather  implements Initializable {
 
             CurrentWeatherData currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
             ForecastWeatherData forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
+            WeatherLoader(forecastWeatherData);
 
         }
 
@@ -269,30 +192,353 @@ public class Weather  implements Initializable {
                 CurrentWeatherData currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(Double.parseDouble(koordinataXLabel.getText()) , Double.parseDouble(koordinataYLabel.getText()));
                 ForecastWeatherData forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(Double.parseDouble(koordinataXLabel.getText()) , Double.parseDouble(koordinataYLabel.getText()));
 
-                System.out.println(currentWeatherData.getWeather().getMain());
-                System.out.println(forecastWeatherData.getList()[0].getDt_txt());
+                WeatherLoader(forecastWeatherData);
 
             } catch(NumberFormatException e) {
                 log.error("Hibás koordináták");
             }
         }
     }
+    public String mennyiazido(String ido) {
+        if(ido.equals("00:00:00"))
+            return "00:00:00";
+        if(ido.equals("03:00:00"))
+            return "03:00:00";
+        if(ido.equals("06:00:00"))
+            return "06:00:00";
+        if(ido.equals("09:00:00"))
+            return "09:00:00";
+        if(ido.equals("12:00:00"))
+            return "12:00:00";
+        if(ido.equals("15:00:00"))
+            return "15:00:00";
+        if(ido.equals("18:00:00"))
+            return "18:00:00";
+        if(ido.equals("21:00:00"))
+            return "21:00:00";
+        return "nincs ilyen idopont";
+    }
+    public void HourlyWeatherForTown(int which_day) {
+        ForecastWeatherData forecastWeather= ForecastWeatherHandler.getForecastWeatherData(telepulesTextField.getText());//IDŐJÁRÁS ELŐREJELZÉS
+        String currentTime;
+        for(int i = 0; i < 39; i++) {
+            currentTime = forecastWeather.getList()[i].getDt_txt();
+            String[] preciseDate = currentTime.split(" ");
+            if (preciseDate[0].equals(LocalDate.now().plusDays(which_day).toString())) {
+                if(mennyiazido(preciseDate[1]).equals("00:00:00"))
+                {
+                    hour0.setText(preciseDate[1]);
+                    hour0temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("03:00:00"))
+                {
+                    hour3.setText(preciseDate[1]);
+                    hour3temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("06:00:00"))
+                {
+                    hour6.setText(preciseDate[1]);
+                    hour6temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("09:00:00"))
+                {
+                    hour9.setText(preciseDate[1]);
+                    hour9temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("12:00:00"))
+                {
+                    hour12.setText(preciseDate[1]);
+                    hour12temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("15:00:00"))
+                {
+                    hour15.setText(preciseDate[1]);
+                    hour15temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("18:00:00"))
+                {
+                    hour18.setText(preciseDate[1]);
+                    hour18temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("21:00:00"))
+                {
+                    log.info("van 21 ora is");
+                    hour21.setText(preciseDate[1]);
+                    hour21temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+            }
+        }
+
+    }
+    public void HourlyWeatherForKoordinata(int which_day) {
+        ForecastWeatherData forecastWeather = ForecastWeatherHandler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
+        String currentTime;
+        for(int i = 0; i < 39; i++) {
+            currentTime = forecastWeather.getList()[i].getDt_txt();
+            String[] preciseDate = currentTime.split(" ");
+            if (preciseDate[0].equals(LocalDate.now().plusDays(which_day).toString())) {
+                if(mennyiazido(preciseDate[1]).equals("00:00:00"))
+                {
+                    hour0.setText(preciseDate[1]);
+                    hour0temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("03:00:00"))
+                {
+                    hour3.setText(preciseDate[1]);
+                    hour3temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("06:00:00"))
+                {
+                    hour6.setText(preciseDate[1]);
+                    hour6temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("09:00:00"))
+                {
+                    hour9.setText(preciseDate[1]);
+                    hour9temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("12:00:00"))
+                {
+                    hour12.setText(preciseDate[1]);
+                    hour12temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("15:00:00"))
+                {
+                    hour15.setText(preciseDate[1]);
+                    hour15temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("18:00:00"))
+                {
+                    hour18.setText(preciseDate[1]);
+                    hour18temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("21:00:00"))
+                {
+                    log.info("van 21 ora is");
+                    hour21.setText(preciseDate[1]);
+                    hour21temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+            }
+        }
+
+    }
+    public void HourlyWeatherForIranyitoszam(int which_day) {
+        ForecastWeatherData forecastWeather = ForecastWeatherHandler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
+        String currentTime;
+        for(int i = 0; i < 39; i++) {
+            currentTime = forecastWeather.getList()[i].getDt_txt();
+            String[] preciseDate = currentTime.split(" ");
+            if (preciseDate[0].equals(LocalDate.now().plusDays(which_day).toString())) {
+                if(mennyiazido(preciseDate[1]).equals("00:00:00"))
+                {
+                    hour0.setText(preciseDate[1]);
+                    hour0temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("03:00:00"))
+                {
+                    hour3.setText(preciseDate[1]);
+                    hour3temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("06:00:00"))
+                {
+                    hour6.setText(preciseDate[1]);
+                    hour6temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("09:00:00"))
+                {
+                    hour9.setText(preciseDate[1]);
+                    hour9temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("12:00:00"))
+                {
+                    hour12.setText(preciseDate[1]);
+                    hour12temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("15:00:00"))
+                {
+                    hour15.setText(preciseDate[1]);
+                    hour15temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("18:00:00"))
+                {
+                    hour18.setText(preciseDate[1]);
+                    hour18temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+                if(mennyiazido(preciseDate[1]).equals("21:00:00"))
+                {
+                    log.info("van 21 ora is");
+                    hour21.setText(preciseDate[1]);
+                    hour21temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                }
+            }
+        }
+
+    }
+    public void WeatherLoader(ForecastWeatherData forecastWeather) {
+        LocalDate date = LocalDate.now();
+        day1date.setText(date.toString());
+        day2date.setText(date.plusDays(1).toString());
+        day3date.setText(date.plusDays(2).toString());
+        day4date.setText(date.plusDays(3).toString());
+        day5date.setText(date.plusDays(4).toString());
+
+        Handler.setImageViewByDate(forecastWeather, day1img, "2019-09-26 15:00:00");
+
+        String currentTime = forecastWeather.getList()[0].getDt_txt();
+
+        log.info("most a currentime ennyi" + currentTime);
+        String[] previoustime = currentTime.split(" ");
+        double maxTemperature = -273;
+        double minTemperature = 1000;
+
+        log.info("belepunk a for ciklusba");
+        for(int i = 0; i < 39; i++)
+        {
+            currentTime = forecastWeather.getList()[i].getDt_txt();
+            String[] temporaryTime = currentTime.split(" ");
+            if(! temporaryTime[0].equals(previoustime[0])) {
+                log.info("A temporaryTime nem ugyanazz mint a previousTime");
+
+                if(previoustime[0].equals(LocalDate.now().toString()))
+                {
+                    log.info("ez az elso nap homerseklete");
+                    System.out.println("a max ertek jelenleg" + String.valueOf(maxTemperature));
+                    day1max.setText(Double.toString(maxTemperature));
+                    day1min.setText(Double.toString(minTemperature));
+                }
+
+                if(temporaryTime[0].equals(LocalDate.now().plusDays(1).toString()))
+                {
+                    log.info("ez az masodik nap homerseklete");
+                    day2max.setText(Double.toString(maxTemperature));
+                    day2min.setText(Double.toString(minTemperature));
+                }
+
+                if(temporaryTime[0].equals(LocalDate.now().plusDays(2).toString()))
+                {
+                    log.info("ez az harmadik nap homerseklete");
+                    day3max.setText(Double.toString(maxTemperature));
+                    day3min.setText(Double.toString(minTemperature));
+                }
+
+                if(temporaryTime[0].equals(LocalDate.now().plusDays(3).toString()))
+                {
+                    log.info("ez az neNumberFormatException:gyedik nap homerseklete");
+                    day4max.setText(Double.toString(maxTemperature));
+                    day4min.setText(Double.toString(minTemperature));
+                }
+
+                if(temporaryTime[0].equals(LocalDate.now().plusDays(4).toString()))
+                {
+                    log.info("ez az otodik nap homerseklete");
+                    day5max.setText(Double.toString(maxTemperature));
+                    day5min.setText(Double.toString(minTemperature));
+                }
+
+                maxTemperature = -273;
+                minTemperature = 1000;
+                log.info("a previous time mielott elore vinnenk" + previoustime[0]);
+                previoustime[0] = temporaryTime[0];
+                log.info("a previous timeot elore visszuk 1 nappal "+ previoustime[0]);
+            }
+            else {
+                log.info("a ket nap egyforma");
+                if(minTemperature > forecastWeather.getList()[i].getMain().getTemp_min())
+                {
+                    log.info("talaltunk kisebb homersekletet");
+                    minTemperature =  forecastWeather.getList()[i].getMain().getTemp_min();
+                }
+
+                if(maxTemperature < forecastWeather.getList()[i].getMain().getTemp_max())
+                {
+                    log.info("talaltunk nagyobb homersekletet");
+                    maxTemperature =  forecastWeather.getList()[i].getMain().getTemp_max();
+                }
+            }
+
+        }
+
+}
 
     public void  day1click(){
-        System.out.println("Hello World");
+        if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
+            HourlyWeatherForIranyitoszam(0);
+        }
+        if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
+            HourlyWeatherForTown(0);
+        }
+        if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
+            HourlyWeatherForKoordinata(0);
+        }
     }
-    public void  day2click(){}
-    public void  day3click(){}
-    public void  day4click(){}
-    public void  day5click(){}
-    public void  hour0click(){}
-    public void  hour3click(){}
-    public void  hour6click(){}
-    public void  hour9click(){}
-    public void  hour12click(){}
-    public void  hour15click(){}
-    public void  hour18click(){}
-    public void  hour21click(){}
+    public void  day2click() {
+        if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
+            HourlyWeatherForIranyitoszam(1);
+        }
+        if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
+            HourlyWeatherForTown(1);
+        }
+        if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
+            HourlyWeatherForKoordinata(1);
+        }
+    }
+    public void  day3click(){
+        if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
+            HourlyWeatherForIranyitoszam(2);
+        }
+        if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
+            HourlyWeatherForTown(2);
+        }
+        if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
+            HourlyWeatherForKoordinata(2);
+        }
+    }
+    public void  day4click(){
+        if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
+            HourlyWeatherForIranyitoszam(3);
+        }
+        if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
+            HourlyWeatherForTown(3);
+        }
+        if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
+            HourlyWeatherForKoordinata(3);
+        }
+    }
+    public void  day5click(){
+        if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
+            HourlyWeatherForIranyitoszam(4);
+        }
+        if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
+            HourlyWeatherForTown(4);
+        }
+        if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
+            HourlyWeatherForKoordinata(4);
+        }
+    }
+    public void  hour0click(){
+
+    }
+    public void  hour3click(){
+
+    }
+    public void  hour6click(){
+
+    }
+    public void  hour9click(){
+
+    }
+    public void  hour12click(){
+
+    }
+    public void  hour15click(){
+
+    }
+    public void  hour18click(){
+
+    }
+    public void  hour21click(){
+
+    }
 
 
 
