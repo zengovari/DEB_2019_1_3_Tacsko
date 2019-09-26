@@ -216,8 +216,7 @@ public class Weather  implements Initializable {
             return "21:00:00";
         return "nincs ilyen idopont";
     }
-    public void hourlyWeatherForTown(int which_day) {
-        //forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(telepulesTextField.getText());//IDŐJÁRÁS ELŐREJELZÉS
+    public void setHourlyWeather(int which_day) {
         String currentTime;
         for(int i = 0; i < 39; i++) {
             currentTime = forecastWeatherData.getList()[i].getDt_txt();
@@ -268,112 +267,26 @@ public class Weather  implements Initializable {
         }
 
     }
-    /*
-    public void HourlyWeatherForKoordinata(int which_day) {
-        ForecastWeatherData forecastWeather = ForecastWeatherHandler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
-        String currentTime;
-        for(int i = 0; i < 39; i++) {
-            currentTime = forecastWeather.getList()[i].getDt_txt();
-            String[] preciseDate = currentTime.split(" ");
-            if (preciseDate[0].equals(LocalDate.now().plusDays(which_day).toString())) {
-                if(mennyiazido(preciseDate[1]).equals("00:00:00"))
-                {
-                    hour0.setText(preciseDate[1]);
-                    hour0temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("03:00:00"))
-                {
-                    hour3.setText(preciseDate[1]);
-                    hour3temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("06:00:00"))
-                {
-                    hour6.setText(preciseDate[1]);
-                    hour6temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("09:00:00"))
-                {
-                    hour9.setText(preciseDate[1]);
-                    hour9temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("12:00:00"))
-                {
-                    hour12.setText(preciseDate[1]);
-                    hour12temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("15:00:00"))
-                {
-                    hour15.setText(preciseDate[1]);
-                    hour15temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("18:00:00"))
-                {
-                    hour18.setText(preciseDate[1]);
-                    hour18temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("21:00:00"))
-                {
-                    log.info("van 21 ora is");
-                    hour21.setText(preciseDate[1]);
-                    hour21temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-            }
-        }
-
+    public void clearHourlyWeather(){
+        hour0.setText("");
+        hour0temp.setText("");
+        //hour0img.setImage(null);
+        hour3.setText("");
+        hour3temp.setText("");
+        hour6.setText("");
+        hour6temp.setText("");
+        hour9.setText("");
+        hour9temp.setText("");
+        hour12.setText("");
+        hour12temp.setText("");
+        hour15.setText("");
+        hour15temp.setText("");
+        hour18.setText("");
+        hour18temp.setText("");
+        hour21.setText("");
+        hour21temp.setText("");
     }
-    public void HourlyWeatherForIranyitoszam(int which_day) {
-        ForecastWeatherData forecastWeather = ForecastWeatherHandler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
-        String currentTime;
-        for(int i = 0; i < 39; i++) {
-            currentTime = forecastWeather.getList()[i].getDt_txt();
-            String[] preciseDate = currentTime.split(" ");
-            if (preciseDate[0].equals(LocalDate.now().plusDays(which_day).toString())) {
-                if(mennyiazido(preciseDate[1]).equals("00:00:00"))
-                {
-                    hour0.setText(preciseDate[1]);
-                    hour0temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("03:00:00"))
-                {
-                    hour3.setText(preciseDate[1]);
-                    hour3temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("06:00:00"))
-                {
-                    hour6.setText(preciseDate[1]);
-                    hour6temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("09:00:00"))
-                {
-                    hour9.setText(preciseDate[1]);
-                    hour9temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("12:00:00"))
-                {
-                    hour12.setText(preciseDate[1]);
-                    hour12temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("15:00:00"))
-                {
-                    hour15.setText(preciseDate[1]);
-                    hour15temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("18:00:00"))
-                {
-                    hour18.setText(preciseDate[1]);
-                    hour18temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-                if(mennyiazido(preciseDate[1]).equals("21:00:00"))
-                {
-                    log.info("van 21 ora is");
-                    hour21.setText(preciseDate[1]);
-                    hour21temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
-                }
-            }
-        }
 
-    }
-    */
     public void weatherLoader(ForecastWeatherData forecastWeather) {
         LocalDate date = LocalDate.now();
         day1date.setText(date.toString());
@@ -461,78 +374,26 @@ public class Weather  implements Initializable {
 }
 
     public void  day1click(){
-        hourlyWeatherForTown(0);
+        clearHourlyWeather();
+        setHourlyWeather(0);
     }
     public void  day2click(){
-        hourlyWeatherForTown(1);
+        clearHourlyWeather();
+        setHourlyWeather(1);
     }
     public void  day3click(){
-        hourlyWeatherForTown(2);
+        clearHourlyWeather();
+        setHourlyWeather(2);
     }
     public void  day4click(){
-        hourlyWeatherForTown(3);
+        clearHourlyWeather();
+        setHourlyWeather(3);
     }
     public void  day5click(){
-        hourlyWeatherForTown(4);
+        clearHourlyWeather();
+        setHourlyWeather(4);
     }
 
-    /*
-    public void  day1click(){
-        if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
-            HourlyWeatherForIranyitoszam(0);
-        }
-        if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
-            HourlyWeatherForTown(0);
-        }
-        if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
-            HourlyWeatherForKoordinata(0);
-        }
-    }
-    public void  day2click(){
-        if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
-            HourlyWeatherForIranyitoszam(1);
-        }
-        if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
-            HourlyWeatherForTown(1);
-        }
-        if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
-            HourlyWeatherForKoordinata(1);
-        }
-    }
-    public void  day3click(){
-        if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
-            HourlyWeatherForIranyitoszam(2);
-        }
-        if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
-            HourlyWeatherForTown(2);
-        }
-        if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
-            HourlyWeatherForKoordinata(2);
-        }
-    }
-    public void  day4click(){
-        if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
-            HourlyWeatherForIranyitoszam(3);
-        }
-        if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
-            HourlyWeatherForTown(3);
-        }
-        if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
-            HourlyWeatherForKoordinata(3);
-        }
-    }
-    public void  day5click(){
-        if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
-            HourlyWeatherForIranyitoszam(4);
-        }
-        if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
-            HourlyWeatherForTown(4);
-        }
-        if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
-            HourlyWeatherForKoordinata(4);
-        }
-    }
-    */
     public void  hour0click(){
 
     }
@@ -554,7 +415,6 @@ public class Weather  implements Initializable {
     public void  hour18click(){
 
     }
-
     public void  hour21click(){
 
     }

@@ -19,14 +19,14 @@
                                             <children>
                                                 <Label text="Ország" />
                                                 <TextField fx:id="orszagTextField" />
-                                                <Button fx:id="orszagButton" mnemonicParsing="false" onAction="#orszagAction" text="Kész" />
+                                                <Button fx:id="orszagButton" mnemonicParsing="false" onAction="#tab1OrszagButtonAction" text="Kész" />
                                             </children>
                                         </VBox>
                                         <VBox prefHeight="200.0" prefWidth="100.0">
                                             <children>
                                                 <Label text="Település" />
                                                 <TextField fx:id="telepulesTextField" />
-                                                <Button fx:id="telepulesButton" mnemonicParsing="false" onAction="#telepulesAction" text="Kész" />
+                                                <Button fx:id="telepulesButton" mnemonicParsing="false" onAction="#tab1TelepulesButtonAction" text="Kész" />
                                             </children>
                                         </VBox>
                                         <VBox prefHeight="200.0">
@@ -50,14 +50,14 @@
                                             <children>
                                                 <Label text="Ország" />
                                                 <TextField fx:id="iranyitoszamOrszagTextField" />
-                                                <Button fx:id="iranyitoszamOrszagButton" mnemonicParsing="false" onAction="#iranyitoszamOrszagAction" text="Kész" />
+                                                <Button fx:id="iranyitoszamOrszagButton" mnemonicParsing="false" onAction="#tab2OrszagButtonAction" text="Kész" />
                                             </children>
                                         </VBox>
                                         <VBox prefHeight="200.0" prefWidth="100.0">
                                             <children>
                                                 <Label text="Irányítószám" />
                                                 <TextField fx:id="iranyitoszamTextField" />
-                                                <Button fx:id="iranyitoszamButton" mnemonicParsing="false" onAction="#iranyitoszamAction" text="Kész" />
+                                                <Button fx:id="iranyitoszamButton" mnemonicParsing="false" onAction="#tab2IranyitoszamButtonAction" text="Kész" />
                                             </children>
                                         </VBox>
                                         <VBox prefHeight="200.0">
@@ -87,7 +87,7 @@
                                             <children>
                                                 <Label text="Koordináta Y" />
                                                 <TextField fx:id="koordinataYLabel" />
-                                                <Button fx:id="koordinataButton" mnemonicParsing="false" onAction="#koordinataAction" text="Kész" />
+                                                <Button fx:id="koordinataButton" mnemonicParsing="false" onAction="#tab3KoordinataButtonAction" text="Kész" />
                                             </children>
                                         </VBox>
                                         <VBox prefHeight="200.0">
