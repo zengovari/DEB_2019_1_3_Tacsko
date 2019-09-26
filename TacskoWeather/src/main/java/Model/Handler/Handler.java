@@ -9,8 +9,6 @@ import com.google.gson.JsonObject;
 import javafx.scene.image.ImageView;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import javafx.scene.image.Image;
 import java.io.*;
 import java.net.URL;
@@ -48,7 +46,7 @@ public class Handler {
             }
             in.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Hibás helyszín");
         }
         return apiAnswer.toString();
     }
@@ -78,7 +76,31 @@ public class Handler {
             }
             in.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Hibás irányítószám");
+        }
+        return apiAnswer.toString();
+    }
+
+
+    public static String readFromAPI(double lat, double lon, boolean forecast) {
+        StringBuilder apiAnswer = new StringBuilder();
+        URL request;
+
+        try {
+            if (!forecast) {
+                request = new URL("http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY);
+            } else {
+                request = new URL("http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY);
+            }
+            BufferedReader in = new BufferedReader(new InputStreamReader(request.openStream()));
+            String inputLine;
+
+            while ((inputLine = in.readLine()) != null) {
+                apiAnswer.append(inputLine);
+            }
+            in.close();
+        } catch (IOException e) {
+            log.error("Hibás koordináták");
         }
         return apiAnswer.toString();
     }
@@ -163,10 +185,10 @@ public class Handler {
 
 
     /**
-     * Gets the correct icon using {@link #getWeatherConditionIconByDate(ForecastWeatherData, String)} then gets the icon from an URL
+     * Gets the correct icon using {@link #getWeatherConditionIconByDate(ForecastWeatherData, String)} then sets the imageView's image to that icon
      * @param forecastWeatherData the data set that contains all the forecast data
+     * @param imageView the imageView where we want to put our icon
      * @param date the date which from we want to get the icon
-     * @return the icon as an Image
      */
     public static void setImageViewByDate( ForecastWeatherData forecastWeatherData, ImageView imageView, String date) {
         String icon = getWeatherConditionIconByDate(forecastWeatherData, date);

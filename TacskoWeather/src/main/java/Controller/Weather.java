@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import lombok.extern.slf4j.Slf4j;
 import org.controlsfx.control.textfield.TextFields;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
@@ -122,6 +123,7 @@ public class Weather  implements Initializable {
         iranyitoszamButton.setDisable(true);
         iranyitoszamTextField.setDisable(true);
 
+
         orszagTextField.textProperty().addListener((observable) -> {});
         iranyitoszamOrszagTextField.textProperty().addListener((observable) -> {});
 
@@ -161,7 +163,7 @@ public class Weather  implements Initializable {
             day4date.setText(date.plusDays(3).toString());
             day5date.setText(date.plusDays(4).toString());
 
-            Handler.setImageViewByDate(forecastWeather, day1img, "2019-09-26 21:00:00");
+            Handler.setImageViewByDate(forecastWeather, day1img, "2019-09-26 15:00:00");
 
             String currentTime = forecastWeather.getList()[0].getDt_txt();
 
@@ -202,7 +204,7 @@ public class Weather  implements Initializable {
 
                     if(temporaryTime[0].equals(LocalDate.now().plusDays(3).toString()))
                     {
-                        log.info("ez az negyedik nap homerseklete");
+                        log.info("ez az neNumberFormatException:gyedik nap homerseklete");
                         day4max.setText(Double.toString(maxTemperature));
                         day4min.setText(Double.toString(minTemperature));
                     }
@@ -250,19 +252,35 @@ public class Weather  implements Initializable {
             log.error("Hibás ország");
         }
     }
+
     public void iranyitoszamAction(){
         if (iranyitoszamTextField.getLength() > 0) {
+
             CurrentWeatherData currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
             ForecastWeatherData forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
-            System.out.println(currentWeatherData.getBase());
-            System.out.println(forecastWeatherData.getList()[0].getMain().getTemp());
+
         }
 
     }
 
-    public void  koordinataAction(){}
+    public void  koordinataAction(){
+        if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
+            try {
+                CurrentWeatherData currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(Double.parseDouble(koordinataXLabel.getText()) , Double.parseDouble(koordinataYLabel.getText()));
+                ForecastWeatherData forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(Double.parseDouble(koordinataXLabel.getText()) , Double.parseDouble(koordinataYLabel.getText()));
 
-    public void  day1click(){}
+                System.out.println(currentWeatherData.getWeather().getMain());
+                System.out.println(forecastWeatherData.getList()[0].getDt_txt());
+
+            } catch(NumberFormatException e) {
+                log.error("Hibás koordináták");
+            }
+        }
+    }
+
+    public void  day1click(){
+        System.out.println("Hello World");
+    }
     public void  day2click(){}
     public void  day3click(){}
     public void  day4click(){}

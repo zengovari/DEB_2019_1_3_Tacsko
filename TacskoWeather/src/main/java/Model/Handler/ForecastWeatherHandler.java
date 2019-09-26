@@ -23,6 +23,9 @@ public class ForecastWeatherHandler {
         return gson.fromJson(Handler.readFromAPI(zip, country, true), ForecastWeatherData.class);
     }
 
+    public static ForecastWeatherData getForecastWeatherData (double lat, double lon) {
+        return gson.fromJson(Handler.readFromAPI(lat, lon, true), ForecastWeatherData.class);
+    }
 
 
 

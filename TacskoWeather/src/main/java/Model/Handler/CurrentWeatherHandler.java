@@ -16,4 +16,8 @@ public class CurrentWeatherHandler {
     public static CurrentWeatherData getCurrentWeatherData (String zip, String country){
         return gson.fromJson(Handler.readFromAPI(zip, country, false), CurrentWeatherData.class);
     }
+
+    public static CurrentWeatherData getCurrentWeatherData (double lat, double lon){
+        return gson.fromJson(Handler.readFromAPI(lat, lon, false), CurrentWeatherData.class);
+    }
 }
