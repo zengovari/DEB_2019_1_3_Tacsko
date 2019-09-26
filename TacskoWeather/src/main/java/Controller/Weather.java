@@ -5,6 +5,7 @@ import Model.ForecastWeather.ForecastWeatherData;
 import Model.Handler.CurrentWeatherHandler;
 import Model.Handler.ForecastWeatherHandler;
 import Model.Handler.Handler;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -116,6 +117,8 @@ public class Weather  implements Initializable {
     private Map<String, ArrayList<String>> citiesByCountry = Handler.createMapOfCities();
     private ArrayList<String> countries = new ArrayList<>(citiesByCountry.keySet());
     private ArrayList<String> cities;
+    CurrentWeatherData currentWeatherData = new CurrentWeatherData();
+    ForecastWeatherData forecastWeatherData = new ForecastWeatherData();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -136,8 +139,7 @@ public class Weather  implements Initializable {
 
     }
 
-    public void orszagAction(){
-
+    public void tab1OrszagButtonAction(ActionEvent actionEvent) {
         if (countries.contains(orszagTextField.getText()) && orszagTextField.getLength() > 0) {
 
             telepulesButton.setDisable(false);
@@ -149,24 +151,21 @@ public class Weather  implements Initializable {
             log.error("Hibás ország");
         }
     }
-
-    public void telepulesAction(){
-
+    public void tab1TelepulesButtonAction(ActionEvent actionEvent) {
         if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
 
-            CurrentWeatherData currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(telepulesTextField.getText()); //JELENLEGI IDŐJÁRÁS
-            ForecastWeatherData forecastWeather= ForecastWeatherHandler.getForecastWeatherData(telepulesTextField.getText()); //IDŐJÁRÁS ELŐREJELZÉS
+            currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(telepulesTextField.getText()); //JELENLEGI IDŐJÁRÁS
+            forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(telepulesTextField.getText()); //IDŐJÁRÁS ELŐREJELZÉS
 
-            WeatherLoader(forecastWeather);
+            weatherLoader(forecastWeatherData);
 
-            }
+        }
         else {
             log.error("Hibás település");
         }
     }
 
-    public void iranyitoszamOrszagAction() {
-
+    public void tab2OrszagButtonAction(ActionEvent actionEvent) {
         if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
             iranyitoszamButton.setDisable(false);
             iranyitoszamTextField.setDisable(false);
@@ -174,31 +173,30 @@ public class Weather  implements Initializable {
             log.error("Hibás ország");
         }
     }
-
-    public void iranyitoszamAction(){
+    public void tab2IranyitoszamButtonAction(ActionEvent actionEvent) {
         if (iranyitoszamTextField.getLength() > 0) {
 
-            CurrentWeatherData currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
-            ForecastWeatherData forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
-            WeatherLoader(forecastWeatherData);
+            currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
+            forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
+            weatherLoader(forecastWeatherData);
 
         }
-
     }
 
-    public void  koordinataAction(){
+    public void tab3KoordinataButtonAction(ActionEvent actionEvent) {
         if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
             try {
-                CurrentWeatherData currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(Double.parseDouble(koordinataXLabel.getText()) , Double.parseDouble(koordinataYLabel.getText()));
-                ForecastWeatherData forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(Double.parseDouble(koordinataXLabel.getText()) , Double.parseDouble(koordinataYLabel.getText()));
+                currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(Double.parseDouble(koordinataXLabel.getText()) , Double.parseDouble(koordinataYLabel.getText()));
+                forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(Double.parseDouble(koordinataXLabel.getText()) , Double.parseDouble(koordinataYLabel.getText()));
 
-                WeatherLoader(forecastWeatherData);
+                weatherLoader(forecastWeatherData);
 
             } catch(NumberFormatException e) {
                 log.error("Hibás koordináták");
             }
         }
     }
+
     public String mennyiazido(String ido) {
         if(ido.equals("00:00:00"))
             return "00:00:00";
@@ -218,58 +216,59 @@ public class Weather  implements Initializable {
             return "21:00:00";
         return "nincs ilyen idopont";
     }
-    public void HourlyWeatherForTown(int which_day) {
-        ForecastWeatherData forecastWeather= ForecastWeatherHandler.getForecastWeatherData(telepulesTextField.getText());//IDŐJÁRÁS ELŐREJELZÉS
+    public void hourlyWeatherForTown(int which_day) {
+        //forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(telepulesTextField.getText());//IDŐJÁRÁS ELŐREJELZÉS
         String currentTime;
         for(int i = 0; i < 39; i++) {
-            currentTime = forecastWeather.getList()[i].getDt_txt();
+            currentTime = forecastWeatherData.getList()[i].getDt_txt();
             String[] preciseDate = currentTime.split(" ");
             if (preciseDate[0].equals(LocalDate.now().plusDays(which_day).toString())) {
                 if(mennyiazido(preciseDate[1]).equals("00:00:00"))
                 {
                     hour0.setText(preciseDate[1]);
-                    hour0temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                    hour0temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                 }
                 if(mennyiazido(preciseDate[1]).equals("03:00:00"))
                 {
                     hour3.setText(preciseDate[1]);
-                    hour3temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                    hour3temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                 }
                 if(mennyiazido(preciseDate[1]).equals("06:00:00"))
                 {
                     hour6.setText(preciseDate[1]);
-                    hour6temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                    hour6temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                 }
                 if(mennyiazido(preciseDate[1]).equals("09:00:00"))
                 {
                     hour9.setText(preciseDate[1]);
-                    hour9temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                    hour9temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                 }
                 if(mennyiazido(preciseDate[1]).equals("12:00:00"))
                 {
                     hour12.setText(preciseDate[1]);
-                    hour12temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                    hour12temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                 }
                 if(mennyiazido(preciseDate[1]).equals("15:00:00"))
                 {
                     hour15.setText(preciseDate[1]);
-                    hour15temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                    hour15temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                 }
                 if(mennyiazido(preciseDate[1]).equals("18:00:00"))
                 {
                     hour18.setText(preciseDate[1]);
-                    hour18temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                    hour18temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                 }
                 if(mennyiazido(preciseDate[1]).equals("21:00:00"))
                 {
                     log.info("van 21 ora is");
                     hour21.setText(preciseDate[1]);
-                    hour21temp.setText(String.valueOf(forecastWeather.getList()[i].getMain().getTemp()));
+                    hour21temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                 }
             }
         }
 
     }
+    /*
     public void HourlyWeatherForKoordinata(int which_day) {
         ForecastWeatherData forecastWeather = ForecastWeatherHandler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
         String currentTime;
@@ -374,7 +373,8 @@ public class Weather  implements Initializable {
         }
 
     }
-    public void WeatherLoader(ForecastWeatherData forecastWeather) {
+    */
+    public void weatherLoader(ForecastWeatherData forecastWeather) {
         LocalDate date = LocalDate.now();
         day1date.setText(date.toString());
         day2date.setText(date.plusDays(1).toString());
@@ -461,6 +461,23 @@ public class Weather  implements Initializable {
 }
 
     public void  day1click(){
+        hourlyWeatherForTown(0);
+    }
+    public void  day2click(){
+        hourlyWeatherForTown(1);
+    }
+    public void  day3click(){
+        hourlyWeatherForTown(2);
+    }
+    public void  day4click(){
+        hourlyWeatherForTown(3);
+    }
+    public void  day5click(){
+        hourlyWeatherForTown(4);
+    }
+
+    /*
+    public void  day1click(){
         if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
             HourlyWeatherForIranyitoszam(0);
         }
@@ -471,7 +488,7 @@ public class Weather  implements Initializable {
             HourlyWeatherForKoordinata(0);
         }
     }
-    public void  day2click() {
+    public void  day2click(){
         if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
             HourlyWeatherForIranyitoszam(1);
         }
@@ -515,6 +532,7 @@ public class Weather  implements Initializable {
             HourlyWeatherForKoordinata(4);
         }
     }
+    */
     public void  hour0click(){
 
     }
@@ -536,11 +554,10 @@ public class Weather  implements Initializable {
     public void  hour18click(){
 
     }
+
     public void  hour21click(){
 
     }
-
-
 
 }
 
