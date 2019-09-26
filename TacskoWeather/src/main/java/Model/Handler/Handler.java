@@ -1,13 +1,17 @@
 package Model.Handler;
 
 import Model.CurrentWeather.City;
-import Model.CurrentWeather.CurrentWeatherData;
+import Model.ForecastWeather.ForecastWeather;
 import Model.ForecastWeather.ForecastWeatherData;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import javafx.scene.image.ImageView;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javafx.scene.image.Image;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -84,7 +88,7 @@ public class Handler {
      * @param fileName name of the file from which the cities will be red.
      * @return An array of City classes.
      */
-    public static City[] readCities(String fileName) {
+    private static City[] readCities(String fileName) {
 
         InputStream inputStream = Handler.class.getClassLoader().getResourceAsStream(fileName);
         if (inputStream != null) {
@@ -134,15 +138,6 @@ public class Handler {
     }
 
     /**
-     * Returns a list of cities of a certain tag.
-     * @param cities A map with the keys as country tags with string type(ie. HU, DE) and the values as a list of strings of city names.
-     * @return A list of cities corresponding to a certain tag.
-     */
-    public static ArrayList<String> getCountries(Map<String, ArrayList<String>> cities) {
-        return new ArrayList<>(cities.keySet());
-    }
-
-    /**
      * Returns a list of city names which are suggested to complete the string.
      * @param cities A list of city names from which we can select the ones we need.
      * @param country The tag of the country from which we want to choose city names.
@@ -166,6 +161,44 @@ public class Handler {
         return suggestions;
     }
 
+
+    /**
+     * Gets the correct icon using {@link #getWeatherConditionIconByDate(ForecastWeatherData, String)} then gets the icon from an URL
+     * @param forecastWeatherData the data set that contains all the forecast data
+     * @param date the date which from we want to get the icon
+     * @return the icon as an Image
+     */
+    public static void setImageViewByDate( ForecastWeatherData forecastWeatherData, ImageView imageView, String date) {
+        String icon = getWeatherConditionIconByDate(forecastWeatherData, date);
+
+        System.out.println("http://openweathermap.org/img/wn/" + icon + "@2x.png");
+
+        Image image = new Image("http://openweathermap.org/img/wn/" + icon + "@2x.png");
+        imageView.setImage(image);
+    }
+
+    /**
+     * Reads through the forecast data then returns the correct icon if it's found
+     * @param forecastWeatherData the data set that contains all the forecast data
+     * @param date the date which from we want to get the icon
+     * @return the icon if it's found, otherwise null
+     */
+    private static String getWeatherConditionIconByDate (ForecastWeatherData forecastWeatherData, String date) {
+
+        String icon = "";
+
+        for (ForecastWeather forecastWeather: forecastWeatherData.getList()) {
+            if (forecastWeather.getDt_txt().equals(date)) {
+                icon = forecastWeather.getWeather().getIcon();
+            }
+        }
+
+        if (!icon.equals("")) return icon;
+        else {
+            log.error("Nincs erre a dátumra ikon.");
+            return null;
+        }
+    }
 
 
 }

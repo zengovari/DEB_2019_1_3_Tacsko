@@ -4,6 +4,12 @@ import Model.ForecastWeather.ForecastWeatherData;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 @Slf4j
 public class ForecastWeatherHandler {
     private static Gson gson = new Gson();
@@ -16,4 +22,8 @@ public class ForecastWeatherHandler {
     public static ForecastWeatherData getForecastWeatherData (String zip, String country) {
         return gson.fromJson(Handler.readFromAPI(zip, country, true), ForecastWeatherData.class);
     }
+
+
+
+
 }

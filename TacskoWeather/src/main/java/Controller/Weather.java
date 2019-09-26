@@ -112,7 +112,7 @@ public class Weather  implements Initializable {
     public Label hourlyPressure;
 
     private Map<String, ArrayList<String>> citiesByCountry = Handler.createMapOfCities();
-    private ArrayList<String> countries = Handler.getCountries(citiesByCountry);
+    private ArrayList<String> countries = new ArrayList<>(citiesByCountry.keySet());
     private ArrayList<String> cities;
 
     @Override
@@ -160,6 +160,8 @@ public class Weather  implements Initializable {
             day3date.setText(date.plusDays(2).toString());
             day4date.setText(date.plusDays(3).toString());
             day5date.setText(date.plusDays(4).toString());
+
+            Handler.setImageViewByDate(forecastWeather, day1img, "2019-09-26 21:00:00");
 
             String currentTime = forecastWeather.getList()[0].getDt_txt();
 
@@ -250,9 +252,6 @@ public class Weather  implements Initializable {
     }
     public void iranyitoszamAction(){
         if (iranyitoszamTextField.getLength() > 0) {
-            //CurrentWeatherData currentWeatherData = Handler.getCurrentWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
-            //ForecastWeatherData forecastWeatherData = Handler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
-
             CurrentWeatherData currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
             ForecastWeatherData forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
             System.out.println(currentWeatherData.getBase());
