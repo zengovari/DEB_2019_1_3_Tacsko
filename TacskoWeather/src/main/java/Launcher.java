@@ -1,4 +1,3 @@
-import Controller.Handler;
 import View.App;
 
 public class Launcher {

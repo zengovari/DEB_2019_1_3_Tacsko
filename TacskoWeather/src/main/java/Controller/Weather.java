@@ -1,9 +1,10 @@
 package Controller;
 
 import Model.CurrentWeather.CurrentWeatherData;
-import Model.ForecastWeather.ForecastWeather;
 import Model.ForecastWeather.ForecastWeatherData;
-import javafx.event.ActionEvent;
+import Model.Handler.CurrentWeatherHandler;
+import Model.Handler.ForecastWeatherHandler;
+import Model.Handler.Handler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,9 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -135,7 +133,6 @@ public class Weather  implements Initializable {
 
     }
 
-
     public void orszagAction(){
 
         if (countries.contains(orszagTextField.getText()) && orszagTextField.getLength() > 0) {
@@ -153,8 +150,9 @@ public class Weather  implements Initializable {
     public void telepulesAction(){
 
         if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
-            CurrentWeatherData currentWeatherData = Handler.getCurrentWeatherData(telepulesTextField.getText()); //JELENLEGI IDŐJÁRÁS
-            ForecastWeatherData forecastWeather= Handler.getForecastWeatherData(telepulesTextField.getText()); //IDŐJÁRÁS ELŐREJELZÉS
+
+            CurrentWeatherData currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(telepulesTextField.getText()); //JELENLEGI IDŐJÁRÁS
+            ForecastWeatherData forecastWeather= ForecastWeatherHandler.getForecastWeatherData(telepulesTextField.getText()); //IDŐJÁRÁS ELŐREJELZÉS
 
             LocalDate date = LocalDate.now();
             day1date.setText(date.toString());
@@ -252,8 +250,11 @@ public class Weather  implements Initializable {
     }
     public void iranyitoszamAction(){
         if (iranyitoszamTextField.getLength() > 0) {
-            CurrentWeatherData currentWeatherData = Handler.getCurrentWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
-            ForecastWeatherData forecastWeatherData = Handler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
+            //CurrentWeatherData currentWeatherData = Handler.getCurrentWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
+            //ForecastWeatherData forecastWeatherData = Handler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
+
+            CurrentWeatherData currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
+            ForecastWeatherData forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
             System.out.println(currentWeatherData.getBase());
             System.out.println(forecastWeatherData.getList()[0].getMain().getTemp());
         }

@@ -1,4 +1,4 @@
-package Controller;
+package Model.Handler;
 
 import Model.CurrentWeather.City;
 import Model.CurrentWeather.CurrentWeatherData;
@@ -20,6 +20,12 @@ public class Handler {
     private static final String API_KEY = "5d304de85fb52e5b0e2ab6c556196364";
     private static Gson gson = new Gson();
 
+    /**
+     * Gets the weather data in the form of a Jason file from the API and returns it as a string.
+     * @param location the name of the location from which we want to get the weather forecast or actual weather data.
+     * @param forecast true value gets the current weather, false value gets the weather forecast.
+     * @return A Json fle in the form of a String.
+     */
     public static String readFromAPI(String location, boolean forecast) {
         StringBuilder apiAnswer = new StringBuilder();
         URL request;
@@ -36,16 +42,20 @@ public class Handler {
             while ((inputLine = in.readLine()) != null) {
                 apiAnswer.append(inputLine);
             }
-
             in.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return apiAnswer.toString();
     }
 
+    /**
+     * Gets the weather data in the form of a Jason file from the API and returns it as a string.
+     * @param zip the zip code of the location from which we want to get the weather forecast or actual weather data.
+     * @param country the country tag of the location from which we want to get the weather forecast or actual weather data.(ie. HU, DE)
+     * @param forecast true value gets the current weather, false value gets the weather forecast.
+     * @return A Json fle in the form of a String.
+     */
     public static String readFromAPI(String zip, String country, boolean forecast) {
         StringBuilder apiAnswer = new StringBuilder();
         URL request;
@@ -62,17 +72,18 @@ public class Handler {
             while ((inputLine = in.readLine()) != null) {
                 apiAnswer.append(inputLine);
             }
-
             in.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return apiAnswer.toString();
     }
 
-
+    /**
+     * Reads a list of City classes fom a json file and returns it as an array.
+     * @param fileName name of the file from which the cities will be red.
+     * @return An array of City classes.
+     */
     public static City[] readCities(String fileName) {
 
         InputStream inputStream = Handler.class.getClassLoader().getResourceAsStream(fileName);
@@ -92,7 +103,7 @@ public class Handler {
         City[] cities = gson.fromJson(jsonArray, City[].class);
 
         if (cities != null) {
-            log.info("Mazes list successfully created");
+            log.info("Cities list successfully created");
         } else {
             log.error("ERROR while creating the list of cities.");
             return null;
@@ -101,6 +112,10 @@ public class Handler {
         return cities;
     }
 
+    /**
+     * From an array of City classes it creates a map of country tags as keys and a list of city names as values.
+     * @return A map with the keys as country tags with string type(ie. HU, DE) and the values as a list of strings of city names.
+     */
     public static Map createMapOfCities() {
         City[] cities = readCities("city.list.json");
         Map<String, ArrayList<String>> citiesMap = new HashMap<>();
@@ -118,17 +133,26 @@ public class Handler {
 
     }
 
+    /**
+     * Returns a list of cities of a certain tag.
+     * @param cities A map with the keys as country tags with string type(ie. HU, DE) and the values as a list of strings of city names.
+     * @return A list of cities corresponding to a certain tag.
+     */
     public static ArrayList<String> getCountries(Map<String, ArrayList<String>> cities) {
-
         return new ArrayList<>(cities.keySet());
-
     }
 
+    /**
+     * Returns a list of city names which are suggested to complete the string.
+     * @param cities A list of city names from which we can select the ones we need.
+     * @param country The tag of the country from which we want to choose city names.
+     * @param string A string for which we want to get suggestions to complete.
+     * @return Returns a list of city names.
+     */
     public static ArrayList<String> StringLike(Map<String, ArrayList<String>> cities ,String country, String string) {
         ArrayList<String> possibilities = cities.get(country);
         ArrayList<String> suggestions = new ArrayList<>();
         int stringLength = string.length();
-
 
         String substring;
         for (String city: possibilities) {
@@ -139,30 +163,9 @@ public class Handler {
                 }
             }
         }
-
         return suggestions;
     }
 
-    public static CurrentWeatherData getCurrentWeatherData (String location){
-        return gson.fromJson(readFromAPI(location, false), CurrentWeatherData.class);
-    }
 
-    public static ForecastWeatherData getForecastWeatherData (String location) {
-
-        System.out.println(readFromAPI(location, true));
-
-        return gson.fromJson(readFromAPI(location, true), ForecastWeatherData.class);
-
-    }
-
-    public static CurrentWeatherData getCurrentWeatherData (String zip, String country){
-        return gson.fromJson(readFromAPI(zip, country, false), CurrentWeatherData.class);
-    }
-
-    public static ForecastWeatherData getForecastWeatherData (String zip, String country) {
-
-        return gson.fromJson(readFromAPI(zip, country, true), ForecastWeatherData.class);
-
-    }
 
 }
