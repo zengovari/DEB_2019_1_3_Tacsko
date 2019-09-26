@@ -5,7 +5,7 @@ public class ForecastWeather {
     private int dt;
     private Main main;
     private Weather[] weather;
-    private Clouds cloud;
+    private Clouds clouds;
     private Wind wind;
     private Rain rain;
     private Sys sys;
@@ -23,8 +23,8 @@ public class ForecastWeather {
         return weather[0];
     }
 
-    public Clouds getCloud() {
-        return cloud;
+    public Clouds getClouds() {
+        return clouds;
     }
 
     public Wind getWind() {

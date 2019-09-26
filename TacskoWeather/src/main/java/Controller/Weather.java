@@ -114,6 +114,7 @@ public class Weather  implements Initializable {
     public Label hourlyWindDeg;
     public Label hourlyPressure;
 
+    public String nap = new String();
     private Map<String, ArrayList<String>> citiesByCountry = Handler.createMapOfCities();
     private ArrayList<String> countries = new ArrayList<>(citiesByCountry.keySet());
     private ArrayList<String> cities;
@@ -387,54 +388,96 @@ public class Weather  implements Initializable {
         }
 
 }
-    public void setHourlyImage() {
-
-    }
-
     public void  day1click(){
         clearHourlyWeather();
         setHourlyWeather(0);
+        nap = LocalDate.now().toString();
     }
     public void  day2click(){
         clearHourlyWeather();
         setHourlyWeather(1);
+        nap = LocalDate.now().plusDays(1).toString();
     }
     public void  day3click(){
         clearHourlyWeather();
         setHourlyWeather(2);
+        nap = LocalDate.now().plusDays(2).toString();
     }
     public void  day4click(){
         clearHourlyWeather();
         setHourlyWeather(3);
+        nap = LocalDate.now().plusDays(3).toString();
     }
-    public void  day5click(){
+    public void  day5click() {
         clearHourlyWeather();
         setHourlyWeather(4);
+        nap = LocalDate.now().plusDays(4).toString();
+    }
+
+    public void hourClear(){
+        hourlyWindSpeed.setText("");
+        hourlyWindDeg.setText("");
+        hourlyPressure.setText("");
+        hourlyMin.setText("");
+        hourlyMax.setText("");
+        hourlyHumidity.setText("");
+        hourlyclouds.setText("");
+    }
+    public void setDetailedHourlyWeather(String currentHour) {
+        hourClear();
+        for(int i = 0; i < 39; i++) {
+            if(forecastWeatherData.getList()[i].getDt_txt().equals(currentHour)) {
+                log.info("talaltunk valamit");
+                hourlyclouds.setText(Double.toString(forecastWeatherData.getList()[i].getClouds().getAll()));
+                hourlyHumidity.setText(Integer.toString(forecastWeatherData.getList()[i].getMain().getHumidity()));
+                hourlyMax.setText(Double.toString(forecastWeatherData.getList()[i].getMain().getTemp_max()));
+                hourlyMin.setText(Double.toString(forecastWeatherData.getList()[i].getMain().getTemp_min()));
+                hourlyPressure.setText(Double.toString(forecastWeatherData.getList()[i].getMain().getPressure()));
+                hourlyWindDeg.setText(Double.toString(forecastWeatherData.getList()[i].getWind().getDeg()));
+                hourlyWindSpeed.setText(Double.toString(forecastWeatherData.getList()[i].getWind().getSpeed()));
+            }
+        }
+
     }
 
     public void  hour0click(){
-
+        String currentHour = nap + " 00:00:00";
+        setDetailedHourlyWeather(currentHour);
     }
     public void  hour3click(){
+        String currentHour = nap + " 03:00:00";
+        setDetailedHourlyWeather(currentHour);
 
     }
     public void  hour6click(){
+        String currentHour = nap + " 06:00:00";
+        setDetailedHourlyWeather(currentHour);
 
     }
     public void  hour9click(){
+        String currentHour = nap + " 09:00:00";
+        setDetailedHourlyWeather(currentHour);
 
     }
     public void  hour12click(){
+        String currentHour = nap + " 12:00:00";
+        setDetailedHourlyWeather(currentHour);
 
     }
     public void  hour15click(){
+        String currentHour = nap + " 15:00:00";
+        setDetailedHourlyWeather(currentHour);
 
     }
     public void  hour18click(){
+        String currentHour = nap + " 18:00:00";
+        setDetailedHourlyWeather(currentHour);
 
     }
     public void  hour21click(){
-
+        String currentHour = nap + " 21:00:00";
+        System.out.println(currentHour);
+        setDetailedHourlyWeather(currentHour);
     }
 
 }
