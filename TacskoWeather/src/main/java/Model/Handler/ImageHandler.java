@@ -19,7 +19,7 @@ public class ImageHandler {
     private static Image scatteredCloudsImage = new Image(ImageHandler.class.getClassLoader().getResourceAsStream("img/scatteredClouds.png"));
     private static Image brokenCloudsImage = new Image(ImageHandler.class.getClassLoader().getResourceAsStream("img/brokenClouds.png"));
     private static Image overcastCloudsImage = new Image(ImageHandler.class.getClassLoader().getResourceAsStream("img/overcastClouds.png"));
-
+    private static Image nightTimeCloudsImage = new Image(ImageHandler.class.getClassLoader().getResourceAsStream("img/nightClouds.jpg"));
     /**
      * Selects the correct image according to the hour
      * @param hour the current hour
@@ -28,7 +28,7 @@ public class ImageHandler {
      * @return the correct image
      */
     private static Image nightOrDayImage(int hour, Image dayTime, Image nightTime) {
-        return !(hour >= 18 || hour <= 6) ? dayTime : nightTime;
+        return !(hour >= 18 || hour < 6) ? dayTime : nightTime;
     }
 
     /**
@@ -48,15 +48,21 @@ public class ImageHandler {
         else if (description.contains("thunderstorm")) correctImage = stormImage;
         else if (description.contains("rain") || description.contains("drizzle")) correctImage = rainImage;
         else if (description.contains("haze") || description.contains("fog") || description.contains("mist")) correctImage = fogImage;
-        else if (description.contains("few")) correctImage = fewCloudsImage;
-        else if (description.contains("scattered")) correctImage = scatteredCloudsImage;
-        else if (description.contains("broken")) correctImage = brokenCloudsImage;
-        else if (description.contains("overcast")) correctImage = overcastCloudsImage;
-
+        else if (description.contains("few")) {
+            correctImage = nightOrDayImage(hour, fewCloudsImage, nightTimeCloudsImage);
+        }
+        else if (description.contains("scattered")) {
+            correctImage = nightOrDayImage(hour, scatteredCloudsImage, nightTimeCloudsImage);
+        }
+        else if (description.contains("broken")) {
+            correctImage = nightOrDayImage(hour, brokenCloudsImage, nightTimeCloudsImage);
+        }
+        else if (description.contains("overcast")) {
+            correctImage = nightOrDayImage(hour, overcastCloudsImage, nightTimeCloudsImage);
+        }
         if (correctImage == null) {
             log.error("Nincs ilyen kép");
         }
-
         return correctImage;
 
     }
