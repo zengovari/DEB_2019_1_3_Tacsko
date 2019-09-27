@@ -12,7 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.controlsfx.control.textfield.TextFields;
@@ -137,10 +139,15 @@ public class Weather  implements Initializable {
 
         telepulesTextField.textProperty().addListener((observable -> {}));
 
+        orszagTextField.setText("HU");
+        tab1OrszagButtonAction();
+        telepulesTextField.setText("Debrecen");
+        tab1TelepulesButtonAction();
+        day1click();
 
     }
 
-    public void tab1OrszagButtonAction(ActionEvent actionEvent) {
+    public void tab1OrszagButtonAction() {
         if (countries.contains(orszagTextField.getText()) && orszagTextField.getLength() > 0) {
 
             telepulesButton.setDisable(false);
@@ -153,7 +160,7 @@ public class Weather  implements Initializable {
         }
     }
 
-    public void tab1TelepulesButtonAction(ActionEvent actionEvent) {
+    public void tab1TelepulesButtonAction() {
         if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
 
             currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(telepulesTextField.getText()); //JELENLEGI IDŐJÁRÁS
@@ -167,7 +174,7 @@ public class Weather  implements Initializable {
         }
     }
 
-    public void tab2OrszagButtonAction(ActionEvent actionEvent) {
+    public void tab2OrszagButtonAction() {
         if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
             iranyitoszamButton.setDisable(false);
             iranyitoszamTextField.setDisable(false);
@@ -176,7 +183,7 @@ public class Weather  implements Initializable {
         }
     }
 
-    public void tab2IranyitoszamButtonAction(ActionEvent actionEvent) {
+    public void tab2IranyitoszamButtonAction() {
         if (iranyitoszamTextField.getLength() > 0) {
 
             currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
@@ -186,7 +193,7 @@ public class Weather  implements Initializable {
         }
     }
 
-    public void tab3KoordinataButtonAction(ActionEvent actionEvent) {
+    public void tab3KoordinataButtonAction() {
         if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
             try {
                 currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(Double.parseDouble(koordinataXLabel.getText()) , Double.parseDouble(koordinataYLabel.getText()));
@@ -198,6 +205,120 @@ public class Weather  implements Initializable {
                 log.error("Hibás koordináták");
             }
         }
+    }
+
+    public void weatherLoader(ForecastWeatherData forecastWeather) {
+        LocalDate date = LocalDate.now();
+        day1date.setText(date.toString());
+        day2date.setText(date.plusDays(1).toString());
+        day3date.setText(date.plusDays(2).toString());
+        day4date.setText(date.plusDays(3).toString());
+        day5date.setText(date.plusDays(4).toString());
+
+        Handler.setImageViewByDate(forecastWeather, day1img, "2019-09-26 15:00:00");
+
+        String currentTime = forecastWeather.getList()[0].getDt_txt();
+
+        log.info("most a currentime ennyi" + currentTime);
+        String[] previoustime = currentTime.split(" ");
+        double maxTemperature = -273;
+        double minTemperature = 1000;
+
+        log.info("belepunk a for ciklusba");
+        for(int i = 0; i < 39; i++)
+        {
+            currentTime = forecastWeather.getList()[i].getDt_txt();
+            String[] temporaryTime = currentTime.split(" ");
+            if(! temporaryTime[0].equals(previoustime[0])) {
+                log.info("A temporaryTime nem ugyanazz mint a previousTime");
+
+                if(previoustime[0].equals(LocalDate.now().toString()))
+                {
+                    log.info("ez az elso nap homerseklete");
+                    System.out.println("a max ertek jelenleg" + String.valueOf(maxTemperature));
+                    day1max.setText(Double.toString(maxTemperature));
+                    day1min.setText(Double.toString(minTemperature));
+                }
+
+                if(temporaryTime[0].equals(LocalDate.now().plusDays(1).toString()))
+                {
+                    log.info("ez az masodik nap homerseklete");
+                    day2max.setText(Double.toString(maxTemperature));
+                    day2min.setText(Double.toString(minTemperature));
+                }
+
+                if(temporaryTime[0].equals(LocalDate.now().plusDays(2).toString()))
+                {
+                    log.info("ez az harmadik nap homerseklete");
+                    day3max.setText(Double.toString(maxTemperature));
+                    day3min.setText(Double.toString(minTemperature));
+                }
+
+                if(temporaryTime[0].equals(LocalDate.now().plusDays(3).toString()))
+                {
+                    log.info("ez az neNumberFormatException:gyedik nap homerseklete");
+                    day4max.setText(Double.toString(maxTemperature));
+                    day4min.setText(Double.toString(minTemperature));
+                }
+
+                if(temporaryTime[0].equals(LocalDate.now().plusDays(4).toString()))
+                {
+                    log.info("ez az otodik nap homerseklete");
+                    day5max.setText(Double.toString(maxTemperature));
+                    day5min.setText(Double.toString(minTemperature));
+                }
+
+                maxTemperature = -273;
+                minTemperature = 1000;
+                log.info("a previous time mielott elore vinnenk" + previoustime[0]);
+                previoustime[0] = temporaryTime[0];
+                log.info("a previous timeot elore visszuk 1 nappal "+ previoustime[0]);
+            }
+            else {
+                log.info("a ket nap egyforma");
+                if(minTemperature > forecastWeather.getList()[i].getMain().getTemp_min())
+                {
+                    log.info("talaltunk kisebb homersekletet");
+                    minTemperature =  forecastWeather.getList()[i].getMain().getTemp_min();
+                }
+
+                if(maxTemperature < forecastWeather.getList()[i].getMain().getTemp_max())
+                {
+                    log.info("talaltunk nagyobb homersekletet");
+                    maxTemperature =  forecastWeather.getList()[i].getMain().getTemp_max();
+                }
+            }
+
+        }
+
+    }
+
+    public void setDayColor(int whitchDay){
+        String style = "-fx-background-color: rgba(255, 255, 255, 0.5);";
+        switch (whitchDay) {
+            case 0:
+                day1box.setStyle(style);
+                break;
+            case 1:
+                day2box.setStyle(style);
+                break;
+            case 2:
+                day3box.setStyle(style);
+                break;
+            case 3:
+                day4box.setStyle(style);
+                break;
+            default:
+                day5box.setStyle(style);
+        }
+    }
+
+    public void clearDayColor(){
+        day1box.setStyle("");
+        day2box.setStyle("");
+        day3box.setStyle("");
+        day4box.setStyle("");
+        day5box.setStyle("");
     }
 
     public void setHourlyWeather(int which_day) {
@@ -287,120 +408,84 @@ public class Weather  implements Initializable {
         hour21img.setImage(null);
     }
 
-    public void weatherLoader(ForecastWeatherData forecastWeather) {
-        LocalDate date = LocalDate.now();
-        day1date.setText(date.toString());
-        day2date.setText(date.plusDays(1).toString());
-        day3date.setText(date.plusDays(2).toString());
-        day4date.setText(date.plusDays(3).toString());
-        day5date.setText(date.plusDays(4).toString());
-
-        Handler.setImageViewByDate(forecastWeather, day1img, "2019-09-26 15:00:00");
-
-        String currentTime = forecastWeather.getList()[0].getDt_txt();
-
-        log.info("most a currentime ennyi" + currentTime);
-        String[] previoustime = currentTime.split(" ");
-        double maxTemperature = -273;
-        double minTemperature = 1000;
-
-        log.info("belepunk a for ciklusba");
-        for(int i = 0; i < 39; i++)
-        {
-            currentTime = forecastWeather.getList()[i].getDt_txt();
-            String[] temporaryTime = currentTime.split(" ");
-            if(! temporaryTime[0].equals(previoustime[0])) {
-                log.info("A temporaryTime nem ugyanazz mint a previousTime");
-
-                if(previoustime[0].equals(LocalDate.now().toString()))
-                {
-                    log.info("ez az elso nap homerseklete");
-                    System.out.println("a max ertek jelenleg" + String.valueOf(maxTemperature));
-                    day1max.setText(Double.toString(maxTemperature));
-                    day1min.setText(Double.toString(minTemperature));
-                }
-
-                if(temporaryTime[0].equals(LocalDate.now().plusDays(1).toString()))
-                {
-                    log.info("ez az masodik nap homerseklete");
-                    day2max.setText(Double.toString(maxTemperature));
-                    day2min.setText(Double.toString(minTemperature));
-                }
-
-                if(temporaryTime[0].equals(LocalDate.now().plusDays(2).toString()))
-                {
-                    log.info("ez az harmadik nap homerseklete");
-                    day3max.setText(Double.toString(maxTemperature));
-                    day3min.setText(Double.toString(minTemperature));
-                }
-
-                if(temporaryTime[0].equals(LocalDate.now().plusDays(3).toString()))
-                {
-                    log.info("ez az neNumberFormatException:gyedik nap homerseklete");
-                    day4max.setText(Double.toString(maxTemperature));
-                    day4min.setText(Double.toString(minTemperature));
-                }
-
-                if(temporaryTime[0].equals(LocalDate.now().plusDays(4).toString()))
-                {
-                    log.info("ez az otodik nap homerseklete");
-                    day5max.setText(Double.toString(maxTemperature));
-                    day5min.setText(Double.toString(minTemperature));
-                }
-
-                maxTemperature = -273;
-                minTemperature = 1000;
-                log.info("a previous time mielott elore vinnenk" + previoustime[0]);
-                previoustime[0] = temporaryTime[0];
-                log.info("a previous timeot elore visszuk 1 nappal "+ previoustime[0]);
-            }
-            else {
-                log.info("a ket nap egyforma");
-                if(minTemperature > forecastWeather.getList()[i].getMain().getTemp_min())
-                {
-                    log.info("talaltunk kisebb homersekletet");
-                    minTemperature =  forecastWeather.getList()[i].getMain().getTemp_min();
-                }
-
-                if(maxTemperature < forecastWeather.getList()[i].getMain().getTemp_max())
-                {
-                    log.info("talaltunk nagyobb homersekletet");
-                    maxTemperature =  forecastWeather.getList()[i].getMain().getTemp_max();
-                }
-            }
-
-        }
-
-}
-
     public void  day1click(){
+        clearDayColor();
+        setDayColor(0);
         clearHourlyWeather();
         setHourlyWeather(0);
         nap = LocalDate.now().toString();
     }
 
     public void  day2click(){
+        clearDayColor();
+        setDayColor(1);
         clearHourlyWeather();
         setHourlyWeather(1);
         nap = LocalDate.now().plusDays(1).toString();
     }
 
     public void  day3click(){
+        clearDayColor();
+        setDayColor(2);
         clearHourlyWeather();
         setHourlyWeather(2);
         nap = LocalDate.now().plusDays(2).toString();
     }
 
     public void  day4click(){
+        clearDayColor();
+        setDayColor(3);
         clearHourlyWeather();
         setHourlyWeather(3);
         nap = LocalDate.now().plusDays(3).toString();
     }
 
     public void  day5click() {
+        clearDayColor();
+        setDayColor(4);
         clearHourlyWeather();
         setHourlyWeather(4);
         nap = LocalDate.now().plusDays(4).toString();
+    }
+
+    public void setHourColor(int whitchHour){
+        String style = "-fx-background-color: rgba(255, 255, 255, 0.5);";
+        switch (whitchHour){
+            case 0:
+                hour0box.setStyle(style);
+                break;
+            case 3:
+                hour3box.setStyle(style);
+                break;
+            case 6:
+                hour6box.setStyle(style);
+                break;
+            case 9:
+                hour9box.setStyle(style);
+                break;
+            case 12:
+                hour12box.setStyle(style);
+                break;
+            case 15:
+                hour15box.setStyle(style);
+                break;
+            case 18:
+                hour18box.setStyle(style);
+                break;
+            default:
+                hour21box.setStyle(style);
+        }
+    }
+
+    public void clearHourColor(){
+        hour0box.setStyle("");
+        hour3box.setStyle("");
+        hour6box.setStyle("");
+        hour9box.setStyle("");
+        hour12box.setStyle("");
+        hour15box.setStyle("");
+        hour18box.setStyle("");
+        hour21box.setStyle("");
     }
 
     public void hourClear(){
@@ -431,47 +516,63 @@ public class Weather  implements Initializable {
     }
 
     public void  hour0click(){
+        clearHourColor();
+        setHourColor(0);
         String currentHour = nap + " 00:00:00";
         setDetailedHourlyWeather(currentHour);
     }
 
     public void  hour3click(){
+        clearHourColor();
+        setHourColor(3);
         String currentHour = nap + " 03:00:00";
         setDetailedHourlyWeather(currentHour);
 
     }
 
     public void  hour6click(){
+        clearHourColor();
+        setHourColor(6);
         String currentHour = nap + " 06:00:00";
         setDetailedHourlyWeather(currentHour);
 
     }
 
     public void  hour9click(){
+        clearHourColor();
+        setHourColor(9);
         String currentHour = nap + " 09:00:00";
         setDetailedHourlyWeather(currentHour);
 
     }
 
     public void  hour12click(){
+        clearHourColor();
+        setHourColor(12);
         String currentHour = nap + " 12:00:00";
         setDetailedHourlyWeather(currentHour);
 
     }
 
     public void  hour15click(){
+        clearHourColor();
+        setHourColor(15);
         String currentHour = nap + " 15:00:00";
         setDetailedHourlyWeather(currentHour);
 
     }
 
     public void  hour18click(){
+        clearHourColor();
+        setHourColor(18);
         String currentHour = nap + " 18:00:00";
         setDetailedHourlyWeather(currentHour);
 
     }
 
     public void  hour21click(){
+        clearHourColor();
+        setHourColor(21);
         String currentHour = nap + " 21:00:00";
         System.out.println(currentHour);
         setDetailedHourlyWeather(currentHour);

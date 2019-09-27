@@ -5,6 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
+<?import javafx.scene.text.Font?>
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Weather">
     <top>
         <TabPane prefHeight="100.0" prefWidth="2000.0" tabClosingPolicy="UNAVAILABLE">
@@ -113,7 +114,11 @@
                             <children>
                                 <VBox fx:id="day1box" onMouseClicked="#day1click" prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label fx:id="day1date" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum" />
+                                        <Label fx:id="day1date" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
                                                 <ImageView fx:id="day1img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -122,15 +127,27 @@
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
                                             <children>
-                                                <Label fx:id="day1max" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="max" />
-                                                <Label fx:id="day1min" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="min" />
+                                                <Label fx:id="day1max" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="max" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="day1min" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="min" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox fx:id="day2box" onMouseClicked="#day2click" prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label fx:id="day2date" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum" />
+                                        <Label fx:id="day2date" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum" >
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
                                                 <ImageView fx:id="day2img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -139,15 +156,27 @@
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
                                             <children>
-                                                <Label fx:id="day2max" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="max" />
-                                                <Label fx:id="day2min" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="min" />
+                                                <Label fx:id="day2max" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="max" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="day2min" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="min" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox fx:id="day3box" onMouseClicked="#day3click" prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label fx:id="day3date" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum" />
+                                        <Label fx:id="day3date" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum" >
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
                                                 <ImageView fx:id="day3img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -156,15 +185,27 @@
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
                                             <children>
-                                                <Label fx:id="day3max" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="max" />
-                                                <Label fx:id="day3min" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="min" />
+                                                <Label fx:id="day3max" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="max" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="day3min" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="min" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox fx:id="day4box" onMouseClicked="#day4click" prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label fx:id="day4date" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum" />
+                                        <Label fx:id="day4date" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum" >
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
                                                 <ImageView fx:id="day4img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -173,15 +214,27 @@
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
                                             <children>
-                                                <Label fx:id="day4max" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="max" />
-                                                <Label fx:id="day4min" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="min" />
+                                                <Label fx:id="day4max" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="max" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="day4min" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="min" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox fx:id="day5box" onMouseClicked="#day5click" prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label fx:id="day5date" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum" />
+                                        <Label fx:id="day5date" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum" >
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
                                                 <ImageView fx:id="day5img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -190,8 +243,16 @@
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
                                             <children>
-                                                <Label fx:id="day5max" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="max" />
-                                                <Label fx:id="day5min" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="min" />
+                                                <Label fx:id="day5max" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="max" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="day5min" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="min" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
                                             </children>
                                         </HBox>
                                     </children>
@@ -206,7 +267,11 @@
                             <children>
                                 <VBox fx:id="hour0box" onMouseClicked="#hour0click" prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label fx:id="hour0" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" />
+                                        <Label fx:id="hour0" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" >
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
                                                 <ImageView fx:id="hour0img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -215,14 +280,22 @@
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
                                             <children>
-                                                <Label fx:id="hour0temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" />
+                                                <Label fx:id="hour0temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox fx:id="hour3box" onMouseClicked="#hour3click" prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label fx:id="hour3" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" />
+                                        <Label fx:id="hour3" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" >
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
                                                 <ImageView fx:id="hour3img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -231,14 +304,22 @@
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
                                             <children>
-                                                <Label fx:id="hour3temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" />
+                                                <Label fx:id="hour3temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox fx:id="hour6box" onMouseClicked="#hour6click" prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label fx:id="hour6" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" />
+                                        <Label fx:id="hour6" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" >
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
                                                 <ImageView fx:id="hour6img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -247,14 +328,22 @@
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
                                             <children>
-                                                <Label fx:id="hour6temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" />
+                                                <Label fx:id="hour6temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox fx:id="hour9box" onMouseClicked="#hour9click" prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label fx:id="hour9" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" />
+                                        <Label fx:id="hour9" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" >
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
                                                 <ImageView fx:id="hour9img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -263,14 +352,22 @@
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
                                             <children>
-                                                <Label fx:id="hour9temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" />
+                                                <Label fx:id="hour9temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox fx:id="hour12box" onMouseClicked="#hour12click" prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label fx:id="hour12" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" />
+                                        <Label fx:id="hour12" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" >
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
                                                 <ImageView fx:id="hour12img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -279,14 +376,22 @@
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
                                             <children>
-                                                <Label fx:id="hour12temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" />
+                                                <Label fx:id="hour12temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox fx:id="hour15box" onMouseClicked="#hour15click" prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label fx:id="hour15" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" />
+                                        <Label fx:id="hour15" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" >
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
                                                 <ImageView fx:id="hour15img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -295,14 +400,22 @@
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
                                             <children>
-                                                <Label fx:id="hour15temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" />
+                                                <Label fx:id="hour15temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox fx:id="hour18box" onMouseClicked="#hour18click" prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label fx:id="hour18" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" />
+                                        <Label fx:id="hour18" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" >
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
                                                 <ImageView fx:id="hour18img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -311,14 +424,22 @@
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
                                             <children>
-                                                <Label fx:id="hour18temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" />
+                                                <Label fx:id="hour18temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox fx:id="hour21box" onMouseClicked="#hour21click" prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label fx:id="hour21" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" />
+                                        <Label fx:id="hour21" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="ora" >
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
                                                 <ImageView fx:id="hour21img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -327,7 +448,11 @@
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
                                             <children>
-                                                <Label fx:id="hour21temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" />
+                                                <Label fx:id="hour21temp" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Homerseklet" >
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
                                             </children>
                                         </HBox>
                                     </children>
@@ -342,36 +467,92 @@
                             <children>
                                 <VBox prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Maximum hőmérséklet" />
-                                        <Label fx:id="hourlyMax" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" />
-                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Minimum hőmérséklet" />
-                                        <Label fx:id="hourlyMin" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" />
+                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Maximum hőmérséklet" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="hourlyMax" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Minimum hőmérséklet" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="hourlyMin" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
                                     </children>
                                 </VBox>
                                 <VBox prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Páratartalom" />
-                                        <Label fx:id="hourlyHumidity" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" />
+                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Páratartalom" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="hourlyHumidity" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
                                     </children>
                                 </VBox>
                                 <VBox prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Felhők" />
-                                        <Label fx:id="hourlyclouds" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" />
+                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Felhők" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="hourlyclouds" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
                                     </children>
                                 </VBox>
                                 <VBox prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Szél sebesség" />
-                                        <Label fx:id="hourlyWindSpeed" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" />
-                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Szél irány" />
-                                        <Label fx:id="hourlyWindDeg" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" />
+                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Szél sebesség" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="hourlyWindSpeed" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Szél irány" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="hourlyWindDeg" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
                                     </children>
                                 </VBox>
                                 <VBox prefHeight="300.0" prefWidth="300.0">
                                     <children>
-                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Légnyomás" />
-                                        <Label fx:id="hourlyPressure" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" />
+                                        <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Légnyomás" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="hourlyPressure" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" >
+                                            <font>
+                                                <Font name="System Bold" size="16.0" />
+                                            </font>
+                                        </Label>
                                     </children>
                                 </VBox>
                             </children>
