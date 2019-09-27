@@ -99,6 +99,7 @@ A program rendszerű működéséhez állandó internethozzáférés szükséges
 
 A fejlesztés során az MVC (Model-View-Control) szoftverfejlesztési módsztertant alkalmazzuk.
 
+<img src="https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/MVC-Process.png" width="300" />
 
 A WeatherData osztály lesz a rendszerünk "Model"-je, azaz ez lesz az az osztály ami a "Controller" osztályunkról megkapja az információt, amelyet továbbít majd a "View"-nak.
 A Controller osztályunk, egy olyan osztály lesz melynek funckiói között megtaláható lesz:
@@ -166,9 +167,8 @@ Mivel Google Gsont használunk, így szükséges, hogy a JSON fájlba az olyan e
 
 Annak érdekében, hogy minél egyszerűbb legyen dolgozni vele, a JSON-ben található neveket használjuk tovább, így sokkal átláthatóbb lesz a rendszer.
 
-<img src="https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/MVC-Process.png" width="300" />
 
-Mivel a legjobbat szeretnénk a felhasználónak, így biztosítünk egy olyan funkciót amely a beírt input alapján kiegészíti az országnevet, illetve a földrajznevet. Ehhez az OpenWeather egy JSON fájlt szolgáltat számunkra, mely az alábbi formátomú: 
+Mivel a legjobbat szeretnénk a felhasználónak, így biztosítünk egy olyan funkciót amely a beírt input alapján kiegészíti az országok nevét, illetve a kívánt helyszín földrajzi nevét. Ehhez az OpenWeather egy JSON fájlt szolgáltat számunkra, mely az alábbi formátomú: 
 
 ```json
  {
@@ -179,8 +179,6 @@ Mivel a legjobbat szeretnénk a felhasználónak, így biztosítünk egy olyan f
       "lon": 34.283333,
       "lat": 44.549999
     }
-    .
-    .
 ```
 
 Ebben a JSON fájlban a világ összes települése megtalálható. Ezen városokat egy Map<String, ArrayList<String>> formátomú Map-ben tároljuk, ahol a String az ország neve, az ArrayList<String> pedig az adott országhoz kapcsolódo országok. A controlsfx (https://github.com/controlsfx/controlsfx) segítségével nagyon egyszerűen létrehozhatjuk ezt az automatikusan kiegészülő listát, ugyanis egy bindAutoCompletion(TextField, Collection<T>) metódust szolgáltat nekünk, ahol az első paraméter az a textField ahová a felhasználó éppen ír, a második pereméter pedig az ajánlásokból álló adat struktúra, az ajánlásokat a létrehozott Mappünkből szedjuk majd ki.  
