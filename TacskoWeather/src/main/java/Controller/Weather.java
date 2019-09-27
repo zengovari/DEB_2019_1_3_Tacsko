@@ -212,6 +212,10 @@ public class Weather  implements Initializable {
         }
     }
 
+    /**
+     * Loads the data regarding the upcoming five days of weather into the Graphical User Interface.
+     * @param forecastWeather {@link ForecastWeatherData} Object that contains all the necessary information.
+     */
     public void weatherLoader(ForecastWeatherData forecastWeather) {
         LocalDate date = LocalDate.now();
         day1date.setText(date.toString());
@@ -330,6 +334,10 @@ public class Weather  implements Initializable {
         day5box.setStyle("");
     }
 
+    /**
+     *  Loads the hourly information regarding the weather forecast into the Graphical User Interface.
+     * @param which_day Integer that helps in indentifying the day for which we have to load the forecast data.
+     */
     public void setHourlyWeather(int which_day) {
         String currentTime;
         double kelvin;
@@ -407,6 +415,9 @@ public class Weather  implements Initializable {
 
     }
 
+    /**
+     * Clears the existing information regarding the hourly weather data from the Graphical User Interface.
+     */
     public void clearHourlyWeather(){
         hour0.setText("");
         hour0temp.setText("");
@@ -514,6 +525,9 @@ public class Weather  implements Initializable {
         hour21box.setStyle("");
     }
 
+    /**
+     * Clears the existing information regarding the detailed hourly data from the Graphical User Interface.
+     */
     public void hourClear(){
         hourlyWindSpeed.setText("");
         hourlyWindDeg.setText("");
@@ -524,6 +538,10 @@ public class Weather  implements Initializable {
         hourlyClouds.setText("");
     }
 
+    /**
+     * Loads a detailed weather forecast data for the selected hour into the Graphical User Interface.
+     * @param currentHour String that helps in indentifying the selected hour for which we have to load the forecast data.
+     */
     public void setDetailedHourlyWeather(String currentHour) {
         hourClear();
         for(int i = 0; i < 39; i++) {
