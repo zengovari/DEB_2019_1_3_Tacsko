@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ImageHandler {
     private static Image clearImage = new Image(ImageHandler.class.getClassLoader().getResourceAsStream("img/clear.png"));
+    private static Image nightClearImage = new Image(ImageHandler.class.getClassLoader().getResourceAsStream("img/nightClear.png"));
     private static Image stormImage = new Image(ImageHandler.class.getClassLoader().getResourceAsStream("img/storm.png"));
     private static Image rainImage = new Image(ImageHandler.class.getClassLoader().getResourceAsStream("img/rain.png"));
     private static Image fogImage = new Image(ImageHandler.class.getClassLoader().getResourceAsStream("img/fog.png"));
@@ -26,13 +27,20 @@ public class ImageHandler {
      * @return the correct image if it exists, otherwise null.
      */
 
-    private static Image selectCorrectImage (String description) {
+    private static Image selectCorrectImage (String description, String date) {
         description = description.toLowerCase();
         Image correctImage = null;
+        int hour = Integer.parseInt(date.split(" ")[1].split(":")[0]);
+        if (description.contains("clear"))  {
 
-        if (description.contains("clear") || description.contains("drizzle")) correctImage = clearImage;
+            if (hour > 18 || hour < 6) {
+                correctImage = nightClearImage;
+            } else {
+                correctImage = clearImage;
+            }
+        }
         else if (description.contains("thunderstorm")) correctImage = stormImage;
-        else if (description.contains("rain")) correctImage = rainImage;
+        else if (description.contains("rain") || description.contains("drizzle")) correctImage = rainImage;
         else if (description.contains("haze") || description.contains("fog") || description.contains("mist")) correctImage = fogImage;
         else if (description.contains("few")) correctImage = fewCloudsImage;
         else if (description.contains("scattered")) correctImage = scatteredCloudsImage;
@@ -55,9 +63,9 @@ public class ImageHandler {
      * @return the created background
      */
 
-    public static Background getBackgroundImage(AnchorPane pane, String description) {
+    public static Background getBackgroundImage(AnchorPane pane, String description, String date) {
 
         BackgroundSize backgroundSize = new BackgroundSize(pane.getWidth(), pane.getHeight(), false, false, true, true);
-        return new Background(new BackgroundImage(selectCorrectImage(description), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize));
+        return new Background(new BackgroundImage(selectCorrectImage(description, date), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize));
     }
 }

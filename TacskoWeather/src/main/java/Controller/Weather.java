@@ -549,7 +549,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(0);
         String currentHour = nap + " 00:00:00";
-        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour), currentHour));
         setDetailedHourlyWeather(currentHour);
     }
 
@@ -557,7 +557,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(3);
         String currentHour = nap + " 03:00:00";
-        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour), currentHour));
         setDetailedHourlyWeather(currentHour);
 
     }
@@ -566,7 +566,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(6);
         String currentHour = nap + " 06:00:00";
-        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour), currentHour));
         setDetailedHourlyWeather(currentHour);
 
     }
@@ -575,7 +575,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(9);
         String currentHour = nap + " 09:00:00";
-        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour), currentHour));
         setDetailedHourlyWeather(currentHour);
 
     }
@@ -584,7 +584,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(12);
         String currentHour = nap + " 12:00:00";
-        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour), currentHour));
         setDetailedHourlyWeather(currentHour);
 
     }
@@ -593,7 +593,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(15);
         String currentHour = nap + " 15:00:00";
-        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour), currentHour));
         setDetailedHourlyWeather(currentHour);
 
     }
@@ -602,7 +602,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(18);
         String currentHour = nap + " 18:00:00";
-        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour), currentHour));
         setDetailedHourlyWeather(currentHour);
 
     }
@@ -611,7 +611,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(21);
         String currentHour = nap + " 21:00:00";
-        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour), currentHour));
         setDetailedHourlyWeather(currentHour);
     }
 
