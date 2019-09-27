@@ -54,29 +54,31 @@ A rendszerhez bárki, bármikor, bárhol hozzáférhet, nincsenek jogosultságok
 
 ![alt text](https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/kepernyoTerv.png "Terv")
 
-Ahogy a minta képen is látható, a bal felső sarokban helyezkedik el magának a jelenlegi vagy a felhasználó által választott helyszínnek a neve, az alatt pedig a jelenlegi időjárás részletesen taglalva:
+Ahogy a minta képen is látható, a felső részen a felhasználó három menüpont közül választhat tetszőlegesen: 
+- Település
+- Irányítószám
+- Koordináták
 
-- jelenlegi időjárás az OpenWeather API által szolgáltatott ikonnal szemléltetve
-- hőmérséklet aktuális, napi várható maximum és minimum
-- szélsebesség
-- szélirány
-- borultság százalékban megadva (menyire tiszta az ég)
-- légnyomás
+A **település fül** alatt a felhasználónak lehetősége lesz az általa választott helység időjárására keresni, azután miután megadta az ország nevét. A felhasználót nagy mértékbe segíti majd a helyszín kiválasztásában az automata kiegészítő, mely a felhasználó által beadott bemenet alapján az arra illeszkedő földrajzi városneveket, illetve országneveket ajánlja fel a felhasználónak, melyel az egérrel interakcióba lehet lépni, amiután a kiválasztott helyszín neve a szöveg dobozba megjelenik. 
+Az **irányítószám fül** alatt hasonlóan a program használójának lehetősége lesz az általa választott irányítószám alapján rákeresni az időjárás előrejelzésre, szintúgy az ország nevének megadása után. Ezesetben az automata kiegészítő csak az ország neve esetén nyújt segítségét.
+A **koordináta fül** alatt a felhasználónak lehetősége lesz az általa választott szélességi és hosszúsági földrajzi koordináta megadása után rákeresni az 5 napos előrejelzésre.
+Minden esetben a **"Kész"** gomb megnyomása után kerül mentése a bemenet.
+**Hiba esetén** a képernyőn jelenik meg egy **hibaüzenet**, mely tájékoztatja a felhasználót, hogy mit tévesztett el, így egyszerűen kitudja javítani.
+Miután a szoftver használójának sikerült hiba nélküli információt eljutatni a programnak, **három sor** töltődik majd fel információval.
+Az **első sorban** található a dátum, a hét megfelelő napjával és az arra a napra való minimum, illetve maximum hőmérséklettel, mind Kelvinnel, illetve Celsiussal megadva. Ezen "ablakokkal" az egérrel interakcióba lehet lépni, rájuk lehet kattintani, azt, hogy melyik ablakra fogunk kattintani a háttér világossá színeződése jelzi. Miután a felhasználó rákattintott az általa válaszott napra, a második sor feltöltődik új információval.
+A **második sorban** található a kiválasztott napra a 3 óránként való előrejelzés, melyen az alábbi elemek láthatók:
+- Az adott óra
+- A az adott időpontban várható időjárás az OpenWeather API által szolgáltatott ikonnal szemléltetve
+- Az adott időponton várható átlaghőmérséklet.
+
+Szintúgy mint az első sorban ezen kis ablakok kattinhatók, melynek helyét ugyanúgy a háttér világossá való színeződése jelzi. Miután a felhasználó kiválasztotta az általa kívánt időpontot a harmadik sor töltődik fel újabb információkkal. 
+A harmadik sorban a választott időpont részletes előrejelzése látható az alábbi elemekkel: 
+- egy kép, mely a várható időjárást szemlélteti
+- a várható maximum, illetve minimum hőmérséklet
 - páratartalom
-- napkelte, napnyugta
-
-A felhasználónak a grafikus felület jobb felső oldalán van lehetősége más helyszín választására, melyet többféleképpen is megtehet:
-- a helyszín földrajzi neve
-- irányítószám
-- földrajzi koordináták
-
-A rendszer segítséget kínál majd fel a helyszín kitörlésére az esetleges hibák, elgépelések elkerülése érdekében. Abban az esetben ha hibás értéket kapna bemenetnek a rendszer az oldal egy egyszerű 404-es hibát dob vissza, ezesetben, a rendszernek tájékoztatni kell a felhasználót, hogy nem megfelelő értéket adott meg.
-A jelenlegi időjárás alatt, 5 egymástól elkülönített kis ablakaban jelenik meg az 5 napos előrejelzés rövidített változata, annak érdekében hogy kiférjen a szűk térre:
-- időjárás ikonnal szemléltetve
-- hőmérséklet
-- csapadék
-
-Ezen kis ablakokkal az egérrel interakcióba lehet lépni, kattintás után pedig a megfelelő nap részletes előrejelzését láthatja a felhasználó, ahol ugyanazon adatok lesznek láthatók mint a jelenlegi időjárásnál.
+- borultság százalékban megadva (menyire tiszta az ég)
+- szélirány
+- légnyomás
 
 ### VI. A fizikai környezet
 
@@ -97,6 +99,22 @@ A program rendszerű működéséhez állandó internethozzáférés szükséges
 
 A fejlesztés során az MVC (Model-View-Control) szoftverfejlesztési módsztertant alkalmazzuk.
 
+
+A WeatherData osztály lesz a rendszerünk "Model"-je, azaz ez lesz az az osztály ami a "Controller" osztályunkról megkapja az információt, amelyet továbbít majd a "View"-nak.
+A Controller osztályunk, egy olyan osztály lesz melynek funckiói között megtaláható lesz:
+- API request küldése, a megkapott JSON fájl feldolgozása
+- Az adatbázisban való keeresés
+
+### VIII. Adatbázis terv
+
+![alt text](https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/cities.png "Cities")
+
+A rendszer adatbázisában a városok neveit tároljuk annak érdekében, hogy mikor a felhasználó elkezdi gépelni egy adott város nevét a grafikus felület jobb oldalába lévő részre, a program automatikus kiegészítse azt, a felhasználót ezzel nagy mértékben segítve, illetve a hibás requestek számának csökkentése érdekében.
+
+- city_name: a város neve
+- counry_name: az ország neve
+
+### IX. Implementációs terv
 
 Az OpenWeather Abstract Programming Interface, abban az esetben, ha helyes értéket kap (földrajzi név, irányítószám, koordináták) a következő JSON fájlt küldi válaszul. (ezesetben a helyszínünk a Japánban található Shuenzji)
 
@@ -150,21 +168,22 @@ Annak érdekében, hogy minél egyszerűbb legyen dolgozni vele, a JSON-ben tal�
 
 <img src="https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/MVC-Process.png" width="300" />
 
-A WeatherData osztály lesz a rendszerünk "Model"-je, azaz ez lesz az az osztály ami a "Controller" osztályunkról megkapja az információt, amelyet továbbít majd a "View"-nak.
-A Controller osztályunk, egy olyan osztály lesz melynek funckiói között megtaláható lesz:
-- API request küldése, a megkapott JSON fájl feldolgozása
-- Az adatbázisban való keeresés
+Mivel a legjobbat szeretnénk a felhasználónak, így biztosítünk egy olyan funkciót amely a beírt input alapján kiegészíti az országnevet, illetve a földrajznevet. Ehhez az OpenWeather egy JSON fájlt szolgáltat számunkra, mely az alábbi formátomú: 
 
-### VIII. Adatbázis terv
+```json
+ {
+    "id": 707860,
+    "name": "Hurzuf",
+    "country": "UA",
+    "coord": {
+      "lon": 34.283333,
+      "lat": 44.549999
+    }
+    .
+    .
+```
 
-![alt text](https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/cities.png "Cities")
-
-A rendszer adatbázisában a városok neveit tároljuk annak érdekében, hogy mikor a felhasználó elkezdi gépelni egy adott város nevét a grafikus felület jobb oldalába lévő részre, a program automatikus kiegészítse azt, a felhasználót ezzel nagy mértékben segítve, illetve a hibás requestek számának csökkentése érdekében.
-
-- city_name: a város neve
-- counry_name: az ország neve
-
-### IX. Implementációs terv
+Ebben a JSON fájlban a világ összes települése megtalálható. Ezen városokat egy Map<String, ArrayList<String>> formátomú Map-ben tároljuk, ahol a String az ország neve, az ArrayList<String> pedig az adott országhoz kapcsolódo országok. A controlsfx (https://github.com/controlsfx/controlsfx) segítségével nagyon egyszerűen létrehozhatjuk ezt az automatikusan kiegészülő listát, ugyanis egy bindAutoCompletion(TextField, Collection<T>) metódust szolgáltat nekünk, ahol az első paraméter az a textField ahová a felhasználó éppen ír, a második pereméter pedig az ajánlásokból álló adat struktúra, az ajánlásokat a létrehozott Mappünkből szedjuk majd ki.  
 
 ### X. Tesztterv
 
