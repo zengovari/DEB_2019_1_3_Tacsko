@@ -233,29 +233,4 @@ public class Handler {
 
     }
 
-    /**
-     * Returns a list of city names which are suggested to complete the string.
-     * @param cities A list of city names from which we can select the ones we need.
-     * @param country The tag of the country from which we want to choose city names.
-     * @param string A string for which we want to get suggestions to complete.
-     * @return Returns a list of city names.
-     */
-    public static ArrayList<String> StringLike(Map<String, ArrayList<String>> cities ,String country, String string) {
-        ArrayList<String> possibilities = cities.get(country);
-        ArrayList<String> suggestions = new ArrayList<>();
-        int stringLength = string.length();
-
-        String substring;
-        for (String city: possibilities) {
-            if (city.length() > string.length() && city != null) {
-                substring = city.substring(0, stringLength);
-                if (string.toLowerCase().equals(substring.toLowerCase())) {
-                    suggestions.add(city);
-                }
-            }
-        }
-        return suggestions;
-    }
-
-
 }

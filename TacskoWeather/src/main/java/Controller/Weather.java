@@ -153,10 +153,12 @@ public class Weather  implements Initializable {
     public void tab1OrszagButtonAction() {
         if (countries.contains(orszagTextField.getText()) && orszagTextField.getLength() > 0) {
 
+
             telepulesButton.setDisable(false);
             telepulesTextField.setDisable(false);
 
-            cities = Handler.StringLike(citiesByCountry, orszagTextField.getText(), telepulesTextField.getText());
+            cities = (ArrayList<String>) citiesByCountry.get(orszagTextField.getText());
+
             TextFields.bindAutoCompletion(telepulesTextField, cities);
         } else {
             log.error("Hibás ország");
