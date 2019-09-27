@@ -510,7 +510,7 @@
                                                 <Font name="System Bold" size="16.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="hourlyclouds" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" >
+                                        <Label fx:id="hourlyClouds" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" >
                                             <font>
                                                 <Font name="System Bold" size="16.0" />
                                             </font>

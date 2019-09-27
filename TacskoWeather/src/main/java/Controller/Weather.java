@@ -111,7 +111,7 @@ public class Weather  implements Initializable {
     public Label hourlyMax;
     public Label hourlyMin;
     public Label hourlyHumidity;
-    public Label hourlyclouds;
+    public Label hourlyClouds;
     public Label hourlyWindSpeed;
     public Label hourlyWindDeg;
     public Label hourlyPressure;
@@ -223,6 +223,8 @@ public class Weather  implements Initializable {
         String[] previoustime = currentTime.split(" ");
         double maxTemperature = -273;
         double minTemperature = 1000;
+        double maxCelsius = maxTemperature - 273.15;
+        double minCelsius = minTemperature - 273.15;
 
         log.info("belepunk a for ciklusba");
         for(int i = 0; i < 39; i++)
@@ -236,36 +238,36 @@ public class Weather  implements Initializable {
                 {
                     log.info("ez az elso nap homerseklete");
                     System.out.println("a max ertek jelenleg" + String.valueOf(maxTemperature));
-                    day1max.setText(Double.toString(maxTemperature));
-                    day1min.setText(Double.toString(minTemperature));
+                    day1max.setText(String.format("%.1f",maxTemperature) + "K  " + String.format("%.1f", maxCelsius) + "℃");
+                    day1min.setText(String.format("%.1f",minTemperature) + "K  " + String.format("%.1f", minCelsius) + "℃");
                 }
 
                 if(temporaryTime[0].equals(LocalDate.now().plusDays(1).toString()))
                 {
                     log.info("ez az masodik nap homerseklete");
-                    day2max.setText(Double.toString(maxTemperature));
-                    day2min.setText(Double.toString(minTemperature));
+                    day2max.setText(String.format("%.1f",maxTemperature) + "K  " + String.format("%.1f", maxCelsius) + "℃");
+                    day2min.setText(String.format("%.1f",minTemperature) + "K  " + String.format("%.1f", minCelsius) + "℃");
                 }
 
                 if(temporaryTime[0].equals(LocalDate.now().plusDays(2).toString()))
                 {
                     log.info("ez az harmadik nap homerseklete");
-                    day3max.setText(Double.toString(maxTemperature));
-                    day3min.setText(Double.toString(minTemperature));
+                    day3max.setText(String.format("%.1f",maxTemperature) + "K  " + String.format("%.1f", maxCelsius) + "℃");
+                    day3min.setText(String.format("%.1f",minTemperature) + "K  " + String.format("%.1f", minCelsius) + "℃");
                 }
 
                 if(temporaryTime[0].equals(LocalDate.now().plusDays(3).toString()))
                 {
                     log.info("ez az neNumberFormatException:gyedik nap homerseklete");
-                    day4max.setText(Double.toString(maxTemperature));
-                    day4min.setText(Double.toString(minTemperature));
+                    day4max.setText(String.format("%.1f",maxTemperature) + "K  " + String.format("%.1f", maxCelsius) + "℃");
+                    day4min.setText(String.format("%.1f",minTemperature) + "K  " + String.format("%.1f", minCelsius) + "℃");
                 }
 
                 if(temporaryTime[0].equals(LocalDate.now().plusDays(4).toString()))
                 {
                     log.info("ez az otodik nap homerseklete");
-                    day5max.setText(Double.toString(maxTemperature));
-                    day5min.setText(Double.toString(minTemperature));
+                    day5max.setText(String.format("%.1f",maxTemperature) + "K  " + String.format("%.1f", maxCelsius) + "℃");
+                    day5min.setText(String.format("%.1f",minTemperature) + "K  " + String.format("%.1f", minCelsius) + "℃");
                 }
 
                 maxTemperature = -273;
@@ -280,12 +282,14 @@ public class Weather  implements Initializable {
                 {
                     log.info("talaltunk kisebb homersekletet");
                     minTemperature =  forecastWeather.getList()[i].getMain().getTemp_min();
+                    minCelsius = minTemperature - 273.15;
                 }
 
                 if(maxTemperature < forecastWeather.getList()[i].getMain().getTemp_max())
                 {
                     log.info("talaltunk nagyobb homersekletet");
                     maxTemperature =  forecastWeather.getList()[i].getMain().getTemp_max();
+                    maxCelsius = maxTemperature - 273.15;
                 }
             }
 
@@ -323,6 +327,8 @@ public class Weather  implements Initializable {
 
     public void setHourlyWeather(int which_day) {
         String currentTime;
+        double kelvin;
+        double celsius;
         for(int i = 0; i < 39; i++) {
             currentTime = forecastWeatherData.getList()[i].getDt_txt();
             String[] preciseDate = currentTime.split(" ");
@@ -330,50 +336,65 @@ public class Weather  implements Initializable {
                 if(preciseDate[1].equals("00:00:00"))
                 {
                     hour0.setText(preciseDate[1]);
-                    hour0temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    kelvin = forecastWeatherData.getList()[i].getMain().getTemp();
+                    celsius = kelvin - 273.15;
+                    hour0temp.setText(String.format("%.1f",kelvin) + "K  " + String.format("%.1f", celsius) + "℃");
                     Handler.setImageViewByDate(forecastWeatherData,hour0img,currentTime);
                 }
                 if(preciseDate[1].equals("03:00:00"))
                 {
                     hour3.setText(preciseDate[1]);
-                    hour3temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    kelvin = forecastWeatherData.getList()[i].getMain().getTemp();
+                    celsius = kelvin - 273.15;
+                    hour3temp.setText(String.format("%.1f",kelvin) + "K  " + String.format("%.1f", celsius) + "℃");
                     Handler.setImageViewByDate(forecastWeatherData,hour3img,currentTime);
                 }
                 if(preciseDate[1].equals("06:00:00"))
                 {
                     hour6.setText(preciseDate[1]);
-                    hour6temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    kelvin = forecastWeatherData.getList()[i].getMain().getTemp();
+                    celsius = kelvin - 273.15;
+                    hour6temp.setText(String.format("%.1f",kelvin) + "K  " + String.format("%.1f", celsius) + "℃");
                     Handler.setImageViewByDate(forecastWeatherData,hour6img,currentTime);
                 }
                 if(preciseDate[1].equals("09:00:00"))
                 {
                     hour9.setText(preciseDate[1]);
-                    hour9temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    kelvin = forecastWeatherData.getList()[i].getMain().getTemp();
+                    celsius = kelvin - 273.15;
+                    hour9temp.setText(String.format("%.1f",kelvin) + "K  " + String.format("%.1f", celsius) + "℃");
                     Handler.setImageViewByDate(forecastWeatherData,hour9img,currentTime);
                 }
                 if(preciseDate[1].equals("12:00:00"))
                 {
                     hour12.setText(preciseDate[1]);
-                    hour12temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    kelvin = forecastWeatherData.getList()[i].getMain().getTemp();
+                    celsius = kelvin - 273.15;
+                    hour12temp.setText(String.format("%.1f",kelvin) + "K  " + String.format("%.1f", celsius) + "℃");
                     Handler.setImageViewByDate(forecastWeatherData,hour12img,currentTime);
                 }
                 if(preciseDate[1].equals("15:00:00"))
                 {
                     hour15.setText(preciseDate[1]);
-                    hour15temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    kelvin = forecastWeatherData.getList()[i].getMain().getTemp();
+                    celsius = kelvin - 273.15;
+                    hour15temp.setText(String.format("%.1f",kelvin) + "K  " + String.format("%.1f", celsius) + "℃");
                     Handler.setImageViewByDate(forecastWeatherData,hour15img,currentTime);
                 }
                 if(preciseDate[1].equals("18:00:00"))
                 {
                     hour18.setText(preciseDate[1]);
-                    hour18temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    kelvin = forecastWeatherData.getList()[i].getMain().getTemp();
+                    celsius = kelvin - 273.15;
+                    hour18temp.setText(String.format("%.1f",kelvin) + "K  " + String.format("%.1f", celsius) + "℃");
                     Handler.setImageViewByDate(forecastWeatherData,hour18img,currentTime);
                 }
                 if(preciseDate[1].equals("21:00:00"))
                 {
-                    log.info("van 21 ora is");
                     hour21.setText(preciseDate[1]);
-                    hour21temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
+                    kelvin = forecastWeatherData.getList()[i].getMain().getTemp();
+                    celsius = kelvin - 273.15;
+                    hour21temp.setText(String.format("%.1f",kelvin) + "K  " + String.format("%.1f", celsius) + "℃");
                     Handler.setImageViewByDate(forecastWeatherData,hour21img,currentTime);
                 }
             }
@@ -495,18 +516,22 @@ public class Weather  implements Initializable {
         hourlyMin.setText("");
         hourlyMax.setText("");
         hourlyHumidity.setText("");
-        hourlyclouds.setText("");
+        hourlyClouds.setText("");
     }
 
     public void setDetailedHourlyWeather(String currentHour) {
         hourClear();
         for(int i = 0; i < 39; i++) {
             if(forecastWeatherData.getList()[i].getDt_txt().equals(currentHour)) {
+                double maxKelvin = forecastWeatherData.getList()[i].getMain().getTemp_max();
+                double minKelvin = forecastWeatherData.getList()[i].getMain().getTemp_min();
+                double maxCelsius = maxKelvin - 273.15;
+                double minCelsius = minKelvin - 273.15;
                 log.info("talaltunk valamit");
-                hourlyclouds.setText(Double.toString(forecastWeatherData.getList()[i].getClouds().getAll()));
-                hourlyHumidity.setText(Integer.toString(forecastWeatherData.getList()[i].getMain().getHumidity()));
-                hourlyMax.setText(Double.toString(forecastWeatherData.getList()[i].getMain().getTemp_max()));
-                hourlyMin.setText(Double.toString(forecastWeatherData.getList()[i].getMain().getTemp_min()));
+                hourlyClouds.setText(Double.toString(forecastWeatherData.getList()[i].getClouds().getAll()) + "%");
+                hourlyHumidity.setText(Integer.toString(forecastWeatherData.getList()[i].getMain().getHumidity()) + "%");
+                hourlyMax.setText(String.format("%.1f",maxKelvin) + "K  " + String.format("%.1f", maxCelsius) + "℃");
+                hourlyMin.setText(String.format("%.1f",minKelvin) + "K  " + String.format("%.1f", minCelsius) + "℃");
                 hourlyPressure.setText(Double.toString(forecastWeatherData.getList()[i].getMain().getPressure()));
                 hourlyWindDeg.setText(Double.toString(forecastWeatherData.getList()[i].getWind().getDeg()));
                 hourlyWindSpeed.setText(Double.toString(forecastWeatherData.getList()[i].getWind().getSpeed()));

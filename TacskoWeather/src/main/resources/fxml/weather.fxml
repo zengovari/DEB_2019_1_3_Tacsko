@@ -465,7 +465,7 @@
                     <children>
                         <HBox prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <VBox prefHeight="300.0" prefWidth="300.0">
+                                <VBox fx:id="temperatureBox" prefHeight="300.0" prefWidth="300.0">
                                     <children>
                                         <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Maximum hőmérséklet" >
                                             <font>
@@ -489,7 +489,7 @@
                                         </Label>
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="300.0" prefWidth="300.0">
+                                <VBox fx:id="humidityBox" prefHeight="300.0" prefWidth="300.0">
                                     <children>
                                         <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Páratartalom" >
                                             <font>
@@ -503,21 +503,21 @@
                                         </Label>
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="300.0" prefWidth="300.0">
+                                <VBox fx:id="cloudsBox" prefHeight="300.0" prefWidth="300.0">
                                     <children>
                                         <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Felhők" >
                                             <font>
                                                 <Font name="System Bold" size="16.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="hourlyclouds" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" >
+                                        <Label fx:id="hourlyClouds" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Label" >
                                             <font>
                                                 <Font name="System Bold" size="16.0" />
                                             </font>
                                         </Label>
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="300.0" prefWidth="300.0">
+                                <VBox fx:id="windBox" prefHeight="300.0" prefWidth="300.0">
                                     <children>
                                         <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Szél sebesség" >
                                             <font>
@@ -541,7 +541,7 @@
                                         </Label>
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="300.0" prefWidth="300.0">
+                                <VBox fx:id="pressureBox"prefHeight="300.0" prefWidth="300.0">
                                     <children>
                                         <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Légnyomás" >
                                             <font>
