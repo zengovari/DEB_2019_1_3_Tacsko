@@ -30,7 +30,9 @@ import java.time.*;
 @Slf4j
 public class Weather  implements Initializable {
 
-
+    /**
+     * This class interacts with the GUI, it is a bridge between the {@link Model} package and the GUI.
+     */
     public AnchorPane hourlyPane;
     @FXML
     private TextField orszagTextField;
@@ -150,6 +152,9 @@ public class Weather  implements Initializable {
 
     }
 
+    /**
+     * Enables the use of a button, a text field and the text fields auto completion if its criteria ar met, also clears the error message. Otherwise it displays an error message.
+     */
     public void tab1OrszagButtonAction() {
         if (countries.contains(orszagTextField.getText()) && orszagTextField.getLength() > 0) {
 
@@ -160,11 +165,16 @@ public class Weather  implements Initializable {
             cities = (ArrayList<String>) citiesByCountry.get(orszagTextField.getText());
 
             TextFields.bindAutoCompletion(telepulesTextField, cities);
+            telepulesHibauzenetLabel.setText("");
         } else {
             log.error("Hibás ország");
+            telepulesHibauzenetLabel.setText("Hibás Ország!");
         }
     }
 
+    /**
+     * loads the weather forecast and displays it on the screen if its criteria are met, also clears the error message. Otherwise it displays an error message.
+     */
     public void tab1TelepulesButtonAction() {
         if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
 
@@ -172,22 +182,31 @@ public class Weather  implements Initializable {
             forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(telepulesTextField.getText()); //IDŐJÁRÁS ELŐREJELZÉS
 
             weatherLoader(forecastWeatherData);
-
+            telepulesHibauzenetLabel.setText("");
         }
         else {
             log.error("Hibás település");
+            telepulesHibauzenetLabel.setText("Hibás Település!");
         }
     }
 
+    /**
+     * Enables the use of a button and text field if its criteria ar met, also clears the error message. Otherwise it displays an error message.
+     */
     public void tab2OrszagButtonAction() {
         if (countries.contains(iranyitoszamOrszagTextField.getText()) && iranyitoszamOrszagTextField.getLength() > 0) {
             iranyitoszamButton.setDisable(false);
             iranyitoszamTextField.setDisable(false);
+            iranyitoszamHibauzenetLabel.setText("");
         } else {
             log.error("Hibás ország");
+            iranyitoszamHibauzenetLabel.setText("Hibás Ország!");
         }
     }
 
+    /**
+     * loads the weather forecast and displays it on the screen if its criteria are met.
+     */
     public void tab2IranyitoszamButtonAction() {
         if (iranyitoszamTextField.getLength() > 0) {
 
@@ -198,6 +217,9 @@ public class Weather  implements Initializable {
         }
     }
 
+    /**
+     * loads the weather forecast and displays it on the screen if its criteria are met, also clears the error message. Otherwise it displays an error message.
+     */
     public void tab3KoordinataButtonAction() {
         if (koordinataXLabel.getLength() > 0 && koordinataYLabel.getLength() > 0) {
             try {
@@ -205,9 +227,11 @@ public class Weather  implements Initializable {
                 forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(Double.parseDouble(koordinataXLabel.getText()) , Double.parseDouble(koordinataYLabel.getText()));
 
                 weatherLoader(forecastWeatherData);
+                koordinataHibauzenetLabel.setText("");
 
             } catch(NumberFormatException e) {
                 log.error("Hibás koordináták");
+                koordinataHibauzenetLabel.setText("Hibás koordináták!");
             }
         }
     }
@@ -306,6 +330,10 @@ public class Weather  implements Initializable {
 
     }
 
+    /**
+     * Sets the color of the chosen VBox by css code.
+     * @param whitchDay Integer that tells the function which VBoxes color needs to be set.
+     */
     public void setDayColor(int whitchDay){
         String style = "-fx-background-color: rgba(255, 255, 255, 0.5);";
         switch (whitchDay) {
@@ -326,6 +354,9 @@ public class Weather  implements Initializable {
         }
     }
 
+    /**
+     * Clears the color of the VBoxes containing the daily weather forecast information, by clearing their css style.
+     */
     public void clearDayColor(){
         day1box.setStyle("");
         day2box.setStyle("");
@@ -336,7 +367,7 @@ public class Weather  implements Initializable {
 
     /**
      *  Loads the hourly information regarding the weather forecast into the Graphical User Interface.
-     * @param which_day Integer that helps in indentifying the day for which we have to load the forecast data.
+     * @param which_day Integer that helps in identifying the day for which we have to load the forecast data.
      */
     public void setHourlyWeather(int which_day) {
         String currentTime;
@@ -445,6 +476,9 @@ public class Weather  implements Initializable {
         hour21img.setImage(null);
     }
 
+    /**
+     * Sets the corresponding VBoxes color and clears the unselected VBoxes, writes out the corresponding hourly weather data.
+     */
     public void  day1click(){
         clearDayColor();
         setDayColor(0);
@@ -453,6 +487,9 @@ public class Weather  implements Initializable {
         nap = LocalDate.now().toString();
     }
 
+    /**
+     * Sets the corresponding VBoxes color and clears the unselected VBoxes, writes out the corresponding hourly weather data.
+     */
     public void  day2click(){
         clearDayColor();
         setDayColor(1);
@@ -461,6 +498,9 @@ public class Weather  implements Initializable {
         nap = LocalDate.now().plusDays(1).toString();
     }
 
+    /**
+     * Sets the corresponding VBoxes color and clears the unselected VBoxes, writes out the corresponding hourly weather data.
+     */
     public void  day3click(){
         clearDayColor();
         setDayColor(2);
@@ -469,6 +509,9 @@ public class Weather  implements Initializable {
         nap = LocalDate.now().plusDays(2).toString();
     }
 
+    /**
+     * Sets the corresponding VBoxes color and clears the unselected VBoxes, writes out the corresponding hourly weather data.
+     */
     public void  day4click(){
         clearDayColor();
         setDayColor(3);
@@ -477,6 +520,9 @@ public class Weather  implements Initializable {
         nap = LocalDate.now().plusDays(3).toString();
     }
 
+    /**
+     * Sets the corresponding VBoxes color and clears the unselected VBoxes, writes out the corresponding hourly weather data.
+     */
     public void  day5click() {
         clearDayColor();
         setDayColor(4);
@@ -485,6 +531,10 @@ public class Weather  implements Initializable {
         nap = LocalDate.now().plusDays(4).toString();
     }
 
+    /**
+     * Sets the color of the chosen VBox containing the hourly weather information by css code.
+     * @param whitchHour Integer that tells the function which VBoxes color needs to be set, of the VBoxes containing the hourly weathers information.
+     */
     public void setHourColor(int whitchHour){
         String style = "-fx-background-color: rgba(255, 255, 255, 0.5);";
         switch (whitchHour){
@@ -514,6 +564,9 @@ public class Weather  implements Initializable {
         }
     }
 
+    /**
+     * Clears the color of the VBoxes containing the hourly weather forecast information, by clearing their css style.
+     */
     public void clearHourColor(){
         hour0box.setStyle("");
         hour3box.setStyle("");
@@ -540,7 +593,7 @@ public class Weather  implements Initializable {
 
     /**
      * Loads a detailed weather forecast data for the selected hour into the Graphical User Interface.
-     * @param currentHour String that helps in indentifying the selected hour for which we have to load the forecast data.
+     * @param currentHour String that helps in identifying the selected hour for which we have to load the forecast data.
      */
     public void setDetailedHourlyWeather(String currentHour) {
         hourClear();
@@ -563,6 +616,9 @@ public class Weather  implements Initializable {
 
     }
 
+    /**
+     * Sets the corresponding VBoxes color and clears the unselected VBoxes, writes out the corresponding Detailed weather data.
+     */
     public void  hour0click(){
         clearHourColor();
         setHourColor(0);
@@ -571,6 +627,9 @@ public class Weather  implements Initializable {
         setDetailedHourlyWeather(currentHour);
     }
 
+    /**
+     * Sets the corresponding VBoxes color and clears the unselected VBoxes, writes out the corresponding Detailed weather data.
+     */
     public void  hour3click(){
         clearHourColor();
         setHourColor(3);
@@ -580,6 +639,9 @@ public class Weather  implements Initializable {
 
     }
 
+    /**
+     * Sets the corresponding VBoxes color and clears the unselected VBoxes, writes out the corresponding Detailed weather data.
+     */
     public void  hour6click(){
         clearHourColor();
         setHourColor(6);
@@ -589,6 +651,9 @@ public class Weather  implements Initializable {
 
     }
 
+    /**
+     * Sets the corresponding VBoxes color and clears the unselected VBoxes, writes out the corresponding Detailed weather data.
+     */
     public void  hour9click(){
         clearHourColor();
         setHourColor(9);
@@ -598,6 +663,9 @@ public class Weather  implements Initializable {
 
     }
 
+    /**
+     * Sets the corresponding VBoxes color and clears the unselected VBoxes, writes out the corresponding Detailed weather data.
+     */
     public void  hour12click(){
         clearHourColor();
         setHourColor(12);
@@ -607,6 +675,9 @@ public class Weather  implements Initializable {
 
     }
 
+    /**
+     * Sets the corresponding VBoxes color and clears the unselected VBoxes, writes out the corresponding Detailed weather data.
+     */
     public void  hour15click(){
         clearHourColor();
         setHourColor(15);
@@ -616,6 +687,9 @@ public class Weather  implements Initializable {
 
     }
 
+    /**
+     * Sets the corresponding VBoxes color and clears the unselected VBoxes, writes out the corresponding Detailed weather data.
+     */
     public void  hour18click(){
         clearHourColor();
         setHourColor(18);
@@ -625,6 +699,9 @@ public class Weather  implements Initializable {
 
     }
 
+    /**
+     * Sets the corresponding VBoxes color and clears the unselected VBoxes, writes out the corresponding Detailed weather data.
+     */
     public void  hour21click(){
         clearHourColor();
         setHourColor(21);

@@ -32,7 +32,7 @@
                                         </VBox>
                                         <VBox prefHeight="200.0">
                                             <children>
-                                                <Label fx:id="telepulesHibauzenetLabel" prefHeight="25.0" prefWidth="300.0" style="-fx-text-fill: red;" text="Hiba üzenet" />
+                                                <Label fx:id="telepulesHibauzenetLabel" prefHeight="25.0" prefWidth="300.0" style="-fx-text-fill: red;" text="" />
                                             </children>
                                         </VBox>
                                     </children>
@@ -63,7 +63,7 @@
                                         </VBox>
                                         <VBox prefHeight="200.0">
                                             <children>
-                                                <Label fx:id="iranyitoszamHibauzenetLabel" prefHeight="25.0" prefWidth="300.0" style="-fx-text-fill: red;" text="Hiba üzenet" />
+                                                <Label fx:id="iranyitoszamHibauzenetLabel" prefHeight="25.0" prefWidth="300.0" style="-fx-text-fill: red;" text="" />
                                             </children>
                                         </VBox>
                                     </children>
@@ -93,7 +93,7 @@
                                         </VBox>
                                         <VBox prefHeight="200.0">
                                             <children>
-                                                <Label fx:id="koordinataHibauzenetLabel" prefHeight="25.0" prefWidth="300.0" style="-fx-text-fill: red;" text="Hiba üzenet" />
+                                                <Label fx:id="koordinataHibauzenetLabel" prefHeight="25.0" prefWidth="300.0" style="-fx-text-fill: red;" text="" />
                                             </children>
                                         </VBox>
                                     </children>
