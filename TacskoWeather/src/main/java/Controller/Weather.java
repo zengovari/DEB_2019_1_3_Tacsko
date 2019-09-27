@@ -5,6 +5,7 @@ import Model.ForecastWeather.ForecastWeatherData;
 import Model.Handler.CurrentWeatherHandler;
 import Model.Handler.ForecastWeatherHandler;
 import Model.Handler.Handler;
+import Model.Handler.ImageHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -29,6 +31,7 @@ import java.time.*;
 public class Weather  implements Initializable {
 
 
+    public AnchorPane hourlyPane;
     @FXML
     private TextField orszagTextField;
     public Button orszagButton;
@@ -544,6 +547,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(0);
         String currentHour = nap + " 00:00:00";
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
         setDetailedHourlyWeather(currentHour);
     }
 
@@ -551,6 +555,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(3);
         String currentHour = nap + " 03:00:00";
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
         setDetailedHourlyWeather(currentHour);
 
     }
@@ -559,6 +564,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(6);
         String currentHour = nap + " 06:00:00";
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
         setDetailedHourlyWeather(currentHour);
 
     }
@@ -567,6 +573,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(9);
         String currentHour = nap + " 09:00:00";
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
         setDetailedHourlyWeather(currentHour);
 
     }
@@ -575,6 +582,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(12);
         String currentHour = nap + " 12:00:00";
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
         setDetailedHourlyWeather(currentHour);
 
     }
@@ -583,6 +591,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(15);
         String currentHour = nap + " 15:00:00";
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
         setDetailedHourlyWeather(currentHour);
 
     }
@@ -591,6 +600,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(18);
         String currentHour = nap + " 18:00:00";
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
         setDetailedHourlyWeather(currentHour);
 
     }
@@ -599,7 +609,7 @@ public class Weather  implements Initializable {
         clearHourColor();
         setHourColor(21);
         String currentHour = nap + " 21:00:00";
-        System.out.println(currentHour);
+        hourlyPane.setBackground(ImageHandler.getBackgroundImage(hourlyPane, Handler.getDescriptionByDate(forecastWeatherData, currentHour)));
         setDetailedHourlyWeather(currentHour);
     }
 

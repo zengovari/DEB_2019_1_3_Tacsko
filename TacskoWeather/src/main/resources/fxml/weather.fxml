@@ -461,9 +461,9 @@
                         </HBox>
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight="-Infinity" minWidth="-Infinity">
+                <AnchorPane fx:id="hourlyPane" minHeight="-Infinity" minWidth="-Infinity">
                     <children>
-                        <HBox prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox fx:id="detailedHourlyWeatherBox" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <VBox fx:id="temperatureBox" prefHeight="300.0" prefWidth="300.0">
                                     <children>
@@ -541,7 +541,7 @@
                                         </Label>
                                     </children>
                                 </VBox>
-                                <VBox fx:id="pressureBox"prefHeight="300.0" prefWidth="300.0">
+                                <VBox fx:id="pressureBox" prefHeight="300.0" prefWidth="300.0">
                                     <children>
                                         <Label alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="Légnyomás" >
                                             <font>

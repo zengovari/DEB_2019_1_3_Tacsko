@@ -164,6 +164,20 @@ public class Handler {
         }
     }
 
+    public static String getDescriptionByDate (ForecastWeatherData forecastWeatherData, String date) {
+        String desc = "";
+        for (ForecastWeather forecastWeather: forecastWeatherData.getList()) {
+            if (forecastWeather.getDt_txt().equals(date)) {
+                desc = forecastWeather.getWeather().getDescription();
+            }
+        }
+        if (!desc.equals("")) return desc;
+        else {
+            log.error("Nincs erre a dátumra ikon.");
+            return null;
+        }
+
+    }
 
     private static City[] readCities(String fileName) {
 
