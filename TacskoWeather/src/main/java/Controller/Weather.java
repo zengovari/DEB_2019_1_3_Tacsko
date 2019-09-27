@@ -114,12 +114,12 @@ public class Weather  implements Initializable {
     public Label hourlyWindDeg;
     public Label hourlyPressure;
 
-    public String nap = new String();
-    private Map<String, ArrayList<String>> citiesByCountry = Handler.createMapOfCities();
-    private ArrayList<String> countries = new ArrayList<>(citiesByCountry.keySet());
+    private String nap = "";
+    private Map citiesByCountry = Handler.createMapOfCities();
+    private ArrayList countries = new ArrayList<>(citiesByCountry.keySet());
     private ArrayList<String> cities;
-    CurrentWeatherData currentWeatherData = new CurrentWeatherData();
-    ForecastWeatherData forecastWeatherData = new ForecastWeatherData();
+    private CurrentWeatherData currentWeatherData = new CurrentWeatherData();
+    private ForecastWeatherData forecastWeatherData = new ForecastWeatherData();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -152,6 +152,7 @@ public class Weather  implements Initializable {
             log.error("Hibás ország");
         }
     }
+
     public void tab1TelepulesButtonAction(ActionEvent actionEvent) {
         if (cities.contains(telepulesTextField.getText()) && telepulesTextField.getLength() > 0) {
 
@@ -174,6 +175,7 @@ public class Weather  implements Initializable {
             log.error("Hibás ország");
         }
     }
+
     public void tab2IranyitoszamButtonAction(ActionEvent actionEvent) {
         if (iranyitoszamTextField.getLength() > 0) {
 
@@ -198,74 +200,55 @@ public class Weather  implements Initializable {
         }
     }
 
-    public String mennyiazido(String ido) {
-        if(ido.equals("00:00:00"))
-            return "00:00:00";
-        if(ido.equals("03:00:00"))
-            return "03:00:00";
-        if(ido.equals("06:00:00"))
-            return "06:00:00";
-        if(ido.equals("09:00:00"))
-            return "09:00:00";
-        if(ido.equals("12:00:00"))
-            return "12:00:00";
-        if(ido.equals("15:00:00"))
-            return "15:00:00";
-        if(ido.equals("18:00:00"))
-            return "18:00:00";
-        if(ido.equals("21:00:00"))
-            return "21:00:00";
-        return "nincs ilyen idopont";
-    }
     public void setHourlyWeather(int which_day) {
         String currentTime;
         for(int i = 0; i < 39; i++) {
             currentTime = forecastWeatherData.getList()[i].getDt_txt();
             String[] preciseDate = currentTime.split(" ");
             if (preciseDate[0].equals(LocalDate.now().plusDays(which_day).toString())) {
-                if(mennyiazido(preciseDate[1]).equals("00:00:00"))
+                if(preciseDate[1].equals("00:00:00"))
                 {
                     hour0.setText(preciseDate[1]);
                     hour0temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                     Handler.setImageViewByDate(forecastWeatherData,hour0img,currentTime);
                 }
-                if(mennyiazido(preciseDate[1]).equals("03:00:00"))
+                if(preciseDate[1].equals("03:00:00"))
                 {
                     hour3.setText(preciseDate[1]);
                     hour3temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                     Handler.setImageViewByDate(forecastWeatherData,hour3img,currentTime);
                 }
-                if(mennyiazido(preciseDate[1]).equals("06:00:00"))
+                if(preciseDate[1].equals("06:00:00"))
                 {
                     hour6.setText(preciseDate[1]);
                     hour6temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                     Handler.setImageViewByDate(forecastWeatherData,hour6img,currentTime);
                 }
-                if(mennyiazido(preciseDate[1]).equals("09:00:00"))
+                if(preciseDate[1].equals("09:00:00"))
                 {
                     hour9.setText(preciseDate[1]);
                     hour9temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                     Handler.setImageViewByDate(forecastWeatherData,hour9img,currentTime);
                 }
-                if(mennyiazido(preciseDate[1]).equals("12:00:00"))
+                if(preciseDate[1].equals("12:00:00"))
                 {
                     hour12.setText(preciseDate[1]);
                     hour12temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                     Handler.setImageViewByDate(forecastWeatherData,hour12img,currentTime);
                 }
-                if(mennyiazido(preciseDate[1]).equals("15:00:00"))
+                if(preciseDate[1].equals("15:00:00"))
                 {
                     hour15.setText(preciseDate[1]);
                     hour15temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                     Handler.setImageViewByDate(forecastWeatherData,hour15img,currentTime);
                 }
-                if(mennyiazido(preciseDate[1]).equals("18:00:00"))
+                if(preciseDate[1].equals("18:00:00"))
                 {
                     hour18.setText(preciseDate[1]);
                     hour18temp.setText(String.valueOf(forecastWeatherData.getList()[i].getMain().getTemp()));
                     Handler.setImageViewByDate(forecastWeatherData,hour18img,currentTime);
                 }
-                if(mennyiazido(preciseDate[1]).equals("21:00:00"))
+                if(preciseDate[1].equals("21:00:00"))
                 {
                     log.info("van 21 ora is");
                     hour21.setText(preciseDate[1]);
@@ -276,6 +259,7 @@ public class Weather  implements Initializable {
         }
 
     }
+
     public void clearHourlyWeather(){
         hour0.setText("");
         hour0temp.setText("");
@@ -388,26 +372,31 @@ public class Weather  implements Initializable {
         }
 
 }
+
     public void  day1click(){
         clearHourlyWeather();
         setHourlyWeather(0);
         nap = LocalDate.now().toString();
     }
+
     public void  day2click(){
         clearHourlyWeather();
         setHourlyWeather(1);
         nap = LocalDate.now().plusDays(1).toString();
     }
+
     public void  day3click(){
         clearHourlyWeather();
         setHourlyWeather(2);
         nap = LocalDate.now().plusDays(2).toString();
     }
+
     public void  day4click(){
         clearHourlyWeather();
         setHourlyWeather(3);
         nap = LocalDate.now().plusDays(3).toString();
     }
+
     public void  day5click() {
         clearHourlyWeather();
         setHourlyWeather(4);
@@ -423,6 +412,7 @@ public class Weather  implements Initializable {
         hourlyHumidity.setText("");
         hourlyclouds.setText("");
     }
+
     public void setDetailedHourlyWeather(String currentHour) {
         hourClear();
         for(int i = 0; i < 39; i++) {
@@ -444,36 +434,43 @@ public class Weather  implements Initializable {
         String currentHour = nap + " 00:00:00";
         setDetailedHourlyWeather(currentHour);
     }
+
     public void  hour3click(){
         String currentHour = nap + " 03:00:00";
         setDetailedHourlyWeather(currentHour);
 
     }
+
     public void  hour6click(){
         String currentHour = nap + " 06:00:00";
         setDetailedHourlyWeather(currentHour);
 
     }
+
     public void  hour9click(){
         String currentHour = nap + " 09:00:00";
         setDetailedHourlyWeather(currentHour);
 
     }
+
     public void  hour12click(){
         String currentHour = nap + " 12:00:00";
         setDetailedHourlyWeather(currentHour);
 
     }
+
     public void  hour15click(){
         String currentHour = nap + " 15:00:00";
         setDetailedHourlyWeather(currentHour);
 
     }
+
     public void  hour18click(){
         String currentHour = nap + " 18:00:00";
         setDetailedHourlyWeather(currentHour);
 
     }
+
     public void  hour21click(){
         String currentHour = nap + " 21:00:00";
         System.out.println(currentHour);

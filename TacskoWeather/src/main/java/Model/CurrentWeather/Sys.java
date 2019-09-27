@@ -1,5 +1,8 @@
 package Model.CurrentWeather;
 
+import lombok.Data;
+
+@Data
 public class Sys {
 
     private int type;
@@ -8,29 +11,5 @@ public class Sys {
     private String country;
     private int sunrise;
     private int sunset;
-
-    public int getType() {
-        return type;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public double getMessage() {
-        return message;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public int getSunrise() {
-        return sunrise;
-    }
-
-    public int getSunset() {
-        return sunset;
-    }
 
 }

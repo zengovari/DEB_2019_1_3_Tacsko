@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *  This class interacts with the API and creates the necessary data.
+ */
+
 @Slf4j
 public class Handler {
 
@@ -24,11 +28,12 @@ public class Handler {
     private static Gson gson = new Gson();
 
     /**
-     * Gets the weather data in the form of a Jason file from the API and returns it as a string.
+     * Gets the weather data in the form of a JSON file from the API and returns it as a string.
      * @param location the name of the location from which we want to get the weather forecast or actual weather data.
-     * @param forecast true value gets the current weather, false value gets the weather forecast.
+     * @param forecast true value gets the forecast, false value gets the weather current weather.
      * @return A Json fle in the form of a String.
      */
+
     public static String readFromAPI(String location, boolean forecast) {
         StringBuilder apiAnswer = new StringBuilder();
         URL request;
@@ -53,12 +58,13 @@ public class Handler {
     }
 
     /**
-     * Gets the weather data in the form of a Jason file from the API and returns it as a string.
+     * Gets the weather data in the form of a JSON file from the API and returns it as a string.
      * @param zip the zip code of the location from which we want to get the weather forecast or actual weather data.
      * @param country the country tag of the location from which we want to get the weather forecast or actual weather data.(ie. HU, DE)
-     * @param forecast true value gets the current weather, false value gets the weather forecast.
-     * @return A Json fle in the form of a String.
+     * @param forecast true value gets the forecast, false value gets the weather current weather.
+     * @return A JSON fle in the form of a String.
      */
+
     public static String readFromAPI(String zip, String country, boolean forecast) {
         StringBuilder apiAnswer = new StringBuilder();
         URL request;
@@ -82,6 +88,13 @@ public class Handler {
         return apiAnswer.toString();
     }
 
+    /**
+     * Gets the weather data in the form of a JSON file from the API and returns it as a string.
+     * @param lat the latitude of the location from which we want to get the weather forecast or actual weather data.
+     * @param lon the longitude of the location from which we want to get the weather forecast or actual weather data.(ie. HU, DE)
+     * @param forecast true value gets the forecast, false value gets the weather current weather.
+     * @return A JSON fle in the form of a String.
+     */
 
     public static String readFromAPI(double lat, double lon, boolean forecast) {
         StringBuilder apiAnswer = new StringBuilder();
@@ -111,6 +124,47 @@ public class Handler {
      * @param fileName name of the file from which the cities will be red.
      * @return An array of City classes.
      */
+
+
+    /**
+     * Gets the correct icon using {@link #getWeatherConditionIconByDate(ForecastWeatherData, String)} then sets the imageView's image to that icon
+     * @param forecastWeatherData the data set that contains all the forecast data
+     * @param imageView the imageView where we want to put our icon
+     * @param date the date which from we want to get the icon
+     */
+    public static void setImageViewByDate( ForecastWeatherData forecastWeatherData, ImageView imageView, String date) {
+        String icon = getWeatherConditionIconByDate(forecastWeatherData, date);
+
+        System.out.println("http://openweathermap.org/img/wn/" + icon + "@2x.png");
+
+        Image image = new Image("http://openweathermap.org/img/wn/" + icon + "@2x.png");
+        imageView.setImage(image);
+    }
+
+    /**
+     * Reads through the forecast data then returns the correct icon if it's found
+     * @param forecastWeatherData the data set that contains all the forecast data
+     * @param date the date which from we want to get the icon
+     * @return the icon if it's found, otherwise null
+     */
+    private static String getWeatherConditionIconByDate (ForecastWeatherData forecastWeatherData, String date) {
+
+        String icon = "";
+
+        for (ForecastWeather forecastWeather: forecastWeatherData.getList()) {
+            if (forecastWeather.getDt_txt().equals(date)) {
+                icon = forecastWeather.getWeather().getIcon();
+            }
+        }
+
+        if (!icon.equals("")) return icon;
+        else {
+            log.error("Nincs erre a dátumra ikon.");
+            return null;
+        }
+    }
+
+
     private static City[] readCities(String fileName) {
 
         InputStream inputStream = Handler.class.getClassLoader().getResourceAsStream(fileName);
@@ -184,43 +238,5 @@ public class Handler {
         return suggestions;
     }
 
-
-    /**
-     * Gets the correct icon using {@link #getWeatherConditionIconByDate(ForecastWeatherData, String)} then sets the imageView's image to that icon
-     * @param forecastWeatherData the data set that contains all the forecast data
-     * @param imageView the imageView where we want to put our icon
-     * @param date the date which from we want to get the icon
-     */
-    public static void setImageViewByDate( ForecastWeatherData forecastWeatherData, ImageView imageView, String date) {
-        String icon = getWeatherConditionIconByDate(forecastWeatherData, date);
-
-        System.out.println("http://openweathermap.org/img/wn/" + icon + "@2x.png");
-
-        Image image = new Image("http://openweathermap.org/img/wn/" + icon + "@2x.png");
-        imageView.setImage(image);
-    }
-
-    /**
-     * Reads through the forecast data then returns the correct icon if it's found
-     * @param forecastWeatherData the data set that contains all the forecast data
-     * @param date the date which from we want to get the icon
-     * @return the icon if it's found, otherwise null
-     */
-    private static String getWeatherConditionIconByDate (ForecastWeatherData forecastWeatherData, String date) {
-
-        String icon = "";
-
-        for (ForecastWeather forecastWeather: forecastWeatherData.getList()) {
-            if (forecastWeather.getDt_txt().equals(date)) {
-                icon = forecastWeather.getWeather().getIcon();
-            }
-        }
-
-        if (!icon.equals("")) return icon;
-        else {
-            log.error("Nincs erre a dátumra ikon.");
-            return null;
-        }
-    }
 
 }

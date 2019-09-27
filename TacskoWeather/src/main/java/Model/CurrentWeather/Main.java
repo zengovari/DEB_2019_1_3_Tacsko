@@ -1,5 +1,8 @@
 package Model.CurrentWeather;
 
+import lombok.Data;
+
+@Data
 public class Main {
 
     private double temp;
@@ -7,25 +10,5 @@ public class Main {
     private double humidity;
     private double temp_min;
     private double temp_max;
-
-    public double getTemp() {
-        return temp;
-    }
-
-    public double getPressure() {
-        return pressure;
-    }
-
-    public double getHumidity() {
-        return humidity;
-    }
-
-    public double getTemp_min() {
-        return temp_min;
-    }
-
-    public double getTemp_max() {
-        return temp_max;
-    }
 
 }
