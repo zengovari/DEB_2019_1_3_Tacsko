@@ -4,6 +4,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * This class handles the interaction with the images.
+ */
+
 @Slf4j
 public class ImageHandler {
     private static Image clearImage = new Image(ImageHandler.class.getClassLoader().getResourceAsStream("img/clear.png"));
@@ -16,6 +20,11 @@ public class ImageHandler {
     private static Image overcastCloudsImage = new Image(ImageHandler.class.getClassLoader().getResourceAsStream("img/overcastClouds.png"));
 
 
+    /**
+     * Selects the correct image according to the description.
+     * @param description selects the correct image according to this.
+     * @return the correct image if it exists, otherwise null.
+     */
 
     private static Image selectCorrectImage (String description) {
         description = description.toLowerCase();
@@ -38,9 +47,16 @@ public class ImageHandler {
 
     }
 
+    /**
+     * Returns a background according to the given description.
+     *
+     * @param pane the name of the pane
+     * @param description selects the correct image according to this, using {@link #selectCorrectImage(String)}
+     * @return the created background
+     */
+
     public static Background getBackgroundImage(AnchorPane pane, String description) {
-        System.out.println(pane.getWidth());
-        System.out.println(pane.getHeight());
+
         BackgroundSize backgroundSize = new BackgroundSize(pane.getWidth(), pane.getHeight(), false, false, true, true);
         return new Background(new BackgroundImage(selectCorrectImage(description), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize));
     }

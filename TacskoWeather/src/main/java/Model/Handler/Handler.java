@@ -124,61 +124,6 @@ public class Handler {
      * @param fileName name of the file from which the cities will be red.
      * @return An array of City classes.
      */
-
-
-    /**
-     * Gets the correct icon using {@link #getWeatherConditionIconByDate(ForecastWeatherData, String)} then sets the imageView's image to that icon
-     * @param forecastWeatherData the data set that contains all the forecast data
-     * @param imageView the imageView where we want to put our icon
-     * @param date the date which from we want to get the icon
-     */
-    public static void setImageViewByDate( ForecastWeatherData forecastWeatherData, ImageView imageView, String date) {
-        String icon = getWeatherConditionIconByDate(forecastWeatherData, date);
-
-        System.out.println("http://openweathermap.org/img/wn/" + icon + "@2x.png");
-
-        Image image = new Image("http://openweathermap.org/img/wn/" + icon + "@2x.png");
-        imageView.setImage(image);
-    }
-
-    /**
-     * Reads through the forecast data then returns the correct icon if it's found
-     * @param forecastWeatherData the data set that contains all the forecast data
-     * @param date the date which from we want to get the icon
-     * @return the icon if it's found, otherwise null
-     */
-    private static String getWeatherConditionIconByDate (ForecastWeatherData forecastWeatherData, String date) {
-
-        String icon = "";
-
-        for (ForecastWeather forecastWeather: forecastWeatherData.getList()) {
-            if (forecastWeather.getDt_txt().equals(date)) {
-                icon = forecastWeather.getWeather().getIcon();
-            }
-        }
-
-        if (!icon.equals("")) return icon;
-        else {
-            log.error("Nincs erre a dátumra ikon.");
-            return null;
-        }
-    }
-
-    public static String getDescriptionByDate (ForecastWeatherData forecastWeatherData, String date) {
-        String desc = "";
-        for (ForecastWeather forecastWeather: forecastWeatherData.getList()) {
-            if (forecastWeather.getDt_txt().equals(date)) {
-                desc = forecastWeather.getWeather().getDescription();
-            }
-        }
-        if (!desc.equals("")) return desc;
-        else {
-            log.error("Nincs erre a dátumra ikon.");
-            return null;
-        }
-
-    }
-
     private static City[] readCities(String fileName) {
 
         InputStream inputStream = Handler.class.getClassLoader().getResourceAsStream(fileName);
@@ -205,6 +150,66 @@ public class Handler {
         }
 
         return cities;
+    }
+
+
+    /**
+     * Gets the correct icon using {@link #getWeatherConditionIconByDate(ForecastWeatherData, String)} then sets the imageView's image to that .
+     * @param forecastWeatherData the data set that contains all the forecast data.
+     * @param imageView the imageView where we want to put our icon.
+     * @param date the date which from we want to get the icon.
+     */
+    public static void setImageViewByDate( ForecastWeatherData forecastWeatherData, ImageView imageView, String date) {
+        String icon = getWeatherConditionIconByDate(forecastWeatherData, date);
+
+        System.out.println("http://openweathermap.org/img/wn/" + icon + "@2x.png");
+
+        Image image = new Image("http://openweathermap.org/img/wn/" + icon + "@2x.png");
+        imageView.setImage(image);
+    }
+
+    /**
+     * Reads through the forecast data then returns the correct icon according to the date if it's found.
+     * @param forecastWeatherData the data set that contains all the forecast data.
+     * @param date the date which from we want to get the icon.
+     * @return the icon if it's found, otherwise null.
+     */
+    private static String getWeatherConditionIconByDate (ForecastWeatherData forecastWeatherData, String date) {
+
+        String icon = "";
+
+        for (ForecastWeather forecastWeather: forecastWeatherData.getList()) {
+            if (forecastWeather.getDt_txt().equals(date)) {
+                icon = forecastWeather.getWeather().getIcon();
+            }
+        }
+
+        if (!icon.equals("")) return icon;
+        else {
+            log.error("Nincs erre a dátumra ikon.");
+            return null;
+        }
+    }
+
+    /**
+     * Reads through the forecast data then returns the correct description according to the date if it's found.
+     * @param forecastWeatherData the data set that contains all the forecast data.
+     * @param date the date which from we want to get the icon.
+     * @return the description if it's found, otherwise null.
+     */
+    public static String getDescriptionByDate (ForecastWeatherData forecastWeatherData, String date) {
+        String desc = "";
+        for (ForecastWeather forecastWeather: forecastWeatherData.getList()) {
+            if (forecastWeather.getDt_txt().equals(date)) {
+                desc = forecastWeather.getWeather().getDescription();
+            }
+        }
+        if (!desc.equals("")) return desc;
+        else {
+            log.error("Nincs erre a dátumra ikon.");
+            return null;
+        }
+
     }
 
     /**
