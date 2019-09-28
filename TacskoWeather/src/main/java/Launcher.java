@@ -1,6 +1,3 @@
-import Model.ForecastWeather.ForecastWeatherData;
-import Model.Handler.ForecastWeatherHandler;
-import Model.Handler.Handler;
 import View.App;
 
 public class Launcher {

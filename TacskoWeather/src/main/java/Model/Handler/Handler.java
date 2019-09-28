@@ -8,14 +8,15 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import javafx.scene.image.ImageView;
 import lombok.extern.slf4j.Slf4j;
-
 import javafx.scene.image.Image;
 import java.io.*;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import Model.Error.InvalidCoordinatesError;
+import Model.Error.InvalidLocationError;
+import Model.Error.InvalidZipCodeError;
 
 /**
  *  This class interacts with the API and creates the necessary data.
@@ -34,7 +35,7 @@ public class Handler {
      * @return A Json fle in the form of a String.
      */
 
-    public static String readFromAPI(String location, boolean forecast) {
+    public static String readFromAPI(String location, boolean forecast) throws InvalidLocationError {
         StringBuilder apiAnswer = new StringBuilder();
         URL request;
 
@@ -52,7 +53,7 @@ public class Handler {
             }
             in.close();
         } catch (IOException e) {
-            log.error("Hibás helyszín");
+            throw new InvalidLocationError();
         }
         return apiAnswer.toString();
     }
@@ -65,7 +66,7 @@ public class Handler {
      * @return A JSON fle in the form of a String.
      */
 
-    public static String readFromAPI(String zip, String country, boolean forecast) {
+    public static String readFromAPI(String zip, String country, boolean forecast) throws InvalidZipCodeError {
         StringBuilder apiAnswer = new StringBuilder();
         URL request;
 
@@ -83,7 +84,7 @@ public class Handler {
             }
             in.close();
         } catch (IOException e) {
-            log.error("Hibás irányítószám");
+            throw new InvalidZipCodeError();
         }
         return apiAnswer.toString();
     }
@@ -96,7 +97,7 @@ public class Handler {
      * @return A JSON fle in the form of a String.
      */
 
-    public static String readFromAPI(double lat, double lon, boolean forecast) {
+    public static String readFromAPI(double lat, double lon, boolean forecast) throws InvalidCoordinatesError {
         StringBuilder apiAnswer = new StringBuilder();
         URL request;
 
@@ -114,7 +115,7 @@ public class Handler {
             }
             in.close();
         } catch (IOException e) {
-            log.error("Hibás koordináták");
+            throw new  InvalidCoordinatesError();
         }
         return apiAnswer.toString();
     }

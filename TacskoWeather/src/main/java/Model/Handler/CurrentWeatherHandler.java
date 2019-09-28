@@ -4,6 +4,10 @@ import Model.CurrentWeather.CurrentWeatherData;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 
+import Model.Error.InvalidCoordinatesError;
+import Model.Error.InvalidZipCodeError;
+import Model.Error.InvalidLocationError;
+
 /**
  * This class handles the current weather data.
  */
@@ -18,7 +22,12 @@ public class CurrentWeatherHandler {
      * @return the {@link CurrentWeatherData} object that contains all the necessary information.
      */
     public static CurrentWeatherData getCurrentWeatherData (String location){
-        return gson.fromJson(Handler.readFromAPI(location, false), CurrentWeatherData.class);
+        try {
+            return gson.fromJson(Handler.readFromAPI(location, false), CurrentWeatherData.class);
+        } catch (InvalidLocationError invalidLocationError) {
+            invalidLocationError.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -29,7 +38,12 @@ public class CurrentWeatherHandler {
      */
 
     public static CurrentWeatherData getCurrentWeatherData (String zip, String country){
-        return gson.fromJson(Handler.readFromAPI(zip, country, false), CurrentWeatherData.class);
+        try {
+            return gson.fromJson(Handler.readFromAPI(zip, country, false), CurrentWeatherData.class);
+        } catch (InvalidZipCodeError invalidZipCodeError) {
+            invalidZipCodeError.printStackTrace();
+            return null;
+        }
     }
     /**
      * Reads the current weather data, using {@link Handler#readFromAPI(double, double, boolean)} and returns it as a {@link CurrentWeatherData}.
@@ -38,6 +52,11 @@ public class CurrentWeatherHandler {
      * @return the {@link CurrentWeatherData} object that contains all the necessary information.
      */
     public static CurrentWeatherData getCurrentWeatherData (double lat, double lon){
-        return gson.fromJson(Handler.readFromAPI(lat, lon, false), CurrentWeatherData.class);
+        try {
+            return gson.fromJson(Handler.readFromAPI(lat, lon, false), CurrentWeatherData.class);
+        } catch (InvalidCoordinatesError invalidCoordinatesError) {
+            invalidCoordinatesError.printStackTrace();
+            return null;
+        }
     }
 }

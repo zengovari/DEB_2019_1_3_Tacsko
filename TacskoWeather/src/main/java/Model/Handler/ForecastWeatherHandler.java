@@ -4,6 +4,10 @@ import Model.ForecastWeather.ForecastWeatherData;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 
+import Model.Error.InvalidCoordinatesError;
+import Model.Error.InvalidZipCodeError;
+import Model.Error.InvalidLocationError;
+
 /**
  * This class handles the forecast weather data.
  */
@@ -18,7 +22,12 @@ public class ForecastWeatherHandler {
      * @return the {@link ForecastWeatherData} object that contains all the necessary information
      */
     public static ForecastWeatherData getForecastWeatherData (String location) {
-        return gson.fromJson(Handler.readFromAPI(location, true), ForecastWeatherData.class);
+        try {
+            return gson.fromJson(Handler.readFromAPI(location, true), ForecastWeatherData.class);
+        } catch (InvalidLocationError invalidLocationError) {
+            invalidLocationError.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -28,7 +37,12 @@ public class ForecastWeatherHandler {
      * @return the {@link ForecastWeatherData} object that contains all the necessary information.
      */
     public static ForecastWeatherData getForecastWeatherData (String zip, String country) {
-        return gson.fromJson(Handler.readFromAPI(zip, country, true), ForecastWeatherData.class);
+        try {
+            return gson.fromJson(Handler.readFromAPI(zip, country, true), ForecastWeatherData.class);
+        } catch (InvalidZipCodeError invalidZipCodeError) {
+            invalidZipCodeError.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -38,7 +52,12 @@ public class ForecastWeatherHandler {
      * @return the {@link ForecastWeatherData} object that contains all the necessary information.
      */
     public static ForecastWeatherData getForecastWeatherData (double lat, double lon) {
-        return gson.fromJson(Handler.readFromAPI(lat, lon, true), ForecastWeatherData.class);
+        try {
+            return gson.fromJson(Handler.readFromAPI(lat, lon, true), ForecastWeatherData.class);
+        } catch (InvalidCoordinatesError invalidCoordinatesError) {
+            invalidCoordinatesError.printStackTrace();
+            return null;
+        }
     }
 
 

@@ -1,7 +1,9 @@
 package Model.ForecastWeather;
 
 import lombok.Data;
-
+/**
+ * This class contains all the necessary information regarding the current weather.
+ */
 @Data
 public class ForecastWeather {
 
