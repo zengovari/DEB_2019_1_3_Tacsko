@@ -107,16 +107,7 @@ A Controller osztályunk, egy olyan osztály lesz melynek funckiói között meg
 - API request küldése, a megkapott JSON fájl feldolgozása
 - Az adatbázisban való keeresés
 
-### VIII. Adatbázis terv
-
-![alt text](https://raw.githubusercontent.com/zengovari/DEB_2019_1_3_Tacsko/master/cities.png "Cities")
-
-A rendszer adatbázisában a városok neveit tároljuk annak érdekében, hogy mikor a felhasználó elkezdi gépelni egy adott város nevét a grafikus felület jobb oldalába lévő részre, a program automatikus kiegészítse azt, a felhasználót ezzel nagy mértékben segítve, illetve a hibás requestek számának csökkentése érdekében.
-
-- city_name: a város neve
-- counry_name: az ország neve
-
-### IX. Implementációs terv
+### VIII. Implementációs terv
 
 #### Perzisztencia osztályok:
 
@@ -173,7 +164,7 @@ A Handler osztály lesz felelős az OpenWeather API oldaltól kapott JSON adatok
 
 Az ImageHandler osztály az óránkénti ídőjárás előrejelzéseknek megfelelő képek betöltéséért lesz felelős.
 
-Az OpenWeather A Programming Interface, abban az esetben, ha helyes értéket kap (földrajzi név, irányítószám, koordináták) a következő JSON fájlt küldi válaszul. (ezesetben a helyszínünk a Japánban található Shuenzji).
+Az OpenWeather Application Programming Interface, abban az esetben, ha helyes értéket kap (földrajzi név, irányítószám, koordináták) a következő JSON fájlt küldi válaszul. (ezesetben a helyszínünk a Japánban található Shuenzji).
 
 ```json
 {"coord": { "lon": 139,"lat": 35},
@@ -243,7 +234,7 @@ Ebben a JSON fájlban a világ összes települése megtalálható. Ezen városo
 
 A Controller packageben található Weather osztály lesz felelős a felhasználókkal való interakciókért. Ez az osztály reagál a felhasználó változtatásaira. Itt fognak meghívásra kerülni a betöltő folyamatok, a törlő folyamatok, illetve a kiíró folyamatok.
 
-### X. Tesztterv
+### IX. Tesztterv
 
 | Leírás        									|  Várt eset    |
 | :-------------:									|:-------------:|
@@ -251,7 +242,7 @@ A Controller packageben található Weather osztály lesz felelős a felhasznál
 | A felhasználó meg akarja nyitni az egyik nap részletes adatait | a kiválasztott nap adatait várjuk és nem egy másik napét |
 | új    									| új   |   
 
-### XI. Telepítési terv
+### X. Telepítési terv
 
 A program platform független. A program futtatásához sükséges hogy telepítve legyen a számítógépre a Java 11.
 
