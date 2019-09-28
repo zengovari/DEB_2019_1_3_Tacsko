@@ -1,4 +1,5 @@
 
+
 # Rendszerterv
 
 Időjárás előrejelző program
@@ -29,10 +30,10 @@ szakaszába.
 |1|Követelményspecifikáció megírása | 2019.09.17 | 2019. 09.26 |
 |2|Funkcionálisspecifikáció megírása| 2019.09.17 | 2019. 09.26 |
 |3|Rendszertev megírása             | 2019.09.17 | 2019. 09.30 |
-|3|Grafikus felület elkészitése     | 2019.09.24 | 2019. 09.29 |
-|4|A szoftver logikájának elkészitése |2019.09.24| 2019. 09.29 |
-|5|A program tesztjeinek megírása   | 2019.09.24 | 2019. 09.29 |
-|6|A program tesztelése             | 2019.09.24 | 2019. 09.29 |
+|4|Grafikus felület elkészitése     | 2019.09.24 | 2019. 09.29 |
+|5|A szoftver logikájának elkészitése |2019.09.24| 2019. 09.29 |
+|6|A program tesztjeinek megírása   | 2019.09.24 | 2019. 09.29 |
+|7|A program tesztelése             | 2019.09.24 | 2019. 09.29 |
 
 
 
@@ -117,7 +118,62 @@ A rendszer adatbázisában a városok neveit tároljuk annak érdekében, hogy m
 
 ### IX. Implementációs terv
 
-Az OpenWeather Abstract Programming Interface, abban az esetben, ha helyes értéket kap (földrajzi név, irányítószám, koordináták) a következő JSON fájlt küldi válaszul. (ezesetben a helyszínünk a Japánban található Shuenzji)
+#### Perzisztencia osztályok:
+
+A projektünkben az MVC (Model-View-Controller) szoftverfejlesztési módszertant használjuk, így tehát az összes perzisztencia osztályunk a Model packagen belül lesz megtalálható.
+A Model packagen belül lesz még két különböző package. Az egyik az a CurrentWeather osztály lesz amely arra fog szolgálni, hogy az aznapi ídőjárás előrejelzéssel kapcsolatos információkat legyen mibe tároljuk. A másik package pedig a ForecastWeather osztály lesz aminek az lesz a szerepe, hogy az elkövetkezendő napokkal kapcsolatos ídőjárás előrejelzést tárolja.
+
+##### A CurrentWeather packagen belül a következő perzisztencia osztályok lesznek megtalálhatóak:
+
+A City osztály ami a város OpenWeatherAPI-n belüli ID-t, a város nevét, az ország nevét amiben tartózkodik, illetve a város koordinátáit fogja tárolni.
+
+Clouds osztály ami a az időjárás előrlejelzésből a felhősséget fogja tárolni.
+
+A Coords osztály ami a helység földrajzi szélességi és hosszúsági koordinátáit fogja eltárolni.
+
+Egy Main nevű osztály ami az ídőjárással kapcsolatos legfontosabb információkat fogja eltárolni pl. átlag hőmérsékletet, légnyomást, páratartalmat, maximum illetve minimum hömérsékleteket.
+
+A Sys osztály ami tárolni fogja, a helység a tipusát (község, falú, város), illetve a virradat és alkonyat ídőpontjait .
+
+Weather osztály ami a jelenlegi ídőjárással kapcsolatos informáciokat fogja tárolni. Az id az OpenWeatherAPI-s azonosítót fogja tárolni. A main az ídőjárás kategóriáját tárolja, a description meg a kategórián belüli ídőjárási típust fogja eltárolni. Végül pedig az icon-ba lesz eltárolva az OpenWeatherAPI által nyújtott olyan icon amely a description-nek megfelel.
+
+A Wind osztály fogja eltárolni a szél sebességet és a szél írányt.
+
+A CurrentWeatherData osztály lesz a végső tároló ami összegyűjti a többi osztály által tárolt adatokat és amin keresztül lekérdezzük őket.
+
+##### A ForeCastWeather packagen belül a következő  perzisztencia osztályok lesznek megtalálhatóak:
+
+A City, Clouds, Coords, Main, Sys, Weather, Wind osztályok hasonló informáciokat fognak tárolni mint a CurrentWeather package változatuk, néhány helyen kibővitett információval.
+
+A City osztály ami a város OpenWeatherAPI-n belüli ID-t, a város nevét, az ország nevét amiben tartózkodik, a város koordinátáit, népességét, ídőzonáját, illetve a napkelte és a napnyugta ídőpontjait fogja tárolni.
+
+Clouds osztály ami a az időjárás előrlejelzésből a felhősséget fogja tárolni.
+
+A Coords osztály ami a helység földrajzi szélességi és hosszúsági koordinátáit fogja eltárolni.
+
+Egy Main nevű osztály ami az ídőjárással kapcsolatos legfontosabb információkat fogja eltárolni pl. átlag hőmérsékletet, légnyomást, páratartalmat, maximum illetve minimum hömérsékleteket. Illetve még tárolni fogja a tengerszintet, csapadékosságot, illetve a légnyomást tengerszinten is.
+
+A Sys osztály ami tárolni fogja, a helység a tipusát (község, falú, város), illetve a virradat és alkonyat ídőpontjait .
+
+Weather osztály ami a jelenlegi ídőjárással kapcsolatos informáciokat fogja tárolni. Az id az OpenWeatherAPI-s azonosítót fogja tárolni. A main az ídőjárás kategóriáját tárolja, a description meg a kategórián belüli ídőjárási típust fogja eltárolni. Végül pedig az icon-ba lesz eltárolva az OpenWeatherAPI által nyújtott olyan icon amely a description-nek meg fog felelni.
+
+A Wind osztály fogja eltárolni a szél sebességet és a szél írányt.
+
+ForecastWeather osztály a többi osztály által tárolt adatokat fogja eltárolni, ezek az adatok csak egy napra elegendő informáciokat tartalmaznak.
+
+A ForecastWeatherData fogja eltárolni az öt napos ídőjárás előrejelzéssel kapcsolatos adatokat a list nevű változóba ami egy ForecastWeather típusú lista lesz.
+
+##### Handler packageben a következő perzisztencia osztályok lesznek megtalálhatóak:
+
+A CurrentWeatherHandler osztály lesz felelős a jelenlegi ídőjárás előrelejzés beolvasásáért lakcím, zip code vagy földrajzi szélességi és hosszúsági koordináták alapján.
+
+A ForeCastWeatherHandler lesz felelős az elkövetkezendő ídőjárás előrejelzések beolvasásáért lakcím, zip code vagy földrajzi szélességi és hosszúsági koordináták alapján.
+
+A Handler osztály lesz felelős az OpenWeather API oldaltól kapott JSON adatok beolvasására.
+
+Az ImageHandler osztály az óránkénti ídőjárás előrejelzéseknek megfelelő képek betöltéséért lesz felelős.
+
+Az OpenWeather A Programming Interface, abban az esetben, ha helyes értéket kap (földrajzi név, irányítószám, koordináták) a következő JSON fájlt küldi válaszul. (ezesetben a helyszínünk a Japánban található Shuenzji).
 
 ```json
 {"coord": { "lon": 139,"lat": 35},
@@ -183,6 +239,10 @@ Mivel a legjobbat szeretnénk a felhasználónak, így biztosítünk egy olyan f
 
 Ebben a JSON fájlban a világ összes települése megtalálható. Ezen városokat egy Map<String, ArrayList<String>> formátomú Map-ben tároljuk, ahol a String az ország neve, az ArrayList<String> pedig az adott országhoz kapcsolódo országok. A controlsfx (https://github.com/controlsfx/controlsfx) segítségével nagyon egyszerűen létrehozhatjuk ezt az automatikusan kiegészülő listát, ugyanis egy bindAutoCompletion(TextField, Collection<T>) metódust szolgáltat nekünk, ahol az első paraméter az a textField ahová a felhasználó éppen ír, a második pereméter pedig az ajánlásokból álló adat struktúra, az ajánlásokat a létrehozott Mappünkből szedjuk majd ki.  
 
+####  Kliensoldal osztályai:
+
+A Controller packageben található Weather osztály lesz felelős a felhasználókkal való interakciókért. Ez az osztály reagál a felhasználó változtatásaira. Itt fognak meghívásra kerülni a betöltő folyamatok, a törlő folyamatok, illetve a kiíró folyamatok.
+
 ### X. Tesztterv
 
 | Leírás        									|  Várt eset    |
@@ -194,3 +254,4 @@ Ebben a JSON fájlban a világ összes települése megtalálható. Ezen városo
 ### XI. Telepítési terv
 
 A program platform független. A program futtatásához sükséges hogy telepítve legyen a számítógépre a Java 11.
+
