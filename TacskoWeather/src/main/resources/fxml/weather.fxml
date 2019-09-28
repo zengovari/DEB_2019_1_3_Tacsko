@@ -121,8 +121,11 @@
                                         </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
-                                                <ImageView fx:id="day1img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                                </ImageView>
+                                                <Label fx:id="day1name" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum">
+                                                    <font>
+                                                        <Font name="System Bold" size="20" />
+                                                    </font>
+                                                </Label>
                                             </center>
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
@@ -150,8 +153,11 @@
                                         </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
-                                                <ImageView fx:id="day2img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                                </ImageView>
+                                                <Label fx:id="day2name" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum">
+                                                    <font>
+                                                        <Font name="System Bold" size="20" />
+                                                    </font>
+                                                </Label>
                                             </center>
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
@@ -179,8 +185,11 @@
                                         </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
-                                                <ImageView fx:id="day3img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                                </ImageView>
+                                                <Label fx:id="day3name" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum">
+                                                    <font>
+                                                        <Font name="System Bold" size="20" />
+                                                    </font>
+                                                </Label>
                                             </center>
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
@@ -208,8 +217,11 @@
                                         </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
-                                                <ImageView fx:id="day4img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                                </ImageView>
+                                                <Label fx:id="day4name" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum">
+                                                    <font>
+                                                        <Font name="System Bold" size="20" />
+                                                    </font>
+                                                </Label>
                                             </center>
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">
@@ -237,8 +249,11 @@
                                         </Label>
                                         <BorderPane prefHeight="200.0" prefWidth="300.0">
                                             <center>
-                                                <ImageView fx:id="day5img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                                </ImageView>
+                                                <Label fx:id="day5name" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="datum">
+                                                    <font>
+                                                        <Font name="System Bold" size="20" />
+                                                    </font>
+                                                </Label>
                                             </center>
                                         </BorderPane>
                                         <HBox prefHeight="300.0" prefWidth="300.0">

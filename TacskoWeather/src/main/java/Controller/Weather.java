@@ -58,27 +58,27 @@ public class Weather  implements Initializable {
 
     public VBox day1box;
     public Label day1date;
-    public ImageView day1img;
+    public Label day1name;
     public Label day1max;
     public Label day1min;
     public VBox day2box;
     public Label day2date;
-    public ImageView day2img;
+    public Label day2name;
     public Label day2max;
     public Label day2min;
     public VBox day3box;
     public Label day3date;
-    public ImageView day3img;
+    public Label day3name;
     public Label day3max;
     public Label day3min;
     public VBox day4box;
     public Label day4date;
-    public ImageView day4img;
+    public Label day4name;
     public Label day4max;
     public Label day4min;
     public VBox day5box;
     public Label day5date;
-    public ImageView day5img;
+    public Label day5name;
     public Label day5max;
     public Label day5min;
     public VBox hour0box;
@@ -237,6 +237,31 @@ public class Weather  implements Initializable {
     }
 
     /**
+     * Returns the name of the day which is on the date of the current date plus a number of days stored in the howManyDaysToAdd Integer.
+     * @param howManyDaysToAdd An Integer which represents how many days we want to add to the current date.
+     * @return Returns a String representing the name of a day.
+     */
+    public static String setDayName(int howManyDaysToAdd){
+        LocalDate localDate = LocalDate.now();
+        int day = (localDate.getDayOfWeek().getValue() + howManyDaysToAdd)%7;
+        switch (day){
+            case 1:
+                return "Hétfő";
+            case 2:
+                return "Kedd";
+            case 3:
+                return "Szerda";
+            case 4:
+                return "Csütörtök";
+            case 5:
+                return "Péntek";
+            case 6:
+                return "Szombat";
+            default:
+                return "Vasárnap";
+        }
+    }
+    /**
      * Loads the data regarding the upcoming five days of weather into the Graphical User Interface.
      * @param forecastWeather {@link ForecastWeatherData} Object that contains all the necessary information.
      */
@@ -248,7 +273,12 @@ public class Weather  implements Initializable {
         day4date.setText(date.plusDays(3).toString());
         day5date.setText(date.plusDays(4).toString());
 
-        Handler.setImageViewByDate(forecastWeather, day1img, "2019-09-26 15:00:00");
+        day1name.setText(setDayName(1));
+        day2name.setText(setDayName(2));
+        day3name.setText(setDayName(3));
+        day4name.setText(setDayName(4));
+        day5name.setText(setDayName(5));
+        //Handler.setImageViewByDate(forecastWeather, day1img, "2019-09-26 15:00:00");
 
         String currentTime = forecastWeather.getList()[0].getDt_txt();
 
