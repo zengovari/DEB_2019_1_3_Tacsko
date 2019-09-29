@@ -4,6 +4,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.swing.*;
+
 /**
  * This class handles the interaction with the images.
  */
@@ -39,6 +41,10 @@ public class ImageHandler {
      */
 
     private static Image selectCorrectImage (String description, String date) {
+        if (description == null) {
+            log.error("Nincs ehhez az időponthoz leírás");
+            return null;
+        }
         description = description.toLowerCase();
         Image correctImage = null;
         int hour = Integer.parseInt(date.split(" ")[1].split(":")[0]);
@@ -77,6 +83,9 @@ public class ImageHandler {
      */
 
     public static Background getBackgroundImage(AnchorPane pane, String description, String date) {
+        if (description == null) {
+            return null;
+        }
 
         BackgroundSize backgroundSize = new BackgroundSize(pane.getWidth(), pane.getHeight(), false, false, true, true);
         return new Background(new BackgroundImage(selectCorrectImage(description, date), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize));
