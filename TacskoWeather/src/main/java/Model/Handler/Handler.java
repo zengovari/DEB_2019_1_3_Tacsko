@@ -33,8 +33,8 @@ public class Handler {
      * @param location the name of the location from which we want to get the weather forecast or actual weather data.
      * @param forecast true value gets the forecast, false value gets the weather current weather.
      * @return A Json fle in the form of a String.
+     * @throws InvalidLocationError The given location is not allowed.
      */
-
     public static String readFromAPI(String location, boolean forecast) throws InvalidLocationError {
         StringBuilder apiAnswer = new StringBuilder();
         URL request;
@@ -64,6 +64,7 @@ public class Handler {
      * @param country the country tag of the location from which we want to get the weather forecast or actual weather data.(ie. HU, DE)
      * @param forecast true value gets the forecast, false value gets the weather current weather.
      * @return A JSON fle in the form of a String.
+     * @throws InvalidZipCodeError The given zipcode is not allowed.
      */
 
     public static String readFromAPI(String zip, String country, boolean forecast) throws InvalidZipCodeError {
@@ -95,6 +96,7 @@ public class Handler {
      * @param lon the longitude of the location from which we want to get the weather forecast or actual weather data.(ie. HU, DE)
      * @param forecast true value gets the forecast, false value gets the weather current weather.
      * @return A JSON fle in the form of a String.
+     * @throws InvalidCoordinatesError The given coordinates are not allowed.
      */
 
     public static String readFromAPI(double lat, double lon, boolean forecast) throws InvalidCoordinatesError {
