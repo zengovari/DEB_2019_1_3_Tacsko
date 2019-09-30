@@ -148,7 +148,6 @@ public class Weather  implements Initializable {
         tab1OrszagButtonAction();
         telepulesTextField.setText("Debrecen");
         tab1TelepulesButtonAction();
-        day1click();
 
     }
 
@@ -183,6 +182,8 @@ public class Weather  implements Initializable {
 
             weatherLoader(forecastWeatherData);
             telepulesHibauzenetLabel.setText("");
+            day1click();
+
         }
         else {
             log.error("Hibás település");
@@ -213,6 +214,7 @@ public class Weather  implements Initializable {
             currentWeatherData = CurrentWeatherHandler.getCurrentWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
             forecastWeatherData = ForecastWeatherHandler.getForecastWeatherData(iranyitoszamTextField.getText(), iranyitoszamOrszagTextField.getText());
             weatherLoader(forecastWeatherData);
+            day1click();
 
         }
     }
@@ -228,6 +230,7 @@ public class Weather  implements Initializable {
 
                 weatherLoader(forecastWeatherData);
                 koordinataHibauzenetLabel.setText("");
+                day1click();
 
             } catch(NumberFormatException e) {
                 log.error("Hibás koordináták");
