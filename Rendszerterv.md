@@ -241,8 +241,6 @@ A Controller packageben található Weather osztály lesz felelős a felhasznál
 | :-------------:									|:-------------:|
 | A felhasználó hibás értéket ad meg bemenetnek (minden esetre)    | Az oldal 404-es hibát dob vissza, a felhasználó tudomást szerez a hibásan beírt értékről |
 | A felhasználó meg akarja nyitni az egyik nap részletes adatait | a kiválasztott nap adatait várjuk és nem egy másik napét |
-| új    									| új   |   
-
 ### X. Telepítési terv
 
 A program platform független. A program futtatásához szükséges, hogy telepítve legyen a számítógépre a Java 11.
