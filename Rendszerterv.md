@@ -1,6 +1,7 @@
 
 
 
+
 # Rendszerterv
 
 Időjárás előre jelző program
@@ -244,7 +245,14 @@ A Controller packageben található Weather osztály lesz felelős a felhasznál
 |A felhasználó hibás helyszínt ad meg | A grafikus felületen megjelenik egy hibaüzenet ami tájékoztatja a felhasználót a hibásan beírt helyszínről |
 |A felhasználó hibás irányítószámot ad meg | A grafikus felületen megjelenik egy hibaüzenet ami tájékoztatja a felhasználót a hibásan beírt irányítószámról |
 |A felhasználó hibás földrajzi koordinátákat ad meg | A grafikus felületen megjelenik egy hibaüzenet ami tájékoztatja a felhasználót a hibásan beírt koordinátákról |
-| A felhasználó meg akarja nyitni az egyik nap részletes adatait | a kiválasztott nap adatait várjuk és nem egy másik napét |
+| A felhasználó meg akarja nyitni az egyik nap részletes adatait | A kiválasztott nap adatait várjuk és nem egy másik napét |
+| A felhasználó meg akarja nyitni az egyik óra részletes adatait | A kiválasztott óra adatait várjuk és nem egy másik órájét 
+| A felhasználó egy új települést ad meg, felülírva a régit | A grafikus felületen az ablakok frissülnek az új helyszínnek megfelelően. |
+| A felhasználó egy új irányitószámot ad meg, felülírva a régit| A grafikus felületen az ablakok frissülnek az új helyszínnek megfelelően. |
+| A felhasználó egy új koordinátát ad meg, felülírva a régit| A grafikus felületen az ablakok frissülnek az új helyszínnek megfelelően. |
+
+
 ### X. Telepítési terv
 
 A program platform független. A program futtatásához szükséges, hogy telepítve legyen a számítógépre a Java 11.
+
