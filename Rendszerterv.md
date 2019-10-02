@@ -239,7 +239,11 @@ A Controller packageben található Weather osztály lesz felelős a felhasznál
 
 | Leírás        									|  Várt eset    |
 | :-------------:									|:-------------:|
-| A felhasználó hibás értéket ad meg bemenetnek (minden esetre)    | Az oldal 404-es hibát dob vissza, a felhasználó tudomást szerez a hibásan beírt értékről |
+|A felhasználó fullscreenbe nyitja meg az alkalmazást | A grafikus felületen elhelyezett elemek megfelelően látszódnak |
+|A felhasználó ablakos üzemmódba nyitja meg az alkalmazást | A grafikus felületen elhelyezett elemek megfelelően látszódnak |
+|A felhasználó hibás helyszínt ad meg | A grafikus felületen megjelenik egy hibaüzenet ami tájékoztatja a felhasználót a hibásan beírt helyszínről |
+|A felhasználó hibás irányítószámot ad meg | A grafikus felületen megjelenik egy hibaüzenet ami tájékoztatja a felhasználót a hibásan beírt irányítószámról |
+|A felhasználó hibás földrajzi koordinátákat ad meg | A grafikus felületen megjelenik egy hibaüzenet ami tájékoztatja a felhasználót a hibásan beírt koordinátákról |
 | A felhasználó meg akarja nyitni az egyik nap részletes adatait | a kiválasztott nap adatait várjuk és nem egy másik napét |
 ### X. Telepítési terv
 
